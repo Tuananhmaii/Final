@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BulkyBook.Models
+namespace RopinStore.Models
 {
     public class Product
     {

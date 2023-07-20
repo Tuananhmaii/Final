@@ -987,9 +987,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Final\\BulkyBook.Utility\\BulkyBook.Utility.csproj",
-      "projectName": "BulkyBook.Utility",
-      "projectPath": "D:\\Final\\BulkyBook.Utility\\BulkyBook.Utility.csproj",
+      "projectUniqueName": "D:\\Final\\BulkyBook.Utility\\RopinStore.Utility.csproj",
+      "projectName": "RopinStore.Utility",
+      "projectPath": "D:\\Final\\BulkyBook.Utility\\RopinStore.Utility.csproj",
       "packagesPath": "C:\\Users\\maitr\\.nuget\\packages\\",
       "outputPath": "D:\\Final\\BulkyBook.Utility\\obj\\",
       "projectStyle": "PackageReference",

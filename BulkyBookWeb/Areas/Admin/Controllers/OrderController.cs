@@ -1,7 +1,7 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
-using BulkyBook.Utility;
+﻿using RopinStore.DataAccess.Repository.IRepository;
+using RopinStore.Models;
+using RopinStore.Models.ViewModels;
+using RopinStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Stripe;
@@ -9,7 +9,7 @@ using Stripe.Checkout;
 using System.Linq;
 using System.Security.Claims;
 
-namespace BulkyBookWeb.Areas.Admin.Controllers
+namespace RopinStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize]

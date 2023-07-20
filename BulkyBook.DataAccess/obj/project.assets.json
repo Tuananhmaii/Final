@@ -2930,7 +2930,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "BulkyBook.Models/1.0.0": {
+      "RopinStore.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -2938,10 +2938,10 @@
           "Microsoft.Extensions.Identity.Stores": "7.0.9"
         },
         "compile": {
-          "bin/placeholder/BulkyBook.Models.dll": {}
+          "bin/placeholder/RopinStore.Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BulkyBook.Models.dll": {}
+          "bin/placeholder/RopinStore.Models.dll": {}
         }
       }
     }
@@ -8547,20 +8547,20 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "BulkyBook.Models/1.0.0": {
+    "RopinStore.Models/1.0.0": {
       "type": "project",
-      "path": "../BulkyBook.Models/BulkyBook.Models.csproj",
-      "msbuildProject": "../BulkyBook.Models/BulkyBook.Models.csproj"
+      "path": "../BulkyBook.Models/RopinStore.Models.csproj",
+      "msbuildProject": "../BulkyBook.Models/RopinStore.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "BulkyBook.Models >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.9",
       "Microsoft.EntityFrameworkCore >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Relational >= 7.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.9"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
+      "RopinStore.Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -8570,9 +8570,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj",
-      "projectName": "BulkyBook.DataAccess",
-      "projectPath": "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj",
+      "projectUniqueName": "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj",
+      "projectName": "RopinStore.DataAccess",
+      "projectPath": "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj",
       "packagesPath": "C:\\Users\\maitr\\.nuget\\packages\\",
       "outputPath": "D:\\Final\\BulkyBook.DataAccess\\obj\\",
       "projectStyle": "PackageReference",
@@ -8595,8 +8595,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj": {
-              "projectPath": "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj"
+            "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj": {
+              "projectPath": "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj"
             }
           }
         }

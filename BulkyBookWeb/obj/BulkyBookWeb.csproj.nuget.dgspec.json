@@ -4,12 +4,12 @@
     "D:\\Final\\BulkyBookWeb\\BulkyBookWeb.csproj": {}
   },
   "projects": {
-    "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj": {
+    "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj",
-        "projectName": "BulkyBook.DataAccess",
-        "projectPath": "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj",
+        "projectUniqueName": "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj",
+        "projectName": "RopinStore.DataAccess",
+        "projectPath": "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj",
         "packagesPath": "C:\\Users\\maitr\\.nuget\\packages\\",
         "outputPath": "D:\\Final\\BulkyBook.DataAccess\\obj\\",
         "projectStyle": "PackageReference",
@@ -32,8 +32,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj": {
-                "projectPath": "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj"
+              "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj": {
+                "projectPath": "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj"
               }
             }
           }
@@ -89,12 +89,12 @@
         }
       }
     },
-    "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj": {
+    "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj",
-        "projectName": "BulkyBook.Models",
-        "projectPath": "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj",
+        "projectUniqueName": "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj",
+        "projectName": "RopinStore.Models",
+        "projectPath": "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj",
         "packagesPath": "C:\\Users\\maitr\\.nuget\\packages\\",
         "outputPath": "D:\\Final\\BulkyBook.Models\\obj\\",
         "projectStyle": "PackageReference",
@@ -260,8 +260,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj": {
-                "projectPath": "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj"
+              "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj": {
+                "projectPath": "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj"
               },
               "D:\\Final\\BulkyBook.Utility\\BulkyBook.Utility.csproj": {
                 "projectPath": "D:\\Final\\BulkyBook.Utility\\BulkyBook.Utility.csproj"

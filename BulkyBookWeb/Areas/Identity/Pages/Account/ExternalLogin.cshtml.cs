@@ -17,10 +17,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using BulkyBook.Models;
-using BulkyBook.Utility;
+using RopinStore.Models;
+using RopinStore.Utility;
 
-namespace BulkyBookWeb.Areas.Identity.Pages.Account
+namespace RopinStoreWeb.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel

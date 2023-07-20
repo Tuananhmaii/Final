@@ -1,11 +1,11 @@
-using BulkyBook.DataAccess;
-using BulkyBook.DataAccess.Repository;
-using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Utility;
+using RopinStore.DataAccess.Repository;
+using RopinStore.DataAccess.Repository.IRepository;
+using RopinStore.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
+using RopinStore.DataAccess.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

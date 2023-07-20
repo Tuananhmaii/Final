@@ -4764,25 +4764,25 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "BulkyBook.DataAccess/1.0.0": {
+      "RopinStore.DataAccess/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "BulkyBook.Models": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "7.0.9",
           "Microsoft.EntityFrameworkCore": "7.0.9",
           "Microsoft.EntityFrameworkCore.Relational": "7.0.9",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.9"
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.9",
+          "RopinStore.Models": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/BulkyBook.DataAccess.dll": {}
+          "bin/placeholder/RopinStore.DataAccess.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BulkyBook.DataAccess.dll": {}
+          "bin/placeholder/RopinStore.DataAccess.dll": {}
         }
       },
-      "BulkyBook.Models/1.0.0": {
+      "RopinStore.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -4790,13 +4790,13 @@
           "Microsoft.Extensions.Identity.Stores": "7.0.9"
         },
         "compile": {
-          "bin/placeholder/BulkyBook.Models.dll": {}
+          "bin/placeholder/RopinStore.Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BulkyBook.Models.dll": {}
+          "bin/placeholder/RopinStore.Models.dll": {}
         }
       },
-      "BulkyBook.Utility/1.0.0": {
+      "RopinStore.Utility/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
@@ -4805,10 +4805,10 @@
           "MimeKit": "3.4.2"
         },
         "compile": {
-          "bin/placeholder/BulkyBook.Utility.dll": {}
+          "bin/placeholder/RopinStore.Utility.dll": {}
         },
         "runtime": {
-          "bin/placeholder/BulkyBook.Utility.dll": {}
+          "bin/placeholder/RopinStore.Utility.dll": {}
         }
       }
     }
@@ -13161,26 +13161,24 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "BulkyBook.DataAccess/1.0.0": {
+    "RopinStore.DataAccess/1.0.0": {
       "type": "project",
-      "path": "../BulkyBook.DataAccess/BulkyBook.DataAccess.csproj",
-      "msbuildProject": "../BulkyBook.DataAccess/BulkyBook.DataAccess.csproj"
+      "path": "../BulkyBook.DataAccess/RopinStore.DataAccess.csproj",
+      "msbuildProject": "../BulkyBook.DataAccess/RopinStore.DataAccess.csproj"
     },
-    "BulkyBook.Models/1.0.0": {
+    "RopinStore.Models/1.0.0": {
       "type": "project",
-      "path": "../BulkyBook.Models/BulkyBook.Models.csproj",
-      "msbuildProject": "../BulkyBook.Models/BulkyBook.Models.csproj"
+      "path": "../BulkyBook.Models/RopinStore.Models.csproj",
+      "msbuildProject": "../BulkyBook.Models/RopinStore.Models.csproj"
     },
-    "BulkyBook.Utility/1.0.0": {
+    "RopinStore.Utility/1.0.0": {
       "type": "project",
-      "path": "../BulkyBook.Utility/BulkyBook.Utility.csproj",
-      "msbuildProject": "../BulkyBook.Utility/BulkyBook.Utility.csproj"
+      "path": "../BulkyBook.Utility/RopinStore.Utility.csproj",
+      "msbuildProject": "../BulkyBook.Utility/RopinStore.Utility.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "BulkyBook.DataAccess >= 1.0.0",
-      "BulkyBook.Utility >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.Facebook >= 7.0.9",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.9",
       "Microsoft.AspNetCore.Identity.UI >= 7.0.9",
@@ -13189,6 +13187,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.8",
+      "RopinStore.DataAccess >= 1.0.0",
+      "RopinStore.Utility >= 1.0.0",
       "Stripe.net >= 40.14.0"
     ]
   },
@@ -13199,9 +13199,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Final\\BulkyBookWeb\\BulkyBookWeb.csproj",
-      "projectName": "BulkyBookWeb",
-      "projectPath": "D:\\Final\\BulkyBookWeb\\BulkyBookWeb.csproj",
+      "projectUniqueName": "D:\\Final\\BulkyBookWeb\\RopinStoreWeb.csproj",
+      "projectName": "RopinStoreWeb",
+      "projectPath": "D:\\Final\\BulkyBookWeb\\RopinStoreWeb.csproj",
       "packagesPath": "C:\\Users\\maitr\\.nuget\\packages\\",
       "outputPath": "D:\\Final\\BulkyBookWeb\\obj\\",
       "projectStyle": "PackageReference",
@@ -13225,11 +13225,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj": {
-              "projectPath": "D:\\Final\\BulkyBook.DataAccess\\BulkyBook.DataAccess.csproj"
+            "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj": {
+              "projectPath": "D:\\Final\\BulkyBook.DataAccess\\RopinStore.DataAccess.csproj"
             },
-            "D:\\Final\\BulkyBook.Utility\\BulkyBook.Utility.csproj": {
-              "projectPath": "D:\\Final\\BulkyBook.Utility\\BulkyBook.Utility.csproj"
+            "D:\\Final\\BulkyBook.Utility\\RopinStore.Utility.csproj": {
+              "projectPath": "D:\\Final\\BulkyBook.Utility\\RopinStore.Utility.csproj"
             }
           }
         }

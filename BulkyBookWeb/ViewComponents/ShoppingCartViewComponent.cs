@@ -1,9 +1,9 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Utility;
+﻿using RopinStore.DataAccess.Repository.IRepository;
+using RopinStore.Utility;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace BulkyBookWeb.ViewComponents
+namespace RopinStoreWeb.ViewComponents
 {
     public class ShoppingCartViewComponent : ViewComponent
     {

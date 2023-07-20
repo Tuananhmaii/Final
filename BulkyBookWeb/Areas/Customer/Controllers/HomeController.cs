@@ -1,13 +1,13 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
-using BulkyBook.Utility;
+﻿using RopinStore.DataAccess.Repository.IRepository;
+using RopinStore.Models;
+using RopinStore.Models.ViewModels;
+using RopinStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 
-namespace BulkyBookWeb.Areas.Customer.Controllers
+namespace RopinStoreWeb.Areas.Customer.Controllers
 {
     [Area("Customer")]
     public class HomeController : Controller

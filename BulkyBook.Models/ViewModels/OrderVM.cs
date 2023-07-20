@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BulkyBook.Models.ViewModels
+namespace RopinStore.Models.ViewModels
 {
     public class OrderVM
     {

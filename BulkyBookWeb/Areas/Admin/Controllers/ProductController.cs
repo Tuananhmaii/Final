@@ -1,15 +1,15 @@
-﻿using BulkyBook.DataAccess;
-using BulkyBook.DataAccess.Repository;
-using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
-using BulkyBook.Models.ViewModels;
-using BulkyBook.Utility;
+﻿using RopinStore.DataAccess;
+using RopinStore.DataAccess.Repository;
+using RopinStore.DataAccess.Repository.IRepository;
+using RopinStore.Models;
+using RopinStore.Models.ViewModels;
+using RopinStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
-namespace BulkyBookWeb.Areas.Admin.Controllers
+namespace RopinStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.Role_Admin)]

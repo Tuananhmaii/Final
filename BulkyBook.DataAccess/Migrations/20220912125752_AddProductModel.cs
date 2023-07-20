@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace BulkyBookWeb.Migrations
+namespace RopinStoreWeb.Migrations
 {
     public partial class AddProductModel : Migration
     {

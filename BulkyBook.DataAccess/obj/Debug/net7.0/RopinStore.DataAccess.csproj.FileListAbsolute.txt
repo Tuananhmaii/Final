@@ -1,0 +1,17 @@
+D:\Final\BulkyBook.DataAccess\bin\Debug\net7.0\RopinStore.DataAccess.deps.json
+D:\Final\BulkyBook.DataAccess\bin\Debug\net7.0\RopinStore.DataAccess.runtimeconfig.json
+D:\Final\BulkyBook.DataAccess\bin\Debug\net7.0\RopinStore.DataAccess.dll
+D:\Final\BulkyBook.DataAccess\bin\Debug\net7.0\RopinStore.DataAccess.pdb
+D:\Final\BulkyBook.DataAccess\bin\Debug\net7.0\RopinStore.Models.dll
+D:\Final\BulkyBook.DataAccess\bin\Debug\net7.0\RopinStore.Models.pdb
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.csproj.AssemblyReference.cache
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.AssemblyInfoInputs.cache
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.AssemblyInfo.cs
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.csproj.CoreCompileInputs.cache
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.csproj.CopyComplete
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.dll
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\refint\RopinStore.DataAccess.dll
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.pdb
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\RopinStore.DataAccess.genruntimeconfig.cache
+D:\Final\BulkyBook.DataAccess\obj\Debug\net7.0\ref\RopinStore.DataAccess.dll

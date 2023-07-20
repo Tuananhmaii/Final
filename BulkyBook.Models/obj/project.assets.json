@@ -6903,9 +6903,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj",
-      "projectName": "BulkyBook.Models",
-      "projectPath": "D:\\Final\\BulkyBook.Models\\BulkyBook.Models.csproj",
+      "projectUniqueName": "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj",
+      "projectName": "RopinStore.Models",
+      "projectPath": "D:\\Final\\BulkyBook.Models\\RopinStore.Models.csproj",
       "packagesPath": "C:\\Users\\maitr\\.nuget\\packages\\",
       "outputPath": "D:\\Final\\BulkyBook.Models\\obj\\",
       "projectStyle": "PackageReference",

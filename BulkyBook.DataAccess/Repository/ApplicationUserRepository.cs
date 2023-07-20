@@ -1,12 +1,13 @@
-﻿using BulkyBook.DataAccess.Repository.IRepository;
-using BulkyBook.Models;
+﻿using RopinStore.DataAccess.Data;
+using RopinStore.DataAccess.Repository.IRepository;
+using RopinStore.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BulkyBook.DataAccess.Repository
+namespace RopinStore.DataAccess.Repository
 {
     public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
     {
