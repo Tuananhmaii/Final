@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStoreWeb", "BulkyBookWeb\RopinStoreWeb.csproj", "{AC562E59-181F-4695-8797-C5DE82552F0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStoreWeb", "RopinStoreWeb\RopinStoreWeb.csproj", "{AC562E59-181F-4695-8797-C5DE82552F0D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStore.DataAccess", "BulkyBook.DataAccess\RopinStore.DataAccess.csproj", "{879F832B-ED54-4FC4-99C3-1D96AEA56ABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStore.DataAccess", "RopinStore.DataAccess\RopinStore.DataAccess.csproj", "{879F832B-ED54-4FC4-99C3-1D96AEA56ABC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStore.Models", "BulkyBook.Models\RopinStore.Models.csproj", "{941D93CC-4529-4F00-A4F0-3425AFDF5F29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStore.Models", "RopinStore.Models\RopinStore.Models.csproj", "{941D93CC-4529-4F00-A4F0-3425AFDF5F29}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStore.Utility", "BulkyBook.Utility\RopinStore.Utility.csproj", "{B7B78BDA-C97C-4711-ACEC-8195EECAFF83}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RopinStore.Utility", "RopinStore.Utility\RopinStore.Utility.csproj", "{B7B78BDA-C97C-4711-ACEC-8195EECAFF83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
