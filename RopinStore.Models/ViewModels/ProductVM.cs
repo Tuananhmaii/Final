@@ -14,6 +14,6 @@ namespace RopinStore.Models.ViewModels
         [ValidateNever]
         public IEnumerable<SelectListItem> CategoryList {get; set;}
         [ValidateNever]
-        public IEnumerable<SelectListItem> CoverTypeList { get; set; }
+        public IEnumerable<SelectListItem> BrandList { get; set; }
     }
 }

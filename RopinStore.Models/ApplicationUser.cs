@@ -13,14 +13,8 @@ namespace RopinStore.Models
     public class ApplicationUser : IdentityUser
     {
         [Required]
-        public String Name { get; set; }
-        public String? Address { get; set; }
-        public String? City { get; set; }
-        public String? State { get; set; }
-        public String? PostalCode { get; set; }
-        public int? CompanyId { get; set; }
-        [ForeignKey("CompanyId")]
-        [ValidateNever]
-        public Company Company { get; set; }
+        public string FullName { get; set; }
+        public string? City { get; set; }
+        public string? Address { get; set; }
     }
 }

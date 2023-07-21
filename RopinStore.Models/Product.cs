@@ -13,29 +13,17 @@ namespace RopinStore.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
-        public String Title { get; set; }
+        public string Name { get; set; }
+
         [Required]
-        public String Description { get; set; }
-        [Required]
-        public String ISBN { get; set; }
-        [Required]
-        public String Author { get; set; }
-        [Required]
-        [Range(1,10000)]
-        [DisplayName("List Price")]
-        public double ListPrice { get; set; }
+        public string Description { get; set; }
+
         [Required]
         [Range(1, 10000)]
         public double Price { get; set; }
-        [Required]
-        [Range(1, 10000)]
-        [DisplayName("Price 51 - 100")]
-        public double Price50 { get; set; }
-        [Required]
-        [Range(1, 10000)]
-        [DisplayName("Price 100+")]
-        public double Price100 { get; set; }
+
         [ValidateNever]
         [DisplayName("Image URL")]
         public string ImageUrl { get; set; }
@@ -43,13 +31,15 @@ namespace RopinStore.Models
         [Required]
         [DisplayName("Category")]
         public int CategoryId { get; set; }
+
         [ValidateNever]
         public Category Category { get; set; }
 
         [Required]
-        [DisplayName("Cover Type")]
-        public int CoverTypeId { get; set; }
+        [DisplayName("Brand")]
+        public int BrandId { get; set; }
+
         [ValidateNever]
-        public CoverType CoverType { get; set; }
+        public Brand Brand { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zkw4z7TG0dee6Yaf1q9GJHCf7Sarn1ZShoY+wS+Kn9E=",
+  "Hash": "xKg88TspR37TSzOucjHanCFqovd8514YB1VWbvd9jaE=",
   "Source": "RopinStoreWeb",
   "BasePath": "_content/RopinStoreWeb",
   "Mode": "Default",
@@ -1188,6 +1188,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\7e5985a4-e0ac-49ab-b55d-9a0ab7eabc87.jpg"
+    },
+    {
+      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\images\\products\\99073e64-28ff-4d37-a910-dfbb490eba6a.jpg",
+      "SourceId": "RopinStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
+      "BasePath": "_content/RopinStoreWeb",
+      "RelativePath": "images/products/99073e64-28ff-4d37-a910-dfbb490eba6a.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\99073e64-28ff-4d37-a910-dfbb490eba6a.jpg"
     },
     {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\images\\products\\ad08f394-41c8-4bc0-9de5-cbb016672ae2.jpg",

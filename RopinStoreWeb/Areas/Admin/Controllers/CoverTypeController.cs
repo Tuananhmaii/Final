@@ -21,7 +21,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<CoverType> objCoverTypeList = _unitOfWork.CoverType.GetAll();
+            IEnumerable<Brand> objCoverTypeList = _unitOfWork.CoverType.GetAll();
             return View(objCoverTypeList);
         }
 
@@ -35,7 +35,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(CoverType obj)
+        public IActionResult Create(Brand obj)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(CoverType obj)
+        public IActionResult Edit(Brand obj)
         {
             if (ModelState.IsValid)
             {

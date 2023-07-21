@@ -15,7 +15,7 @@ namespace RopinStore.Models
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]
         [ValidateNever]
-        public Product product { get; set; }
+        public Product Product { get; set; }
         [Range(1, 1000, ErrorMessage = "Enter between 1 and 1000")]
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace RopinStore.Models
 {
-    public class CoverType
+    public class Brand
     {
         [Key]
         public int Id { get; set; }
         [Required]
-        [DisplayName("Cover Type")]
         public string Name { get; set; }
+        public string? Description { get; set; }
     }
 }

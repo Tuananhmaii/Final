@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RopinStore.DataAccess.Repository
 {
-    public class OrderHeaderRepository : Repository<OrderHeader>, IOrderHeaderRepository
+    public class OrderHeaderRepository : Repository<Order>, IOrderHeaderRepository
     {
         private ApplicationDbContext _db;
         public OrderHeaderRepository(ApplicationDbContext db) : base(db)
@@ -17,7 +17,7 @@ namespace RopinStore.DataAccess.Repository
             _db = db;
         }
 
-        public void Update(OrderHeader obj)
+        public void Update(Order obj)
         {
             _db.OrderHeaders.Update(obj);
         }

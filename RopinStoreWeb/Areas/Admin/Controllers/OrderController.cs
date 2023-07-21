@@ -171,7 +171,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
 
         public IActionResult PaymentConfirmation(int orderHeaderid)
         {
-            OrderHeader orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderHeaderid);
+            Order orderHeader = _unitOfWork.OrderHeader.GetFirstOrDefault(u => u.Id == orderHeaderid);
             if (orderHeader.PaymentStatus == SD.PaymentStatusDelayedPayment)
             {
                 var service = new SessionService();
@@ -190,7 +190,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll(string status)
         {
-            IEnumerable<OrderHeader> orderHeaders;
+            IEnumerable<Order> orderHeaders;
             if (User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee))
             {
                 orderHeaders = _unitOfWork.OrderHeader.GetAll(includeProperties: "ApplicationUser");

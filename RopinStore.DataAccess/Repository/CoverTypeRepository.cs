@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RopinStore.DataAccess.Repository
 {
-    public class CoverTypeRepository : Repository<CoverType>, ICoverTypeRepository
+    public class CoverTypeRepository : Repository<Brand>, ICoverTypeRepository
     {
         private ApplicationDbContext _db;
         public CoverTypeRepository(ApplicationDbContext db) : base(db)
@@ -17,7 +17,7 @@ namespace RopinStore.DataAccess.Repository
             _db = db;
         }
 
-        public void Update(CoverType obj)
+        public void Update(Brand obj)
         {
             _db.CoverTypes.Update(obj);
         }
