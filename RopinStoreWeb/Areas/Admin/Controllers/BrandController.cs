@@ -11,17 +11,17 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
     [Authorize(Roles = SD.Role_Admin)]
-    public class CoverTypeController : Controller
+    public class BrandController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
 
-        public CoverTypeController(IUnitOfWork unitOfWork)
+        public BrandController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-            IEnumerable<Brand> objCoverTypeList = _unitOfWork.CoverType.GetAll();
+            IEnumerable<Brand> objCoverTypeList = _unitOfWork.Brand.GetAll();
             return View(objCoverTypeList);
         }
 
@@ -39,7 +39,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.CoverType.Add(obj);
+                _unitOfWork.Brand.Add(obj);
                 _unitOfWork.Save();
                 TempData["sucess"] = "Create successfully";
                 return RedirectToAction("Index");
@@ -52,7 +52,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var CoverTypeFromDb = _unitOfWork.CoverType.GetFirstOrDefault(s => s.Id == id);
+            var CoverTypeFromDb = _unitOfWork.Brand.GetFirstOrDefault(s => s.Id == id);
             if (CoverTypeFromDb == null)
             {
                 return NotFound();
@@ -66,7 +66,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.CoverType.Update(obj);
+                _unitOfWork.Brand.Update(obj);
                 _unitOfWork.Save();
                 TempData["sucess"] = "Edit successfully";
                 return RedirectToAction("Index");
@@ -79,7 +79,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            var CoverTypeFromDb = _unitOfWork.CoverType.GetFirstOrDefault(s => s.Id == id);
+            var CoverTypeFromDb = _unitOfWork.Brand.GetFirstOrDefault(s => s.Id == id);
             if (CoverTypeFromDb == null)
             {
                 return NotFound();
@@ -91,13 +91,13 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _unitOfWork.CoverType.GetFirstOrDefault(s => s.Id == id);
+            var obj = _unitOfWork.Brand.GetFirstOrDefault(s => s.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _unitOfWork.CoverType.Remove(obj);
+            _unitOfWork.Brand.Remove(obj);
             TempData["sucess"] = "Delete successfully";
             _unitOfWork.Save();
             return RedirectToAction("Index");

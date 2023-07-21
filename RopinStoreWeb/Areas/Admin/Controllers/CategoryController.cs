@@ -37,10 +37,6 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "Name can not match with display order");
-            }
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(obj);
@@ -68,10 +64,6 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category obj)
         {
-            if (obj.Name == obj.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("name", "Name can not match with display order");
-            }
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Update(obj);

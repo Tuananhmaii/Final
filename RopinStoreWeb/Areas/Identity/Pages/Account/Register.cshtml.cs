@@ -130,9 +130,7 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
             if (!_roleManager.RoleExistsAsync(SD.Role_Admin).GetAwaiter().GetResult())
             {
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Indi)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Comp)).GetAwaiter().GetResult();
             }
             Input = new InputModel()
             {
@@ -141,11 +139,6 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
                     Text = m,
                     Value = m
                 }),
-                CompanyList = _unitOfWork.Company.GetAll().Select(m => new SelectListItem
-                {
-                    Text = m.Name,
-                    Value = m.Id.ToString()
-                })
             };
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
@@ -161,16 +154,10 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                user.Name = Input.Name;
-                user.State = Input.State;
+                user.FullName = Input.Name;
                 user.City = Input.City;
                 user.Address = Input.StreetAddress;
                 user.PhoneNumber = Input.PhoneNumber;
-                user.PostalCode = Input.PostalCode;
-                if(Input.Role == SD.Role_User_Comp)
-                {
-                    user.CompanyId = Input.CompanyId;
-                }
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
                 if (result.Succeeded)

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xKg88TspR37TSzOucjHanCFqovd8514YB1VWbvd9jaE=",
+  "Hash": "4CRdAmOi2cUQUZmLY0t46nZn0cmAxS92abbgVNOvH5o=",
   "Source": "RopinStoreWeb",
   "BasePath": "_content/RopinStoreWeb",
   "Mode": "Default",
@@ -1239,23 +1239,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\d2956316-a845-4cec-a39e-e46ae8f98ae0.jpg"
-    },
-    {
-      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\company.js",
-      "SourceId": "RopinStoreWeb",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
-      "BasePath": "_content/RopinStoreWeb",
-      "RelativePath": "js/company.js",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\company.js"
     },
     {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\order.js",

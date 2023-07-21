@@ -38,7 +38,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                     Text = n.Name,
                     Value = n.Id.ToString()
                 }),
-                CoverTypeList = _unitOfWork.CoverType.GetAll().Select(n => new SelectListItem
+                BrandList = _unitOfWork.Brand.GetAll().Select(n => new SelectListItem
                 {
                     Text = n.Name,
                     Value = n.Id.ToString()
@@ -104,7 +104,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+            var productList = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             return Json(new { data = productList });
         }
         //POST

@@ -22,7 +22,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,CoverType");
+            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             return View(productList);
         }
         public IActionResult Details(int productid)
@@ -31,7 +31,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             {
                 Count = 1,
                 ProductId = productid,
-                product = _unitOfWork.Product.GetFirstOrDefault(n => n.Id == productid, includeProperties: "Category,CoverType")
+                Product = _unitOfWork.Product.GetFirstOrDefault(n => n.Id == productid, includeProperties: "Category,Brand")
             };
             return View(cartObj);
         }
