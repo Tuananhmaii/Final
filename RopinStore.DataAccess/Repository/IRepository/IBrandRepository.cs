@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace RopinStore.DataAccess.Repository.IRepository
 {
-    public interface ICompaniesRepository : IRepository<Company>
+    public interface IBrandRepository : IRepository<Brand>
     {
-        void Update(Company obj);
+        void Update(Brand obj);
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RopinStore.DataAccess.Repository.IRepository
 {
-    public interface IOrderHeaderRepository : IRepository<Order>
+    public interface IOrderRepository : IRepository<Order>
     {
         void Update(Order obj);
         void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);

@@ -8,14 +8,13 @@ namespace RopinStore.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
-        ICoverTypeRepository CoverType{ get; }
+        IBrandRepository Brand{ get; }
         ICategoryRepository Category{ get; }
         IProductRepository Product{ get; }
-        ICompaniesRepository Company{ get; }
         IApplicationUserRepository ApplicationUser{ get; }
         IShoppingCartRepository ShoppingCart{ get; }
         IOrderDetailRepository OrderDetail{ get; }
-        IOrderHeaderRepository OrderHeader { get; }
+        IOrderRepository Order { get; }
         void Save();
     }
 }

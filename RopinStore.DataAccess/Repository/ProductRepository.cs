@@ -23,14 +23,11 @@ namespace RopinStore.DataAccess.Repository
             if(objFromProduct != null)
             {
                 objFromProduct.Id = obj.Id;
-                objFromProduct.Title = obj.Title;
+                objFromProduct.Name = obj.Name;
                 objFromProduct.Description = obj.Description;
-                objFromProduct.ISBN = obj.ISBN;
-                objFromProduct.Author = obj.Author;
-                objFromProduct.ListPrice = obj.ListPrice;
                 objFromProduct.Price = obj.Price;
-                objFromProduct.Price50 = obj.Price50;
-                objFromProduct.Price100 = obj.Price100;
+                objFromProduct.BrandId = obj.BrandId;
+                objFromProduct.CategoryId = obj.CategoryId;
                 if(objFromProduct.ImageUrl != null)
                 {
                     objFromProduct.ImageUrl = obj.ImageUrl;

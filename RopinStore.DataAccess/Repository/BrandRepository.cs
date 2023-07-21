@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace RopinStore.DataAccess.Repository
 {
-    public class CompaniesRepository : Repository<Company>, ICompaniesRepository
+    public class BrandRepository : Repository<Brand>, IBrandRepository
     {
         private ApplicationDbContext _db;
-        public CompaniesRepository(ApplicationDbContext db) : base(db)
+        public BrandRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Company obj)
+        public void Update(Brand obj)
         {
-            _db.Companies.Update(obj);
+            _db.Brands.Update(obj);
         }
     }
 }
