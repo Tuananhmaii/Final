@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4CRdAmOi2cUQUZmLY0t46nZn0cmAxS92abbgVNOvH5o=",
+  "Hash": "Gwfxbfl9xmtnm+HoMyK5kCJS0cBx6y2a/aUZl2osamk=",
   "Source": "RopinStoreWeb",
   "BasePath": "_content/RopinStoreWeb",
   "Mode": "Default",
@@ -1156,6 +1156,23 @@
       "OriginalItemSpec": "wwwroot\\images\\products\\16a11c1e-1c54-4447-9914-ff5ae77ec000.jpg"
     },
     {
+      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\images\\products\\298fe78b-ad40-4690-85c0-46decf391553.jpg",
+      "SourceId": "RopinStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
+      "BasePath": "_content/RopinStoreWeb",
+      "RelativePath": "images/products/298fe78b-ad40-4690-85c0-46decf391553.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\298fe78b-ad40-4690-85c0-46decf391553.jpg"
+    },
+    {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\images\\products\\45a76116-1287-4d54-9169-321269237264.jpg",
       "SourceId": "RopinStoreWeb",
       "SourceType": "Discovered",
@@ -1222,6 +1239,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\products\\ad08f394-41c8-4bc0-9de5-cbb016672ae2.jpg"
+    },
+    {
+      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\images\\products\\bc6944de-e9ef-4a31-af16-1753041c4b70.jfif",
+      "SourceId": "RopinStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
+      "BasePath": "_content/RopinStoreWeb",
+      "RelativePath": "images/products/bc6944de-e9ef-4a31-af16-1753041c4b70.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\products\\bc6944de-e9ef-4a31-af16-1753041c4b70.jfif"
     },
     {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\images\\products\\d2956316-a845-4cec-a39e-e46ae8f98ae0.jpg",

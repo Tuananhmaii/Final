@@ -1,4 +1,4 @@
-﻿@{
+﻿@*@{
     var status = Context.Request.Query["status"];
     var pending="text-primary";
     var inprocess="text-primary";
@@ -65,8 +65,8 @@
             </ul>
 		</div>
 	</div>
-    <br /><br />
-
+    <br /><br />*@
+<div class="p-3">
 <table  id="tblData"  class="table table-bordered table-striped" style="width:100%">
     <thead>
         <tr>
@@ -74,6 +74,7 @@
             <th>Name</th>
             <th>Phone Number</th>
             <th>Email</th>
+            <th>Payment Type</th>
             <th>Status</th>
             <th>Total</th>
             <th></th>
