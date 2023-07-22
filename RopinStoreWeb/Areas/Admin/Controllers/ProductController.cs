@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using CloudinaryDotNet;
+using CloudinaryDotNet.Actions;
 
 namespace RopinStoreWeb.Areas.Admin.Controllers
 {
@@ -17,6 +19,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
+        //private readonly Cloudinary cloudinary = new Cloudinary(new Account("dc6xcnpke", "651675597367258", "fUk4tt7zSPGAl7JwE8cTSxrQ-5Q"));
 
         public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
@@ -46,8 +49,6 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
             };
             if (id == null || id == 0)
             {
-                //ViewBag.CategoryList = CategoryList;
-                //ViewBag.CoverTypeList = CoverTypeList;
                 return View(productVM);
             }
             else
@@ -63,28 +64,34 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string wwwRootPath = _hostEnvironment.WebRootPath;
-                if (file != null)
+                if (file != null && file.Length > 0)
                 {
                     string fileName = Guid.NewGuid().ToString();
-                    var uploads = Path.Combine(wwwRootPath, @"images\products");
                     var extension = Path.GetExtension(file.FileName);
 
                     if (obj.Product.ImageUrl != null)
                     {
-                        var oldImagePath = Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
-                        if (System.IO.File.Exists(oldImagePath))
-                        {
-                            System.IO.File.Delete(oldImagePath);
-                        }
+                        // Delete the old image if it exists in Cloudinary
+                        DeleteImageFromCloudinary(obj.Product.ImageUrl);
                     }
 
-                    using (var fileStream = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
+                    // Upload the new image to Cloudinary
+                    var uploadParams = new ImageUploadParams()
                     {
-                        file.CopyTo(fileStream);
+                        File = new FileDescription(fileName + extension, file.OpenReadStream()),
+                        Folder = "products/" // Specify the folder in Cloudinary where you want to store the images
+                    };
+
+                    var cloudinary = new Cloudinary("cloudinary://651675597367258:fUk4tt7zSPGAl7JwE8cTSxrQ-5Q@dc6xcnpke");
+                    var uploadResult = cloudinary.Upload(uploadParams);
+
+                    if (uploadResult.Error == null)
+                    {
+                        // Set the image URL to the Cloudinary URL
+                        obj.Product.ImageUrl = uploadResult.SecureUrl.ToString();
                     }
-                    obj.Product.ImageUrl = @"images\products\" + fileName + extension;
                 }
+
                 if (obj.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(obj.Product);
@@ -93,11 +100,29 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                 {
                     _unitOfWork.Product.Update(obj.Product);
                 }
+
                 _unitOfWork.Save();
-                TempData["sucess"] = "Edit successfully";
+                TempData["success"] = "Edit successfully";
                 return RedirectToAction("Index");
             }
+
             return View(obj);
+        }
+
+        private void DeleteImageFromCloudinary(string imageUrl)
+        {
+            var cloudinary = new Cloudinary("cloudinary://651675597367258:fUk4tt7zSPGAl7JwE8cTSxrQ-5Q@dc6xcnpke");
+            var publicId = GetPublicIdFromImageUrl(imageUrl);
+            var deleteParams = new DeletionParams(publicId);
+
+            cloudinary.Destroy(deleteParams);
+        }
+
+        private string GetPublicIdFromImageUrl(string imageUrl)
+        {
+            var uri = new Uri(imageUrl);
+            var publicId = uri.Segments.Last().Split('.').First();
+            return publicId;
         }
 
         #region API CALL

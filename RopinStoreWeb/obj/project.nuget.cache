@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "n9Lk2hFQAGwN73qFlCv2mvO03boJ6LhrPttoD8DTILuHCWNrBfDs88dWxBT0CcZH2C7gEsD1xs6T3gFhJj1miA==",
+  "dgSpecHash": "vlhUdfkRuEs+yHc4Xgo8EW01bmoOZpY7jGv3/OTy3KGINeISonzAdKIsevZHsGGh1g8fko/h4FtfK7y2QJcb6w==",
   "success": true,
   "projectFilePath": "D:\\Final\\RopinStoreWeb\\RopinStoreWeb.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\maitr\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\maitr\\.nuget\\packages\\cloudinarydotnet\\1.21.0\\cloudinarydotnet.1.21.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\humanizer.core.af\\2.14.1\\humanizer.core.af.2.14.1.nupkg.sha512",

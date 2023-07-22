@@ -1134,3 +1134,4 @@ D:\Final\RopinStoreWeb\obj\Debug\net7.0\refint\RopinStoreWeb.dll
 D:\Final\RopinStoreWeb\obj\Debug\net7.0\RopinStoreWeb.pdb
 D:\Final\RopinStoreWeb\obj\Debug\net7.0\RopinStoreWeb.genruntimeconfig.cache
 D:\Final\RopinStoreWeb\obj\Debug\net7.0\ref\RopinStoreWeb.dll
+D:\Final\RopinStoreWeb\bin\Debug\net7.0\CloudinaryDotNet.dll
