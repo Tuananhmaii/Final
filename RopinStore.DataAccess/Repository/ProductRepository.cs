@@ -28,7 +28,7 @@ namespace RopinStore.DataAccess.Repository
                 objFromProduct.Price = obj.Price;
                 objFromProduct.BrandId = obj.BrandId;
                 objFromProduct.CategoryId = obj.CategoryId;
-                if(objFromProduct.ImageUrl != null)
+                if(obj.ImageUrl != null)
                 {
                     objFromProduct.ImageUrl = obj.ImageUrl;
                 }

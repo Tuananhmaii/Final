@@ -19,7 +19,6 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-        //private readonly Cloudinary cloudinary = new Cloudinary(new Account("dc6xcnpke", "651675597367258", "fUk4tt7zSPGAl7JwE8cTSxrQ-5Q"));
 
         public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
@@ -60,7 +59,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM obj, IFormFile file)
+        public IActionResult Upsert(ProductVM obj, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
@@ -69,7 +68,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(file.FileName);
 
-                    if (obj.Product.ImageUrl != null)
+                    if (!String.IsNullOrEmpty(obj.Product.ImageUrl))
                     {
                         // Delete the old image if it exists in Cloudinary
                         DeleteImageFromCloudinary(obj.Product.ImageUrl);
