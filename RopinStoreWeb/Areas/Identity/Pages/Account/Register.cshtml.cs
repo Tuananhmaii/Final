@@ -23,6 +23,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using System.ComponentModel;
 
 namespace RopinStoreWeb.Areas.Identity.Pages.Account
 {
@@ -111,17 +112,16 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
 
             [Required]
             public String Name { get; set; }
-            public String? StreetAddress { get; set; }
-            public String? City { get; set; }
-            public String? State { get; set; }
-            public String? PostalCode { get; set; }
-            public String? PhoneNumber { get; set; }
+            [Required]
+            public String Address { get; set; }
+            [Required]
+            public String City { get; set; }
+            [Required]
+            [DisplayName("Phone Number")]
+            public String PhoneNumber { get; set; }
             public String? Role { get; set; }
-            public int? CompanyId { get; set; }
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
-            [ValidateNever]
-            public IEnumerable<SelectListItem> CompanyList { get; set; }
         }
 
 
@@ -156,7 +156,7 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.FullName = Input.Name;
                 user.City = Input.City;
-                user.Address = Input.StreetAddress;
+                user.Address = Input.Address;
                 user.PhoneNumber = Input.PhoneNumber;
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

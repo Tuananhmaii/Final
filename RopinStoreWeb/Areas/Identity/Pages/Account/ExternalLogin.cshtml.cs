@@ -88,7 +88,7 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
             public string Email { get; set; }
             [Required]
             public string Name { get; set; }
-            public String? StreetAddress { get; set; }
+            public String? Address { get; set; }
             public String? City { get; set; }
             public String? State { get; set; }
             public String? PostalCode { get; set; }
@@ -167,7 +167,7 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 user.FullName = Input.Name;
                 user.City = Input.City;
-                user.Address = Input.StreetAddress;
+                user.Address = Input.Address;
                 user.PhoneNumber = Input.PhoneNumber;
 
                 var result = await _userManager.CreateAsync(user);

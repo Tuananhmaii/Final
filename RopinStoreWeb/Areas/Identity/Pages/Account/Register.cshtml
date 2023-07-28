@@ -33,9 +33,9 @@ else{
                 <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
             </div>
             <div class="form-floating py-2 col-6">
-                <input asp-for="Input.StreetAddress" class="form-control" aria-required="true" />
-                <label asp-for="Input.StreetAddress"></label>
-                <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+                <input asp-for="Input.Address" class="form-control" aria-required="true" />
+                <label asp-for="Input.Address"></label>
+                <span asp-validation-for="Input.Address" class="text-danger"></span>
             </div>
             <div class="form-floating py-2 col-6">
                 <input asp-for="Input.City" class="form-control" aria-required="true" />
@@ -100,17 +100,4 @@ else{
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script>
-        $(document).ready(function(){
-            $('#Input_Role').change(function() {
-                var selection = $('#Input_Role Option:Selected').text();
-            if (selection != 'Company') {
-                $('#Input_CompanyId').hide();
-            }
-            else{
-                $('#Input_CompanyId').show();
-            }
-            })
-        })
-    </script>
 }

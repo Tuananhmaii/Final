@@ -42,7 +42,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
             var orderHeaderFromDb = _unitOfWork.Order.GetFirstOrDefault(u => u.Id == orderVM.Order.Id);
             orderHeaderFromDb.Name = orderVM.Order.Name;
             orderHeaderFromDb.PhoneNumber = orderVM.Order.PhoneNumber;
-            orderHeaderFromDb.StreetAddress = orderVM.Order.StreetAddress;
+            orderHeaderFromDb.Address = orderVM.Order.Address;
             orderHeaderFromDb.City = orderVM.Order.City;
 
             _unitOfWork.Order.Update(orderHeaderFromDb);

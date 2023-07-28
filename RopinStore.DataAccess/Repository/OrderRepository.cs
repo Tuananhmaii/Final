@@ -34,12 +34,11 @@ namespace RopinStore.DataAccess.Repository
         //        }
         //    }
         //}
-        //public void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId)
-        //{
-        //    var orderFromDb = _db.Orders.FirstOrDefault(u => u.Id == id);
-        //    orderFromDb.PaymentDate = DateTime.Now;
-        //    orderFromDb.SessionId = sessionId;
-        //    orderFromDb.PaymentIntentId = paymentIntentId;
-        //}
+        public void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId)
+        {
+            var orderFromDb = _db.Orders.FirstOrDefault(u => u.Id == id);
+            orderFromDb.SessionId = sessionId;
+            orderFromDb.PaymentIntentId = paymentIntentId;
+        }
     }
 }

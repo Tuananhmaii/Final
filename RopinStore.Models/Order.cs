@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -22,14 +23,16 @@ namespace RopinStore.Models
         public string? PaymentType { get; set; }
         public string? OrderStatus { get; set; }
         public string? SessionId { get; set; }
+        public string? PaymentIntentId { get; set; }
         [Required]
         public string Name { get; set; }
         [Required]
+        [DisplayName("Phone Number")]
         public string PhoneNumber { get; set; }
         [Required]
         public string City { get; set; }
         [Required]
-        public string StreetAddress { get; set; }
+        public string Address { get; set; }
         
     }
 }

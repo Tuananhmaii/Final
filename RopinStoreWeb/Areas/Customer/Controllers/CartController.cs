@@ -51,14 +51,14 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             {
                 ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product"),
-				Order = new()
+                Order = new()
             };
             ShoppingCartVM.Order.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(
                 u => u.Id == claim.Value);
             ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
             ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
             ShoppingCartVM.Order.City = ShoppingCartVM.Order.ApplicationUser.City;
-            ShoppingCartVM.Order.StreetAddress = ShoppingCartVM.Order.ApplicationUser.Address;
+            ShoppingCartVM.Order.Address = ShoppingCartVM.Order.ApplicationUser.Address;
             foreach (var item in ShoppingCartVM.ListCart)
             {
                 //item.Price = GetPriceBasedOnQuantity(item.Count, item.Product.Price,
@@ -70,10 +70,11 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         [HttpPost]
         [ActionName("Summary")]
         [ValidateAntiForgeryToken]
-        public IActionResult SummaryPOST()
+        public IActionResult SummaryPOST(string city, string address)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
             ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product");
 
@@ -82,21 +83,20 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
             ShoppingCartVM.Order.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(
                 u => u.Id == claim.Value);
-			ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
-			ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
-			ShoppingCartVM.Order.City = ShoppingCartVM.Order.ApplicationUser.City;
-			ShoppingCartVM.Order.StreetAddress = ShoppingCartVM.Order.ApplicationUser.Address;
+            ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
+            ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
+            ShoppingCartVM.Order.City = city;
+            ShoppingCartVM.Order.Address = address;
 
-			foreach (var item in ShoppingCartVM.ListCart)
+            foreach (var item in ShoppingCartVM.ListCart)
             {
-                //item.Price = GetPriceBasedOnQuantity(item.Count, item.Product.Price,
-                //    item.Product.Price50, item.Product.Price100);
-				ShoppingCartVM.Order.TotalPrice += (item.Product.Price * item.Count);
-			}
+                ShoppingCartVM.Order.TotalPrice += (item.Product.Price * item.Count);
+            }
             ApplicationUser applicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
 
             _unitOfWork.Order.Add(ShoppingCartVM.Order);
             _unitOfWork.Save();
+
             foreach (var item in ShoppingCartVM.ListCart)
             {
                 OrderDetail orderDetail = new()
@@ -104,58 +104,57 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                     OrderId = ShoppingCartVM.Order.Id,
                     ProductId = item.ProductId,
                     Count = item.Count,
-                    Price = item.Price,
+                    Price = item.Product.Price,
                 };
+
                 _unitOfWork.OrderDetail.Add(orderDetail);
                 _unitOfWork.Save();
             }
-            //if (applicationUser.CompanyId.GetValueOrDefault() == 0)
-            //{
-            //    var domain = "https://localhost:44340/";
-            //    var options = new SessionCreateOptions
-            //    {
-            //        LineItems = new List<SessionLineItemOptions>(),
+            var domain = "https://localhost:44340/";
+            var options = new SessionCreateOptions
+            {
+                LineItems = new List<SessionLineItemOptions>(),
 
-            //        Mode = "payment",
-            //        SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.Order.Id}",
-            //        CancelUrl = domain + $"customer/cart/index",
-            //    };
-            //    foreach (var item in ShoppingCartVM.ListCart)
-            //    {
-            //        var sessionLineItem = new SessionLineItemOptions
-            //        {
-            //            PriceData = new SessionLineItemPriceDataOptions
-            //            {
-            //                UnitAmount = (long)(item.Price * 100),
-            //                Currency = "usd",
-            //                ProductData = new SessionLineItemPriceDataProductDataOptions
-            //                {
-            //                    Name = item.Product.Title,
-            //                },
+                Mode = "payment",
+                SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.Order.Id}",
+                CancelUrl = domain + $"customer/cart/index",
+            };
+            foreach (var item in ShoppingCartVM.ListCart)
+            {
+                var sessionLineItem = new SessionLineItemOptions
+                {
+                    PriceData = new SessionLineItemPriceDataOptions
+                    {
+                        UnitAmount = (long)(item.Product.Price * 100),
+                        Currency = "usd",
+                        ProductData = new SessionLineItemPriceDataProductDataOptions
+                        {
+                            Name = item.Product.Name,
+                        },
 
-            //            },
-            //            Quantity = item.Count,
-            //        };
-            //        options.LineItems.Add(sessionLineItem);
-            //    };
-            //    var service = new SessionService();
-            //    Session session = service.Create(options);
-            //    _unitOfWork.Order.UpdateStripePaymentId(ShoppingCartVM.Order.Id, session.Id, session.PaymentIntentId);
-            //    _unitOfWork.Save();
-            //    Response.Headers.Add("Location", session.Url);
-            //    return new StatusCodeResult(303);
-            //}
-            //else
-            //{
-                return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.Order.Id });
-            //}
-            //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
-            //_unitOfWork.Save();
-            //return RedirectToAction("Index", "Home");
+                    },
+                    Quantity = item.Count,
+                };
+                options.LineItems.Add(sessionLineItem);
+            };
+            var service = new SessionService();
+            Session session = service.Create(options);
+            _unitOfWork.Order.UpdateStripePaymentId(ShoppingCartVM.Order.Id, session.Id, session.PaymentIntentId);
+            _unitOfWork.Save();
+            Response.Headers.Add("Location", session.Url);
+            return new StatusCodeResult(303);
         }
+        //else
+        //{
+        //    return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.Order.Id });
+        //}
+        //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
+        //_unitOfWork.Save();
+        //return RedirectToAction("Index", "Home");
+
         public IActionResult OrderConfirmation(int id)
         {
-            Order orderHeader = _unitOfWork.Order.GetFirstOrDefault(u => u.Id == id,includeProperties:"ApplicationUser");
+            Order orderHeader = _unitOfWork.Order.GetFirstOrDefault(u => u.Id == id, includeProperties: "ApplicationUser");
             //if (orderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment)
             //{
             //    var service = new SessionService();
@@ -186,7 +185,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         public IActionResult Minus(int cartId)
         {
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
-            if(cart.Count > 1)
+            if (cart.Count > 1)
             {
                 _unitOfWork.ShoppingCart.DecrementCount(cart, 1);
                 var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count - 1;
@@ -207,19 +206,6 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             var count = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == cart.ApplicationUserId).ToList().Count;
             HttpContext.Session.SetInt32(SD.SessionCart, count);
             return RedirectToAction("Index");
-        }
-
-        private double GetPriceBasedOnQuantity(double quantity, double price, double price50, double price100)
-        {
-            if (quantity <= 50)
-            {
-                return price;
-            }
-            if (quantity <= 100)
-            {
-                return price50;
-            }
-            else return price100;
         }
     }
 }
