@@ -587,7 +587,6 @@ D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Components.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Components.Forms.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Components.Server.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Components.Web.dll
-D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Connections.Abstractions.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.CookiePolicy.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Cors.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.DataProtection.Abstractions.dll
@@ -648,7 +647,6 @@ D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Server.Kestrel
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Server.Kestrel.Transport.Quic.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.Session.dll
-D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.SignalR.Common.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.SignalR.Core.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.SignalR.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.AspNetCore.SignalR.Protocols.Json.dll
@@ -673,7 +671,6 @@ D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.DependencyInje
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.DependencyInjection.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.Diagnostics.HealthChecks.dll
-D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.Features.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.FileProviders.Abstractions.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.FileProviders.Composite.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\refs\Microsoft.Extensions.FileProviders.Physical.dll
@@ -1135,3 +1132,7 @@ D:\Final\RopinStoreWeb\obj\Debug\net7.0\RopinStoreWeb.pdb
 D:\Final\RopinStoreWeb\obj\Debug\net7.0\RopinStoreWeb.genruntimeconfig.cache
 D:\Final\RopinStoreWeb\obj\Debug\net7.0\ref\RopinStoreWeb.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\CloudinaryDotNet.dll
+D:\Final\RopinStoreWeb\bin\Debug\net7.0\libman.json
+D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.AspNetCore.Connections.Abstractions.dll
+D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.AspNetCore.SignalR.Common.dll
+D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.Extensions.Features.dll

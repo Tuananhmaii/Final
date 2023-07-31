@@ -149,7 +149,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
 
             _unitOfWork.Product.Remove(obj);
             _unitOfWork.Save();
-            return Json(new { success = true, message = "Delete sucess" });
+            return Json(new { success = true, message = "Delete success" });
         }
         #endregion
     }

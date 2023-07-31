@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 using RopinStore.DataAccess.Data;
+using RopinStoreWeb.Areas.Customer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +25,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddSignalR();
+
 builder.Services.AddAuthentication().AddFacebook(options =>
 {
     options.AppId = "1306896793412753";
@@ -60,10 +63,12 @@ app.UseRouting();
 StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<String>();
 
 app.UseAuthentication(); 
-
 app.UseAuthorization();
+
 app.UseSession();
 app.MapRazorPages();
+app.MapHub<ChatHub>("/chatHub");
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");

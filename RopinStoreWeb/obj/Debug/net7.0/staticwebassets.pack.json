@@ -49,12 +49,40 @@
       "PackagePath": "staticwebassets\\images\\products\\d2956316-a845-4cec-a39e-e46ae8f98ae0.jpg"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\chat.js",
+      "PackagePath": "staticwebassets\\js\\chat.js"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\order.js",
       "PackagePath": "staticwebassets\\js\\order.js"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\product.js",
       "PackagePath": "staticwebassets\\js\\product.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\signalr\\README.md",
+      "PackagePath": "staticwebassets\\js\\signalr\\README.md"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js",
+      "PackagePath": "staticwebassets\\js\\signalr\\dist\\browser\\signalr.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\signalr\\dist\\browser\\signalr.js.map",
+      "PackagePath": "staticwebassets\\js\\signalr\\dist\\browser\\signalr.js.map"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\signalr\\dist\\browser\\signalr.min.js",
+      "PackagePath": "staticwebassets\\js\\signalr\\dist\\browser\\signalr.min.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\signalr\\dist\\browser\\signalr.min.js.map",
+      "PackagePath": "staticwebassets\\js\\signalr\\dist\\browser\\signalr.min.js.map"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\signalr\\package.json",
+      "PackagePath": "staticwebassets\\js\\signalr\\package.json"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\site.js",

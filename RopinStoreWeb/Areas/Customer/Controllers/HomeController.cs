@@ -25,6 +25,10 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             return View(productList);
         }
+        public IActionResult Chat()
+        {
+            return View();
+        }
         public IActionResult Details(int productid)
         {
             ShoppingCart cartObj = new()

@@ -41,7 +41,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
             {
                 _unitOfWork.Category.Add(obj);
                 _unitOfWork.Save();
-                TempData["sucess"] = "Create successfully";
+                TempData["success"] = "Create successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -68,7 +68,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
             {
                 _unitOfWork.Category.Update(obj);
                 _unitOfWork.Save();
-                TempData["sucess"] = "Edit successfully";
+                TempData["success"] = "Edit successfully";
                 return RedirectToAction("Index");
             }
             return View(obj);
@@ -98,7 +98,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
             }
 
             _unitOfWork.Category.Remove(obj);
-            TempData["sucess"] = "Delete successfully";
+            TempData["success"] = "Delete successfully";
             _unitOfWork.Save();
             return RedirectToAction("Index");
         }

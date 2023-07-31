@@ -12,8 +12,8 @@ using RopinStore.DataAccess.Data;
 namespace RopinStore.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230728030657_NewMigration")]
-    partial class NewMigration
+    [Migration("20230728125230_AddTablesToDb")]
+    partial class AddTablesToDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

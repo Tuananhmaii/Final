@@ -90,8 +90,6 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
             public string Name { get; set; }
             public String? Address { get; set; }
             public String? City { get; set; }
-            public String? State { get; set; }
-            public String? PostalCode { get; set; }
             public String? PhoneNumber { get; set; }
         }
         
