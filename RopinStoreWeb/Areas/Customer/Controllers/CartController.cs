@@ -70,7 +70,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         [HttpPost]
         [ActionName("Summary")]
         [ValidateAntiForgeryToken]
-        public IActionResult SummaryPOST(string city, string address)
+        public IActionResult SummaryPOST(string city, string address, string paymentType)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -87,6 +87,15 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
             ShoppingCartVM.Order.City = city;
             ShoppingCartVM.Order.Address = address;
+            ShoppingCartVM.Order.OrderStatus = "Delivering";
+            if (paymentType == "VISA")
+            {
+                ShoppingCartVM.Order.PaymentType = "VISA";
+            }
+            else
+            {
+                ShoppingCartVM.Order.PaymentType = "COD";
+            }
 
             foreach (var item in ShoppingCartVM.ListCart)
             {
@@ -110,48 +119,47 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 _unitOfWork.OrderDetail.Add(orderDetail);
                 _unitOfWork.Save();
             }
-            var domain = "https://localhost:44340/";
-            var options = new SessionCreateOptions
+            if (paymentType == "VISA")
             {
-                LineItems = new List<SessionLineItemOptions>(),
-
-                Mode = "payment",
-                SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.Order.Id}",
-                CancelUrl = domain + $"customer/cart/index",
-            };
-            foreach (var item in ShoppingCartVM.ListCart)
-            {
-                var sessionLineItem = new SessionLineItemOptions
+                var domain = "https://localhost:44340/";
+                var options = new SessionCreateOptions
                 {
-                    PriceData = new SessionLineItemPriceDataOptions
-                    {
-                        UnitAmount = (long)(item.Product.Price * 100),
-                        Currency = "usd",
-                        ProductData = new SessionLineItemPriceDataProductDataOptions
-                        {
-                            Name = item.Product.Name,
-                        },
+                    LineItems = new List<SessionLineItemOptions>(),
 
-                    },
-                    Quantity = item.Count,
+                    Mode = "payment",
+                    SuccessUrl = domain + $"customer/cart/OrderConfirmation?id={ShoppingCartVM.Order.Id}",
+                    CancelUrl = domain + $"customer/cart/index",
                 };
-                options.LineItems.Add(sessionLineItem);
-            };
-            var service = new SessionService();
-            Session session = service.Create(options);
-            _unitOfWork.Order.UpdateStripePaymentId(ShoppingCartVM.Order.Id, session.Id, session.PaymentIntentId);
-            _unitOfWork.Save();
-            Response.Headers.Add("Location", session.Url);
-            return new StatusCodeResult(303);
-        }
-        //else
-        //{
-        //    return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.Order.Id });
-        //}
-        //_unitOfWork.ShoppingCart.RemoveRange(ShoppingCartVM.ListCart);
-        //_unitOfWork.Save();
-        //return RedirectToAction("Index", "Home");
+                foreach (var item in ShoppingCartVM.ListCart)
+                {
+                    var sessionLineItem = new SessionLineItemOptions
+                    {
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            UnitAmount = (long)(item.Product.Price * 100),
+                            Currency = "usd",
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = item.Product.Name,
+                            },
 
+                        },
+                        Quantity = item.Count,
+                    };
+                    options.LineItems.Add(sessionLineItem);
+                };
+                var service = new SessionService();
+                Session session = service.Create(options);
+                _unitOfWork.Order.UpdateStripePaymentId(ShoppingCartVM.Order.Id, session.Id, session.PaymentIntentId);
+                _unitOfWork.Save();
+                Response.Headers.Add("Location", session.Url);
+                return new StatusCodeResult(303);
+            }
+            else
+            {
+                return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.Order.Id });
+            }
+        }
         public IActionResult OrderConfirmation(int id)
         {
             Order orderHeader = _unitOfWork.Order.GetFirstOrDefault(u => u.Id == id, includeProperties: "ApplicationUser");

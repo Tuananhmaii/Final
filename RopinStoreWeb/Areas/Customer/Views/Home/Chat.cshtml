@@ -1,8 +1,19 @@
-﻿<div class="container">
-    <div class="row p-1">
-        <div class="col-1">User</div>
-        <div class="col-5"><input type="text" id="userInput" /></div>
-    </div>
+﻿@model ApplicationUser
+
+<div class="container">
+    @if (Model == null)
+    {
+        <div class="row p-1">
+            <div class="col-5" id="userInput">You</div>
+        </div>
+    }
+    else
+    {
+        <div class="row p-1">
+            <div class="col-5" id="userInput">@Model.FullName</div>
+        </div>
+    }
+
     <div class="row p-1">
         <div class="col-1">Message</div>
         <div class="col-5"><input type="text" class="w-100" id="messageInput" /></div>

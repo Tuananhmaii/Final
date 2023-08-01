@@ -27,7 +27,17 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         public IActionResult Chat()
         {
-            return View();
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null)
+            {
+                return View();
+            }
+            else
+            {
+                ApplicationUser user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+                return View(user);
+            }
         }
         public IActionResult Details(int productid)
         {
@@ -54,8 +64,8 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
                 _unitOfWork.Save();
                 HttpContext.Session.SetInt32(SD.SessionCart,
-                    _unitOfWork.ShoppingCart.GetAll(u=>u.ApplicationUserId == claim.Value).ToList().Count);
-                
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
+
             }
             else
             {
