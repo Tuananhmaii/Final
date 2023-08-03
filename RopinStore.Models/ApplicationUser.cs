@@ -14,9 +14,7 @@ namespace RopinStore.Models
     {
         [Required]
         public string FullName { get; set; }
-        [Required]
-        public string City { get; set; }
-        [Required]
-        public string Address { get; set; }
+        public string? City { get; set; }
+        public string? Address { get; set; }
     }
 }

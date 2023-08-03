@@ -111,15 +111,12 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
             public string ConfirmPassword { get; set; }
 
             [Required]
-            public String Name { get; set; }
-            [Required]
-            public String Address { get; set; }
-            [Required]
-            public String City { get; set; }
-            [Required]
+            public string Name { get; set; }
+            public string? Address { get; set; }
+            public string? City { get; set; }
             [DisplayName("Phone Number")]
-            public String PhoneNumber { get; set; }
-            public String? Role { get; set; }
+            public string? PhoneNumber { get; set; }
+            public string? Role { get; set; }
             [ValidateNever]
             public IEnumerable<SelectListItem> RoleList { get; set; }
         }

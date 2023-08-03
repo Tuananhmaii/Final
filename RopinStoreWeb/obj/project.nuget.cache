@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "R/E1pNpWQNTmbmi0Hi3ZSnZ63ToYk+zcTC49KexPlWt5C5qcBU+8NYIVVAPEszHpZuW8/u+49OGdHXu8G1NfZA==",
+  "dgSpecHash": "JXFTU3AzMDLkTWJYWADKuR7HyI/3e5H+r12oWM1yOF6gVeRhVZmtB9hmkEs43A0qbe+xZ7T9F80gPJxF81mqHg==",
   "success": true,
   "projectFilePath": "D:\\Final\\RopinStoreWeb\\RopinStoreWeb.csproj",
   "expectedPackageFiles": [
@@ -62,6 +62,7 @@
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\7.0.9\\microsoft.aspnetcore.authentication.facebook.7.0.9.nupkg.sha512",
+    "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\7.0.9\\microsoft.aspnetcore.authentication.google.7.0.9.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.connections.abstractions\\7.0.9\\microsoft.aspnetcore.connections.abstractions.7.0.9.nupkg.sha512",
