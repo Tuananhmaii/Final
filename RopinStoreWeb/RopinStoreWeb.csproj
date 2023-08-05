@@ -26,9 +26,6 @@
     <ProjectReference Include="..\RopinStore.Utility\RopinStore.Utility.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="wwwroot\images\products\" />
-  </ItemGroup>
-  <ItemGroup>
     <UpToDateCheckInput Remove="Areas\Customer\Views\Cart\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
