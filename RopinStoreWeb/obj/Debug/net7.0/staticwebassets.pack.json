@@ -13,56 +13,12 @@
       "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.min.js"
     },
     {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\brands\\instacart.png",
-      "PackagePath": "staticwebassets\\assets\\img\\brands\\instacart.png"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\brands\\kickstarter.png",
-      "PackagePath": "staticwebassets\\assets\\img\\brands\\kickstarter.png"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\brands\\lyft.png",
-      "PackagePath": "staticwebassets\\assets\\img\\brands\\lyft.png"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\brands\\pinterest.png",
-      "PackagePath": "staticwebassets\\assets\\img\\brands\\pinterest.png"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\brands\\shopify.png",
-      "PackagePath": "staticwebassets\\assets\\img\\brands\\shopify.png"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\brands\\twitter.png",
-      "PackagePath": "staticwebassets\\assets\\img\\brands\\twitter.png"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\products\\1.jpg",
-      "PackagePath": "staticwebassets\\assets\\img\\products\\1.jpg"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\products\\2.jpg",
-      "PackagePath": "staticwebassets\\assets\\img\\products\\2.jpg"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\products\\3.jpg",
-      "PackagePath": "staticwebassets\\assets\\img\\products\\3.jpg"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\team\\avatar2.jpg",
-      "PackagePath": "staticwebassets\\assets\\img\\team\\avatar2.jpg"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\team\\avatar4.jpg",
-      "PackagePath": "staticwebassets\\assets\\img\\team\\avatar4.jpg"
-    },
-    {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\img\\team\\avatar5.jpg",
-      "PackagePath": "staticwebassets\\assets\\img\\team\\avatar5.jpg"
-    },
-    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\js\\bold-and-bright.js",
       "PackagePath": "staticwebassets\\assets\\js\\bold-and-bright.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\js\\startup-modern.js",
+      "PackagePath": "staticwebassets\\assets\\js\\startup-modern.js"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\bootswatchTheme.css",
@@ -75,6 +31,14 @@
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\img\\illustrations\\61280268ce727ae072321ea8b89637bd.jpg",
+      "PackagePath": "staticwebassets\\img\\illustrations\\61280268ce727ae072321ea8b89637bd.jpg"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\img\\illustrations\\a4bdc0e64af3687972b3d61a65bda1ff.jpg",
+      "PackagePath": "staticwebassets\\img\\illustrations\\a4bdc0e64af3687972b3d61a65bda1ff.jpg"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\chat.js",

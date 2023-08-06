@@ -27,16 +27,17 @@ builder.Services.AddSingleton<IEmailSender, EmailSender>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddSignalR();
 
-builder.Services.AddAuthentication().AddFacebook(options =>
-{
-    options.AppId = "1306896793412753";
-    options.AppSecret = "09f537d098805d5549772ef5a3661a67";
-});
 builder.Services.AddAuthentication().AddGoogle(options =>
 {
     options.ClientId = "211324870623-fsl3mtpcl1o51o2upslrdc28kj711uba.apps.googleusercontent.com";
     options.ClientSecret = "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";
     options.CallbackPath = "/signin-google";
+});
+
+builder.Services.AddAuthentication().AddFacebook(options =>
+{
+    options.AppId = "1306896793412753";
+    options.AppSecret = "09f537d098805d5549772ef5a3661a67";
 });
 
 builder.Services.ConfigureApplicationCookie(options =>
