@@ -1,33 +1,43 @@
 ﻿@model IEnumerable<Product>
 
-<div class="row pb-3">
-    @foreach( var Product in Model)
-    {
-        <div class="col-lg-3 col-md-6">
-            <div class="row p-2">
-                <div class="col-12 p-1" style="border: 1px solid #008cba; border-radius:5px;">
-                    <div class="card">
-                        <img src="@Product.ImageUrl"class="card-img-top rounded"/>
-                        <div class="card-body">
-                        <div class="pl-1">
-                            <p class="card-title h5 text-primary">@Product.Name</p>
-                            <p class="card-title text-info ">by @Product.Brand.Name</p>
-                         </div>
-                        @* <div class="pl-1">
-                             <p>List Price: <strike><b>$@Product.ListPrice.ToString("0.00")</b></strike></p>
-                        </div>
-                         <div class="pl-1">
-                             <p>As low as: <b>$@Product.Price100.ToString("0.00")</b></p>
-                        </div>*@
-                        </div>
-                        <div>
-                            <a asp-action="Details" class="btn btn-primary form-control" asp-route-productid="@Product.Id">
-                            Details
+<link rel="stylesheet" href="~/css/Index.css" />
+
+<div style="display: flex;margin-top: 20px;">
+        <div class="dropdown" style="padding-top: 0px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;">Brand</button>
+            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+        </div>
+        <div class="dropdown" style="padding-top: 0px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 54px;">Category</button>
+            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+        </div>
+        <div class="dropdown" style="padding-top: 0px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 54px;">Sort by</button>
+            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
+        </div><button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
+    </div>
+
+<section class="section-products">
+    <div class="row">
+        @foreach (var Product in Model)
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
+                            <img class="pic-1" src="@Product.ImageUrl">
+                            <img class="pic-2" src="@Product.ImageUrl">
                         </a>
-                        </div>
+                        <a href="" class="product-like-icon"><i class="far fa-heart"></i></a>
+                        <ul class="product-links">
+                            <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
+                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <h2 class="title">@Product.Name</h2>
+                        <h3 class="price">@Product.Brand.Name</h3>
+                        <p class="price">$@Product.Price.ToString("0.00")</p>
                     </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+        }
+    </div>
+</section>

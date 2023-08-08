@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @inject SignInManager<IdentityUser> SignInManager
 
-<div class="container">
+<div class="container" style="padding-top:15px">
     <a class="navbar-brand d-flex align-items-center" href="/">
         <span class="bs-icon-sm bs-icon-circle bs-icon-primary shadow d-flex justify-content-center align-items-center me-2 bs-icon" style="background: rgb(60,61,67);">
             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-bezier">
@@ -20,7 +20,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index" style="font-size: 16px;font-weight: bold;margin-right: 4px;margin-left: 14px;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cart" style="margin-right: 5px;font-size: 19px;padding-top: 0px;margin-top: -3px;padding-bottom: 0px;margin-bottom: 2px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-cart" style="margin-right: 5px;font-size: 19px;padding-top: 0px;margin-top: -3px;padding-bottom: 0px;">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
                     </svg>Cart
                 </a>
@@ -44,12 +44,12 @@
         </ul>
         @if (!SignInManager.IsSignedIn(User))
         {
-            <a class="btn btn-primary shadow" role="button" id="login" asp-area="Identity" asp-page="/Account/Login" style="background: rgb(60,61,67);margin-right: -39px;font-weight: bold;padding-top: 8px;margin-bottom: 4px;margin-left: 1px;">Sign in</a>
+            <a class="btn btn-primary shadow" role="button" id="login" asp-area="Identity" asp-page="/Account/Login" style="background: rgb(60,61,67);margin-right: -39px;font-weight: bold;padding-top: 8px;margin-left: 1px;">Sign in</a>
         }
         else
         {
             <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button class="btn btn-primary shadow" id="logout" type="submit" style="background: rgb(60,61,67);margin-right: -39px;font-weight: bold;padding-top: 8px;margin-bottom: 4px;margin-left: 1px;">Sign out</button>
+                <button class="btn btn-primary shadow" id="logout" type="submit" style="background: rgb(60,61,67);margin-right: -39px;font-weight: bold;padding-top: 8px;margin-left: 1px;">Sign out</button>
             </form>
         }
     </div>
