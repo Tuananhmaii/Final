@@ -1,75 +1,153 @@
 ﻿@model RopinStore.Models.ViewModels.ShoppingCartVM
+
 <form method="post">
-	<br />
-	<div class="container">
-		<div class="card">
-			<div class="card-header bg-dark text-light ml-0">
-				<div class="row">
-					<div class="col-6  pt-2">
-						<i class="fa fa-shopping-cart"></i> &nbsp;
-						Shopping Cart
-					</div>
-					<div class="col-6 text-end">
-						<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm">Continue Shopping</a>
-					</div>
-				</div>
-			</div>
+    <br />
+    <section class="py-5" style="padding-top: 0rem !important">
+        <div class="container py-5" style="padding-top: 0rem !important">
+            <div class="row mx-auto">
+                <div class="col">
+                    <div data-reflow-type="shopping-cart">
+                        <div class="reflow-shopping-cart" style="display: block;">
+                            <div class="ref-loading-overlay"></div>
+                            <div class="ref-message" style="display: none;"></div>
+                            <div class="ref-cart" style="display: block;">
+                                <div class="ref-heading">Shopping Cart</div>
+                                <div class="ref-th">
+                                    <div class="ref-product-col">Product</div>
+                                    <div class="ref-price-col">Price</div>
+                                    <div class="ref-quantity-col">Quantity</div>
+                                    <div class="ref-total-col">Total</div>
+                                </div>
+                                <div class="ref-cart-table">
+                                    @foreach (var item in Model.ListCart)
+                                    {
+                                        <div class="ref-product" data-id="1168761308" data-quantity="2">
+                                            <div class="ref-product-col">
+                                                <div class="ref-product-wrapper">
+                                                    <img class="ref-product-photo" src="@item.Product.ImageUrl" />
+                                                    <div class="ref-product-data">
+                                                        <div class="ref-product-info">
+                                                            <div>
+                                                                <div class="ref-product-name">@item.Product.Name</div>
+                                                                <div class="ref-product-category"></div>
+                                                                <div class="ref-product-variants"></div>
+                                                                <div class="ref-product-personalization-holder"></div>
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="ref-product-controls ref-mobile-product-controls">
+                                                    <div class="ref-product-quantity">
+                                                    <div class="ref-quantity-container" data-reflow-product="1168761308" data-reflow-max-qty="999" data-reflow-quantity="2">
+                                                    <div class="ref-quantity-widget">
+                                                    <div class="ref-decrease" style="margin-top:15px"><span></span></div><input type="text" value="1" />
+                                                    <div class="ref-increase"><span></span></div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="ref-product-qty-message"></div>
+                                                    </div>
+                                                    <div class="ref-product-remove">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 48 48">
+                                                    <path fill="currentColor" d="M13.05 42q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.5H8v-3h9.4V6h13.2v1.5H40v3h-2.05V39q0 1.2-.9 2.1-.9.9-2.1.9Zm21.9-31.5h-21.9V39h21.9Zm-16.6 24.2h3V14.75h-3Zm8.3 0h3V14.75h-3Zm-13.6-24.2V39Z"></path>
+                                                    </svg>
+                                                    </div>
+                                                    </div>*@
+                                                    </div>
+                                                </div>
+                                            </div>
 
-			<div class="card-body">
-				@foreach(var item in Model.ListCart){
-				<div class="row">
-					<div class="d-none d-lg-block col-lg-1 text-center py-2">
-						<img src="@item.Product.ImageUrl" class="rounded" width="100%" />
-					</div>
-					<div class="col-12 col-lg-6 pt-md-3">
-							<h5><strong>@item.Product.Name</strong></h5>
-							<p><small>@Html.Raw(item.Product.Description)</small></p>
-					</div>
-					<div class="col-12  col-lg-5 text-center row">
-						<div class="col-4 text-md-right pt-4">
-							<h6><strong>@item.Product.Price.ToString("c")<span class="text-muted">&nbsp; x&nbsp;</span> @item.Count </strong></h6>
-						</div>
-						<div class="col-6 col-sm-4 col-lg-6 pt-2">
-							<div class="w-75 btn-group" role="group">
-								<a asp-action="plus" asp-route-cartID="@item.Id" class="btn btn-primary">
-									<i class="bi bi-plus-square"></i>
-								</a> &nbsp;
-								<a asp-action="minus" asp-route-cartID="@item.Id" class="btn btn-warning">
-									<i class="bi bi-dash-square"></i>
-								</a>
-							</div>
 
-						</div>
-						<div class="col-2 col-sm-4 col-lg-2 text-right pt-2">
-							<a asp-action="remove" asp-route-cartID="@item.Id" class="btn btn-danger">
-								<i class="bi bi-trash-fill"></i>
-							</a>
-						</div>
-					</div>
-				</div>
-				<hr />
-				}
+                                            <div class="ref-price-col">
+                                                <div name="item_price" class="ref-product-price">@item.Product.Price.ToString("c")</div>
+                                            </div>
+                                            <div class="ref-quantity-col">
+                                                <div class="ref-product-quantity">
+                                                    <div class="ref-quantity-container" data-reflow-product="1168761308" data-reflow-max-qty="999" data-reflow-quantity="2">
 
-				<div class="row">
-					<div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
-						<ul class="list-group">
-							<li class="list-group-item d-flex justify-content-between bg-light">
-								<span class="text-info"> Total (USD)</span>
-								<strong class="text-info">@Model.Order.TotalPrice.ToString("c")</strong>
-							</li>
-						</ul>
-					</div>
-				</div>
+                                                        <div class="ref-quantity-widget">
+                                                            <a class="ref-decrease" asp-action="minus" asp-route-cartID="@item.Id"><span></span></a>
+                                                            <input class="item-quantity" name="item_count" value="@item.Count" />
+                                                            <a class="ref-increase" asp-action="plus" asp-route-cartID="@item.Id">
+                                                                <span></span>
+                                                            </a>
+                                                        </div>
 
-			</div>
+                                                    </div>
+                                                    <div class="ref-product-qty-message"></div>
+                                                    <a class="ref-product-remove" asp-action="remove" asp-route-cartID="@item.Id" class="btn btn-danger">Remove</a>
+                                                </div>
+                                            </div>
 
-			<div class="card-footer">
-				<div class="card-footer row">
-					<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
-						<a asp-action="Summary" class="btn btn-success form-control">Summary</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                            <div class="ref-total-col">
+                                                <div class="ref-product-total">
+                                                    <div class="ref-product-total-sum" name="total_amount"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    <div class="ref-footer">
+                                        <div class="ref-links"><a href="https://google.com" target="_blank">Terms &amp; Conditions</a><a href="https://google.com" target="_blank">Privacy Policy</a><a href="https://google.com" target="_blank">Refund Policy</a></div>
+                                        <div class="ref-totals">
+                                            <div class="ref-subtotal">Subtotal: $<span class="ref-subtotal-value">@Model.Order.TotalPrice</span></div>
+                                            <div class="ref-paypal-express-checkout-holder">
+                                            </div>
+                                            <a asp-action="Summary" class="ref-button ref-standard-checkout-button" style="background-color:rgb(60,61,67); ">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
 </form>
+
+
+<script>
+    // Get all product rows in the cart
+    var cartItems = document.querySelectorAll('.ref-product');
+    
+
+    // Loop through each cart item
+    for (var i = 0; i < cartItems.length; i++) {
+        var priceElement = cartItems[i].querySelector('.ref-product-price');
+        var countElement = cartItems[i].querySelector('[name="item_count"]');
+        var totalAmountElement = cartItems[i].querySelector('.ref-product-total-sum');
+
+        var price = parseFloat(priceElement.textContent.replace(/[^\d.]/g, ''));
+        var count = parseInt(countElement.value);
+
+        // Update the total amount element with the calculated total price
+
+        const minusBtn = cartItems[i].querySelector('.ref-decrease');
+        const plusBtn = cartItems[i].querySelector('.ref-increase');
+        const itemQuantity = cartItems[i].querySelector('.item-quantity');
+        var totalPrice = price * parseInt(itemQuantity.value);
+        console.log(totalPrice)
+        totalAmountElement.innerHTML = totalPrice.toFixed(2);
+
+        var orderPrice = document.querySelector('.ref-subtotal-value').innerHTML;
+        orderPrice += totalPrice[i]; 
+        
+
+        const increaseEvent = plusBtn.addEventListener('click', function () {
+            itemQuantity.value = parseInt(itemQuantity.value) + 1;
+            totalPrice = price * parseInt(itemQuantity.value);
+            totalAmountElement.innerHTML = totalPrice.toFixed(2);
+            orderPrice += totalPrice[i];
+        });
+
+        const decreaseEvent = minusBtn.addEventListener('click', function () {
+            itemQuantity.value = parseInt(itemQuantity.value) - 1;
+            totalPrice = price * parseInt(itemQuantity.value);
+            totalAmountElement.innerHTML = totalPrice.toFixed(2); // Display total with 2 decimal places«
+            orderPrice += totalPrice[i];
+            console.log(orderPrice)
+        });
+    }
+
+</script>
+

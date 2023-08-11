@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\Index.css"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\ToolKitMinV2_Custom.css",
+      "PackagePath": "staticwebassets\\css\\ToolKitMinV2_Custom.css"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\bootswatchTheme.css",
       "PackagePath": "staticwebassets\\css\\bootswatchTheme.css"
     },

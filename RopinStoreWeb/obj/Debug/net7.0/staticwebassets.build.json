@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QOv3fjuveKda4Z7kl981bBW3NVrKb5ZMaOKAeQ7W5ng=",
+  "Hash": "Gi1hYo0tnLWclbh9osznUSugBcqpPk6Z+zPAtu80vks=",
   "Source": "RopinStoreWeb",
   "BasePath": "_content/RopinStoreWeb",
   "Mode": "Default",
@@ -1188,6 +1188,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
+    },
+    {
+      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\ToolKitMinV2_Custom.css",
+      "SourceId": "RopinStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
+      "BasePath": "_content/RopinStoreWeb",
+      "RelativePath": "css/ToolKitMinV2_Custom.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\ToolKitMinV2_Custom.css"
     },
     {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\favicon.ico",
