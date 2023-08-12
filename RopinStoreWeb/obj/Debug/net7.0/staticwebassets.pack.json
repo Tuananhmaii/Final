@@ -13,12 +13,56 @@
       "PackagePath": "staticwebassets\\assets\\bootstrap\\js\\bootstrap.min.js"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\css\\baguetteBox.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\baguetteBox.min.css"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\css\\vanilla-zoom.min.css",
+      "PackagePath": "staticwebassets\\assets\\css\\vanilla-zoom.min.css"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\fonts\\Simple-Line-Icons.eot",
+      "PackagePath": "staticwebassets\\assets\\fonts\\Simple-Line-Icons.eot"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\fonts\\Simple-Line-Icons.svg",
+      "PackagePath": "staticwebassets\\assets\\fonts\\Simple-Line-Icons.svg"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\fonts\\Simple-Line-Icons.ttf",
+      "PackagePath": "staticwebassets\\assets\\fonts\\Simple-Line-Icons.ttf"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\fonts\\Simple-Line-Icons.woff",
+      "PackagePath": "staticwebassets\\assets\\fonts\\Simple-Line-Icons.woff"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\fonts\\Simple-Line-Icons.woff2",
+      "PackagePath": "staticwebassets\\assets\\fonts\\Simple-Line-Icons.woff2"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\fonts\\simple-line-icons.min.css",
+      "PackagePath": "staticwebassets\\assets\\fonts\\simple-line-icons.min.css"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\js\\baguetteBox.min.js",
+      "PackagePath": "staticwebassets\\assets\\js\\baguetteBox.min.js"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\js\\bold-and-bright.js",
       "PackagePath": "staticwebassets\\assets\\js\\bold-and-bright.js"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\js\\startup-modern.js",
       "PackagePath": "staticwebassets\\assets\\js\\startup-modern.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\js\\theme.js",
+      "PackagePath": "staticwebassets\\assets\\js\\theme.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\assets\\js\\vanilla-zoom.js",
+      "PackagePath": "staticwebassets\\assets\\js\\vanilla-zoom.js"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\Index.css",

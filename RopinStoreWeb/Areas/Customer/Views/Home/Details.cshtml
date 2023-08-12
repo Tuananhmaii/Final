@@ -1,59 +1,81 @@
 ﻿@model ShoppingCart
+
+
 <form method="post">
     <input hidden asp-for="ProductId" />
-        <div class="card  container" pt-4>
-            <div class="card-header bg-primary text-light ml-0  row ">
-                <div class="col-12 col-md-6">
-                    <h1 class="text-white-50">@Model.Product.Name</h1>
-                    <p class="text-warning">by @Model.Product.Brand.Name</p>
-                </div>
-                <div class="col-12 col-md-6 text-end pt-4">
-                    <span class="badge bg-info pt-2" style="height:30px;">@Model.Product.Category.Name</span>
-                    <span class="badge bg-warning pt-2" style="height:30px;">@Model.Product.Brand.Name</span>
-                </div>
-            </div>
-            <div class="card-body row container">
-                <div class="container rounded p-2">
-                    <div class="row">
-                        <div class="col-8 col-lg-8">
+    <main class="page product-page">
+        <section class="clean-block clean-product dark">
+            <div class="container">
+                <div class="block-content" style="width: 1316px; margin-bottom:111px">
+                    <div class="product-info" style="padding-bottom: 0px;height: 483px;width: 1262px;padding-left: 0px;">
+                        <div class="row" style="height: 490px;">
+                            <div class="col-md-6" style="padding-top: 0px;margin-bottom: 56px;padding-bottom: 0px;padding-right: 0px;height: 556px;width: 800px;padding-left: 0px;margin-left: 68px;">
+                                <div class="gallery" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;height: 547px;width: 798px;background: rgb(255,255,255);">
+                                    <div id="product-preview" class="vanilla-zoom" style="padding-top: 0px;padding-right: 0px;height: 550px;width: 745px;">
+                                        <div class="zoomed-image" style="height: 470px;width: 584px;margin-left: 103px;"></div>
+                                        <div class="sidebar" style="height: 63px; padding-left:180px">
+                                            <img class="img-fluid d-block small-preview" src="@Model.Product.ImageUrl" style="margin-left:20px" />
+                                            @foreach (var item in Model.Gallery)
+                                            {
+                                                <img class="img-fluid d-block small-preview" src="@item.URL" style="margin-left:20px" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <div class="row text-center pl-2">
-                                <div class="p-1 col-2 bg-secondary border-bottom">
-                                    <div>Quantity</div>
-                                </div>
-                            </div>
-                            <div class="row text-center pl-2" style="color:maroon; font-weight:bold">
-                                <div class="p-1 col-2 bg-secondary">
-                                    <div>Price</div>
-                                </div>
-                                <div class="p-1 col-2 bg-secondary">
-                                    <div>@Model.Product.Price.ToString("c")</div>
-                                </div>
+                            <div class="col-md-6" style="width: 369px;height: 493px;">
+                                <div class="info" style="width: 360px;">
+                                    <h1>@Model.Product.Name</h1>
 
-                            </div>
-                            <div class="row pl-2">
-                                <p class="text-secondary">@Html.Raw(Model.Product.Description)</p>
-                            </div>
-                            <div class="row pl-2">
-                                <div class="col-2 text-primary"><h4>Count</h4></div>
-                                <div class="col-10"><input asp-for="Count" class="form-control"  /></div>
+                                    <div class="price" style="padding-top: 0px;margin-bottom: 11px;">
+                                        <p>@Model.Product.Brand.Name</p>
+                                        <h3>$@Model.Product.Price</h3>
+                                    </div>
+
+                                    <span data-reflow-variant="199976733_s" data-reflow-product="717978921" data-reflow-max-qty="999" data-reflow-quantity="1">
+                                    <div class="ref-quantity-widget">
+                                        <a class="ref-decrease"><span></span></a>
+                                            <input type="text" id="inputField" asp-for="Count" />
+                                        <a class="ref-increase"><span></span></a>
+                                    </div>
+                                    </span>
+
+                                    <button class="btn btn-primary" type="submit" value="Add to Cart" asp-action="Details" style="background: rgb(60,61,67); margin-left:50px"><i class="icon-basket">  </i>Add to Cart</button>
+                                    <hr />
+                                    <div class="summary">
+                                        <p>@Model.Product.Description</p>
+                                    </div>
+                                    <div class="summary"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-lg-3 offset-lg-1 text-center">
-                            <img src="@Model.Product.ImageUrl" width="100%" class="rounded" />
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="card-footer">
-                <div class="row">
-                    <div class="col-12 col-md-6 pb-1">
-                        <a class="btn btn-success form-control" asp-action="Index" asp-controller="Home" style="height:50px;">Back to home</a>
-                    </div>
-                    <div class="col-12 col-md-6 pb-1">
-                        <button type="submit" value="Add to Cart" class="btn btn-primary form-control" style="height:50px;">Add to Cart</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
+    </main>
 </form>
+
+<script>
+    // Get references to the elements
+    const decreaseButton = document.querySelector('.ref-decrease');
+    const increaseButton = document.querySelector('.ref-increase');
+    const inputField = document.getElementById('inputField');
+
+    // Add click event listener for the decrease button
+    decreaseButton.addEventListener('click', () => {
+        const currentValue = parseInt(inputField.value);
+        if (!isNaN(currentValue) && currentValue > 1) {
+            inputField.value = currentValue - 1;
+        }
+    });
+
+    // Add click event listener for the increase button
+    increaseButton.addEventListener('click', () => {
+        const currentValue = parseInt(inputField.value);
+        if (!isNaN(currentValue)) {
+            inputField.value = currentValue + 1;
+        }
+    });
+</script>

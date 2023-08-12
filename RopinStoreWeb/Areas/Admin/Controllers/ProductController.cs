@@ -59,11 +59,11 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM obj, IFormFile? file)
+        public IActionResult Upsert(ProductVM obj, IFormFile? file, List<IFormFile>? imageGallery)
         {
             if (ModelState.IsValid)
             {
-                if (file != null && file.Length > 0)
+                if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(file.FileName);
@@ -90,7 +90,37 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                         obj.Product.ImageUrl = uploadResult.SecureUrl.ToString();
                     }
                 }
+                if (imageGallery != null)
+                {
 
+                    obj.ProductGallery = new List<IFormFile>();
+
+                    foreach (var item in imageGallery)
+                    {
+                        string fileNameGallery = Guid.NewGuid().ToString();
+                        var extensionGallery = Path.GetExtension(item.FileName);
+
+                        var uploadParamsGallery = new ImageUploadParams()
+                        {
+                            File = new FileDescription(fileNameGallery + extensionGallery, item.OpenReadStream()),
+                            Folder = "galleries/" // Specify the folder in Cloudinary where you want to store the images
+                        };
+
+                        var cloudinaryGallery = new Cloudinary("cloudinary://651675597367258:fUk4tt7zSPGAl7JwE8cTSxrQ-5Q@dc6xcnpke");
+                        var uploadResultGallery = cloudinaryGallery.Upload(uploadParamsGallery);
+
+                        if (uploadResultGallery.Error == null)
+                        {
+                            // Set the image URL to the Cloudinary URL
+                            //gallery.URL = uploadResultGallery.SecureUrl.ToString();
+                            var gallery = new ProductGallery()
+                            {
+                                URL = uploadResultGallery.SecureUrl.ToString()
+                            };
+                            obj.Product.Gallery.Add(gallery);
+                        }
+                    }
+                }
                 if (obj.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(obj.Product);

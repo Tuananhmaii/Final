@@ -149,7 +149,7 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
                     var resultCreate = await _userManager.CreateAsync(user);
                     if (resultCreate.Succeeded)
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Role_User_Indi);
+                        await _userManager.AddToRoleAsync(user, SD.Role_Admin);
                         resultCreate = await _userManager.AddLoginAsync(user, info);
                         if (resultCreate.Succeeded)
                         {

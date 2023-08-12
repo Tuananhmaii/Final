@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
+using RopinStore.DataAccess.Data;
 
 namespace RopinStoreWeb.Areas.Customer.Controllers
 {
@@ -14,11 +15,13 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ApplicationDbContext db)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
+            _db = db;
         }
         public IActionResult Index()
         {
@@ -41,12 +44,14 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         public IActionResult Details(int productid)
         {
+            //var list = _db.ProductGalleries.Where(u => u.ProductId == productid).ToList();
             ShoppingCart cartObj = new()
             {
                 Count = 1,
                 ProductId = productid,
-                Product = _unitOfWork.Product.GetFirstOrDefault(n => n.Id == productid, includeProperties: "Category,Brand")
-            };
+                Product = _unitOfWork.Product.GetFirstOrDefault(n => n.Id == productid, includeProperties: "Category,Brand"),
+                Gallery = _db.ProductGalleries.Where(u => u.ProductId == productid).ToList()
+        };
             return View(cartObj);
         }
         [HttpPost]

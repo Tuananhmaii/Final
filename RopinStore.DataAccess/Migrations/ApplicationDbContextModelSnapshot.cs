@@ -385,6 +385,32 @@ namespace RopinStore.DataAccess.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("RopinStore.Models.ProductGallery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ShoppingCartId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("ProductGalleries");
+                });
+
             modelBuilder.Entity("RopinStore.Models.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
@@ -417,11 +443,9 @@ namespace RopinStore.DataAccess.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("City")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FullName")
@@ -531,6 +555,21 @@ namespace RopinStore.DataAccess.Migrations
                     b.Navigation("Category");
                 });
 
+            modelBuilder.Entity("RopinStore.Models.ProductGallery", b =>
+                {
+                    b.HasOne("RopinStore.Models.Product", "Product")
+                        .WithMany("Gallery")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RopinStore.Models.ShoppingCart", null)
+                        .WithMany("Gallery")
+                        .HasForeignKey("ShoppingCartId");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("RopinStore.Models.ShoppingCart", b =>
                 {
                     b.HasOne("RopinStore.Models.ApplicationUser", "ApplicationUser")
@@ -548,6 +587,16 @@ namespace RopinStore.DataAccess.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("RopinStore.Models.Product", b =>
+                {
+                    b.Navigation("Gallery");
+                });
+
+            modelBuilder.Entity("RopinStore.Models.ShoppingCart", b =>
+                {
+                    b.Navigation("Gallery");
                 });
 #pragma warning restore 612, 618
         }

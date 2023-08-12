@@ -32,6 +32,17 @@ namespace RopinStore.DataAccess.Repository
                 {
                     objFromProduct.ImageUrl = obj.ImageUrl;
                 }
+                if (obj.Gallery != null)
+                {
+                    foreach(var item in obj.Gallery)
+                    {
+                        objFromProduct.Gallery.Add(new ProductGallery
+                        {
+                            URL = item.URL
+                        });
+                    }
+
+                }
             }
         }
     }

@@ -15,6 +15,7 @@ namespace RopinStore.DataAccess.Repository.IRepository
         IShoppingCartRepository ShoppingCart{ get; }
         IOrderDetailRepository OrderDetail{ get; }
         IOrderRepository Order { get; }
+        IProductGalleryRepository ProductGallery { get; }
         void Save();
     }
 }
