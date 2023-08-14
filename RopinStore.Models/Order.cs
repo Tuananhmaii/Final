@@ -25,6 +25,8 @@ namespace RopinStore.Models
         public string? SessionId { get; set; }
         public string? PaymentIntentId { get; set; }
         [Required]
+        public string Email { get; set; }
+        [Required]
         public string Name { get; set; }
         [Required]
         [DisplayName("Phone Number")]

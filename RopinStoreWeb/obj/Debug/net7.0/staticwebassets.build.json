@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ytqm+Q/1RB0UmObby93xwZpy2ReWnzs/kl5Q5QOjszo=",
+  "Hash": "xySajZKU4eDBuvA3KBPC5eUgvY7n1AO638tOTXitVFg=",
   "Source": "RopinStoreWeb",
   "BasePath": "_content/RopinStoreWeb",
   "Mode": "Default",
@@ -1341,6 +1341,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootswatchTheme.css"
+    },
+    {
+      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\checkOut.css",
+      "SourceId": "RopinStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
+      "BasePath": "_content/RopinStoreWeb",
+      "RelativePath": "css/checkOut.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\checkOut.css"
     },
     {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\Index.css",

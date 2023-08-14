@@ -47,14 +47,18 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
             ShoppingCartVM = new ShoppingCartVM()
             {
                 ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product"),
                 Order = new()
             };
+
             ShoppingCartVM.Order.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(
                 u => u.Id == claim.Value);
+
+            ShoppingCartVM.Order.Email = ShoppingCartVM.Order.ApplicationUser.Email;
             ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
             ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
             ShoppingCartVM.Order.City = ShoppingCartVM.Order.ApplicationUser.City;
@@ -70,7 +74,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         [HttpPost]
         [ActionName("Summary")]
         [ValidateAntiForgeryToken]
-        public IActionResult SummaryPOST(string city, string address, string paymentType)
+        public IActionResult SummaryPOST(string? name, string? phone, string city, string address, string paymentType)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -78,16 +82,34 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product");
 
-            ShoppingCartVM.Order.OrderDate = DateTime.Now;
+            
             ShoppingCartVM.Order.ApplicationUserId = claim.Value;
 
             ShoppingCartVM.Order.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(
                 u => u.Id == claim.Value);
-            ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
-            ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
+
+            //ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
+            if (name == null)
+            {
+                ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
+            }
+            else
+            {
+                ShoppingCartVM.Order.Name = name;
+            }
+            if (phone == null)
+            {
+                ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
+            }
+            else
+            {
+                ShoppingCartVM.Order.PhoneNumber = phone;
+            }
+            ShoppingCartVM.Order.Email = ShoppingCartVM.Order.ApplicationUser.Email;
             ShoppingCartVM.Order.City = city;
             ShoppingCartVM.Order.Address = address;
             ShoppingCartVM.Order.OrderStatus = "Delivering";
+            ShoppingCartVM.Order.OrderDate = DateTime.Now;
             if (paymentType == "VISA")
             {
                 ShoppingCartVM.Order.PaymentType = "VISA";

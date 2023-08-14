@@ -77,6 +77,10 @@
       "PackagePath": "staticwebassets\\css\\bootswatchTheme.css"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\checkOut.css",
+      "PackagePath": "staticwebassets\\css\\checkOut.css"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
