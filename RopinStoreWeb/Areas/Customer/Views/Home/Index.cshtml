@@ -1,18 +1,50 @@
 ﻿@model IEnumerable<Product>
 
 <link rel="stylesheet" href="~/css/Index.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css">
 
-<div style="display: flex;margin-top: 20px;">
-        <div class="dropdown" style="padding-top: 0px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;">Brand</button>
-            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-        </div>
-        <div class="dropdown" style="padding-top: 0px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 54px;">Category</button>
-            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-        </div>
-        <div class="dropdown" style="padding-top: 0px;"><button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 54px;">Sort by</button>
-            <div class="dropdown-menu"><a class="dropdown-item" href="#">First Item</a><a class="dropdown-item" href="#">Second Item</a><a class="dropdown-item" href="#">Third Item</a></div>
-        </div><button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
+
+<form>
+    <div style="display: flex;margin-top: 20px;">
+
+        <section class="ftco-section" style="min-width:150px">
+            <div class="container">
+                <div class="inline w-100 field">
+                    <label>Brand</label>
+                    <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
+                        @if (ViewBag.SelectedBrand != null)
+                        {
+                            foreach (var item in ViewBag.SelectedBrand)
+                            {
+                                <option value="@item.Id" selected>@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </section>
+        <section class="ftco-section">
+            <div class="container">
+                <div class="inline w-100 field">
+                    <label>Category</label>
+                    <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
+                        @if (ViewBag.SelectedCategory != null)
+                        {
+                            foreach (var item in ViewBag.SelectedCategory)
+                            {
+                                <option value="@item.Id" selected>@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <button asp-action="Index" type="submit" asp-controller="Home">Filter</button>
+        <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
+
     </div>
+</form>
 
 <section class="section-products">
     <div class="row">
@@ -41,3 +73,35 @@
         }
     </div>
 </section>
+
+<script src="~/js/jquery.min.js"></script>
+<script src="~/js/popper.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
+<script src="~/js/main.js"></script>
+
+
+@*<script>
+    $(document).ready(function () {
+        window.onload = function () {
+            var selItem = sessionStorage.getItem("SelItem");
+            $('#brand_filter').val(selItem);
+            console.log(selItem);
+        };
+
+        $('#brand_filter').change(function () {
+            var selVal = $(this).val();
+            sessionStorage.setItem("SelItem", selVal);
+        });
+    });
+</script>*@
+@*<script>
+    var brand = document.getElementById('brand_filter').s
+    alert(brand)
+</script>*@
+
+
+
+
+
+

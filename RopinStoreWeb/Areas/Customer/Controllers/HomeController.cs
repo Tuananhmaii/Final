@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Security.Claims;
 using RopinStore.DataAccess.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RopinStoreWeb.Areas.Customer.Controllers
 {
@@ -23,9 +24,35 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
             _db = db;
         }
-        public IActionResult Index()
+        public IActionResult Index(List<int>? filterBrand, List<int>? filterCategory)
         {
-            IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
+            var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
+            var brand = _unitOfWork.Brand.GetAll().ToList();
+            var category = _unitOfWork.Category.GetAll().ToList();
+
+            if (filterBrand != null && filterBrand.Any())
+            {
+                query = query.Where(u => filterBrand.Contains(u.BrandId));
+                ViewBag.SelectedBrand = _unitOfWork.Brand.GetAll().Where(u => filterBrand.Contains(u.Id)).ToList();
+                foreach (var item in ViewBag.SelectedBrand)
+                {
+                    brand.RemoveAll(brand => brand.Id == item.Id);
+                }
+            }
+
+            if (filterCategory != null && filterCategory.Any())
+            {
+                query = query.Where(u => filterCategory.Contains(u.CategoryId));
+                ViewBag.SelectedCategory = _unitOfWork.Category.GetAll().Where(u => filterCategory.Contains(u.Id)).ToList();
+                foreach (var item in ViewBag.SelectedCategory)
+                {
+                    category.RemoveAll(category => category.Id == item.Id);
+                }
+            }
+
+            ViewBag.Categories = new SelectList(category, "Id", "Name");
+            ViewBag.Brands = new SelectList(brand, "Id", "Name");
+            IEnumerable<Product> productList = query.ToList();
             return View(productList);
         }
         public IActionResult Chat()
@@ -51,7 +78,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 ProductId = productid,
                 Product = _unitOfWork.Product.GetFirstOrDefault(n => n.Id == productid, includeProperties: "Category,Brand"),
                 Gallery = _db.ProductGalleries.Where(u => u.ProductId == productid).ToList()
-        };
+            };
             return View(cartObj);
         }
         [HttpPost]

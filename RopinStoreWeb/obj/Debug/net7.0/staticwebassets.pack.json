@@ -77,8 +77,8 @@
       "PackagePath": "staticwebassets\\css\\bootswatchTheme.css"
     },
     {
-      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\checkOut.css",
-      "PackagePath": "staticwebassets\\css\\checkOut.css"
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\semantic_min.css",
+      "PackagePath": "staticwebassets\\css\\semantic_min.css"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\site.css",
@@ -97,12 +97,32 @@
       "PackagePath": "staticwebassets\\img\\illustrations\\a4bdc0e64af3687972b3d61a65bda1ff.jpg"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\bootstrap-multiselect.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap-multiselect.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\js\\bootstrap.min.js"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\chat.js",
       "PackagePath": "staticwebassets\\js\\chat.js"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\jquery.min.js",
+      "PackagePath": "staticwebassets\\js\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\main.js",
+      "PackagePath": "staticwebassets\\js\\main.js"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\order.js",
       "PackagePath": "staticwebassets\\js\\order.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\popper.js",
+      "PackagePath": "staticwebassets\\js\\popper.js"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\product.js",
