@@ -30,7 +30,9 @@
         h3 {
             font-size: 20px !important;
         }
-
+        hr{
+            margin: 0;
+        }
         a {
             font-size: 16px !important;
         }
@@ -38,12 +40,12 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" style="border-bottom-width:1px; background:white" id="mainNav">
+        <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" style="border-bottom-width: 0.5px; border-color:#ccc8c8; padding-bottom:22px !important;background-color: white" id="mainNav">
             <partial name="_NavBar" />
         </nav>
+
     </header>
     <div class="container" style="padding-top:100px">
-        <hr />
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

@@ -65,6 +65,10 @@
       "PackagePath": "staticwebassets\\assets\\js\\vanilla-zoom.js"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\Details.css",
+      "PackagePath": "staticwebassets\\css\\Details.css"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\Index.css",
       "PackagePath": "staticwebassets\\css\\Index.css"
     },

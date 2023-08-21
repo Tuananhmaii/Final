@@ -6,7 +6,52 @@
 
 <form>
     <div style="display: flex;margin-top: 20px;">
+        <!-- Button trigger modal-->
+        @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Launch modal</button>
+        <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
 
+                    <section class="ftco-section" style="min-width:150px">
+                        <div class="container">
+                            <div class="inline w-100 field">
+                                <label>Brand</label>
+                                <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
+                                    @if (ViewBag.SelectedBrand != null)
+                                    {
+                                        foreach (var item in ViewBag.SelectedBrand)
+                                        {
+                                            <option value="@item.Id" selected>@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="ftco-section">
+                        <div class="container">
+                            <div class="inline w-100 field">
+                                <label>Category</label>
+                                <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
+                                    @if (ViewBag.SelectedCategory != null)
+                                    {
+                                        foreach (var item in ViewBag.SelectedCategory)
+                                        {
+                                            <option value="@item.Id" selected>@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </section>
+
+                    <button asp-action="Index" type="submit" asp-controller="Home">Filter</button>
+                    <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
+                </div>
+            </div>
+        </div>*@
+        <!-- Modal: modalCart -->
         <section class="ftco-section" style="min-width:150px">
             <div class="container">
                 <div class="inline w-100 field">

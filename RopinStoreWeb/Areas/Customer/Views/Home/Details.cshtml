@@ -1,81 +1,83 @@
 ﻿@model ShoppingCart
 
+<link rel="stylesheet" href="~/css/Details.css" />
+<input hidden asp-for="ProductId" />
+<main class="page product-page">
+    <section class="clean-block clean-product dark">
+        <div class="container" style="padding-top:20px ">
+            <div class="block-content" style="width: 1316px; margin-bottom:111px">
+                <div class="product-info" style="padding-bottom: 0px;height: 483px;width: 1262px;padding-left: 0px;">
+                    <div class="row" style="height: 490px;">
+                        <div class="col-md-6" style="padding-top: 0px;margin-bottom: 56px;padding-bottom: 0px;padding-right: 0px;height: 556px;width: 800px;padding-left: 0px;margin-left: 68px;">
+                            <div class="gallery" style="padding: 0; height: 547px; width: 798px; background: rgb(255,255,255);">
+                                <div id="product-preview" class="vanilla-zoom" style="padding: 0; height: 550px; width: 798px;">
+                                    <div class="sidebar" style="height: 550px;">
+                                        <img class="img-fluid d-block small-preview" src="@Model.Product.ImageUrl" style="margin-bottom: 15px;" />
 
-<form method="post">
-    <input hidden asp-for="ProductId" />
-    <main class="page product-page">
-        <section class="clean-block clean-product dark">
-            <div class="container">
-                <div class="block-content" style="width: 1316px; margin-bottom:111px">
-                    <div class="product-info" style="padding-bottom: 0px;height: 483px;width: 1262px;padding-left: 0px;">
-                        <div class="row" style="height: 490px;">
-                            <div class="col-md-6" style="padding-top: 0px;margin-bottom: 56px;padding-bottom: 0px;padding-right: 0px;height: 556px;width: 800px;padding-left: 0px;margin-left: 68px;">
-                                <div class="gallery" style="padding-top: 0px;padding-left: 0px;padding-right: 0px;height: 547px;width: 798px;background: rgb(255,255,255);">
-                                    <div id="product-preview" class="vanilla-zoom" style="padding-top: 0px;padding-right: 0px;height: 550px;width: 745px;">
-                                        <div class="zoomed-image" style="height: 470px;width: 584px;margin-left: 103px;"></div>
-                                        <div class="sidebar" style="height: 63px; padding-left:180px; margin-top:20px">
-                                            <img class="img-fluid d-block small-preview" src="@Model.Product.ImageUrl" style="margin-left:20px" />
-                                            @foreach (var item in Model.Gallery)
-                                            {
-                                                <img class="img-fluid d-block small-preview" src="@item.URL" style="margin-left:20px" />
-                                            }
-                                        </div>
+                                        @foreach (var item in Model.Gallery)
+                                        {
+                                            <img class="img-fluid d-block small-preview" src="@item.URL" style="margin-bottom: 15px;" />
+                                        }
                                     </div>
+
+                                    <div class="zoomed-image" style="margin-left: 20px"></div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="col-md-6" style="width: 369px;height: 493px;">
-                                <div class="info" style="width: 360px;">
-                                    <h1>@Model.Product.Name</h1>
+                        <div class="col-md-6" style="width: 369px;height: 493px;">
+                            <div class="info" style="width: 360px;">
+                                <h1>@Model.Product.Name</h1>
 
-                                    <div class="price" style="padding-top: 0px;margin-bottom: 11px;">
-                                        <p>@Model.Product.Brand.Name</p>
-                                        <h3>$@Model.Product.Price</h3>
-                                    </div>
-
-                                    <span data-reflow-variant="199976733_s" data-reflow-product="717978921" data-reflow-max-qty="999" data-reflow-quantity="1">
-                                    <div class="ref-quantity-widget">
-                                        <a class="ref-decrease"><span></span></a>
-                                            <input type="text" id="inputField" asp-for="Count" />
-                                        <a class="ref-increase"><span></span></a>
-                                    </div>
-                                    </span>
-
-                                    <button class="btn btn-primary" type="submit" value="Add to Cart" asp-action="Details" style="background: rgb(60,61,67); margin-left:50px"><i class="icon-basket">  </i>Add to Cart</button>
+                                <div class="price" style="padding-top: 0px;margin-bottom: 11px;">
+                                    <p>@Model.Product.Brand.Name</p>
                                     <hr />
-                                    <div class="summary">
-                                        <p>@Model.Product.Description</p>
-                                    </div>
-                                    <div class="summary"></div>
+                                    <h3>$@Model.Product.Price</h3>
                                 </div>
+                                <form method="post">
+                                    <button class="btn btn-primary" type="submit" value="Add to Cart" asp-action="Details" style="background: rgb(60,61,67); width:100%; border:none">Add to Cart</button>
+                                    <button class="btn btn-primary" @*type="submit" value="Add to Cart" asp-action="Details"*@ style="background: rgb(60,61,67); width:100%; margin-top:10px; border:none">Purchase Now</button>
+                                </form>
+
+                                <hr style="margin-top:20px; border-top: 2px solid black;" />
+                                <button class="collapsible">Description</button>
+                                <div class="content">
+                                    <p>@Model.Product.Description</p>
+                                </div>
+                                <hr style="border-top: 2px solid black;" />
+                                <button class="collapsible">Specification</button>
+                                <div class="content">
+                                    <p>@Model.Product.Specification</p>
+                                </div>
+                                <hr style="border-top: 2px solid black;" />
+                                <button class="collapsible">Shipping</button>
+                                <div class="content">
+                                    <p>We offer free shipping Viet Nam wide on all orders over $100.</p>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-</form>
+        </div>
+    </section>
+</main>
 
 <script>
-    // Get references to the elements
-    const decreaseButton = document.querySelector('.ref-decrease');
-    const increaseButton = document.querySelector('.ref-increase');
-    const inputField = document.getElementById('inputField');
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
 
-    // Add click event listener for the decrease button
-    decreaseButton.addEventListener('click', () => {
-        const currentValue = parseInt(inputField.value);
-        if (!isNaN(currentValue) && currentValue > 1) {
-            inputField.value = currentValue - 1;
-        }
-    });
-
-    // Add click event listener for the increase button
-    increaseButton.addEventListener('click', () => {
-        const currentValue = parseInt(inputField.value);
-        if (!isNaN(currentValue)) {
-            inputField.value = currentValue + 1;
-        }
-    });
+    for (i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
 </script>

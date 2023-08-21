@@ -16,10 +16,14 @@ namespace RopinStore.Models
 
         [Required]
         public string Name { get; set; }
-
+        [ValidateNever]
+        public string Gender { get; set; }
         [Required]
-        public string Description { get; set; }
-
+        public string Color { get; set; }
+        [Required]
+        public string Description { get; set; }       
+        [Required]
+        public string Specification { get; set; }
         [Required]
         [Range(1, 10000)]
         public double Price { get; set; }

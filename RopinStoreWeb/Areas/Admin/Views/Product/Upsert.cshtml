@@ -29,6 +29,25 @@
                     <textarea rows="3" asp-for="Product.Description" class="form-control"></textarea>
                     <span asp-validation-for="Product.Description" class="text-danger"></span>
                 </div>
+                <div class="mb-3">
+                    <label asp-for="Product.Specification"></label>
+                    <textarea rows="3" asp-for="Product.Specification" class="form-control"></textarea>
+                    <span asp-validation-for="Product.Specification" class="text-danger"></span>
+                </div>
+                <div class="mb-3 col-6">
+                    <label asp-for="Product.Color"></label>
+                    <input asp-for="Product.Color" class="form-control" />
+                    <span asp-validation-for="Product.Color" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3 col-6">
+                    <label asp-for="Product.Gender"></label>
+                    <select asp-for="Product.Gender" class="form-select">
+                        <option>Men</option>
+                        <option>Women</option>
+                    </select>
+                    <span asp-validation-for="Product.Gender" class="text-danger"></span>
+                </div>
 
                 <div class="mb-3 col-6">
                     <label asp-for="Product.Price"></label>
