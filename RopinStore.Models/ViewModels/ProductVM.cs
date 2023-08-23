@@ -17,6 +17,8 @@ namespace RopinStore.Models.ViewModels
         [ValidateNever]
         public IEnumerable<SelectListItem> BrandList { get; set; }
         [ValidateNever]
+        public IEnumerable<SelectListItem> CollectionList { get; set; }
+        [ValidateNever]
         public IEnumerable<IFormFile>? ProductGallery { get; set; }
     }
 }

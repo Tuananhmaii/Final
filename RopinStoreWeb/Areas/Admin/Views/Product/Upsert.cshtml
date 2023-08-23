@@ -82,6 +82,14 @@
                     <span asp-validation-for="Product.BrandId" class="text-danger"></span>
                 </div>
 
+                <div class="mb-3 col-6">
+                    <label asp-for="Product.CollectionId"></label>
+                    <select asp-for="Product.CollectionId" asp-items="@Model.CollectionList" class="form-select">
+                        <option disabled selected>-- Select Collection --</option>
+                    </select>
+                    <span asp-validation-for="Product.CollectionId" class="text-danger"></span>
+                </div>
+
                 <div class="col-12">
                     @if (Model.Product.Id != 0)
                     {

@@ -19,6 +19,8 @@ namespace RopinStore.DataAccess.Repository
         public IOrderRepository Order { get; private set; }
         public IOrderDetailRepository OrderDetail { get; private set; }
         public IProductGalleryRepository ProductGallery { get; private set; }
+        public IReviewRepository Review { get; private set; }
+        public ICollectionRepository Collection { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -30,6 +32,8 @@ namespace RopinStore.DataAccess.Repository
             OrderDetail = new OrderDetailRepository(_db);
             Order = new OrderRepository(_db);
             ProductGallery = new ProductGalleryRepository(_db);
+            Review = new ReviewRepository(_db);
+            Collection = new CollectionRepository(_db);
         }
         public void Save()
         {

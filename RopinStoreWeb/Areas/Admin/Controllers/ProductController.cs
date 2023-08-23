@@ -45,6 +45,11 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                     Text = n.Name,
                     Value = n.Id.ToString()
                 }),
+                CollectionList = _unitOfWork.Collection.GetAll().Select(n => new SelectListItem
+                {
+                    Text = n.Name,
+                    Value = n.Id.ToString()
+                }),
             };
             if (id == null || id == 0)
             {

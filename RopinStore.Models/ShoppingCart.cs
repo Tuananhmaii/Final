@@ -18,11 +18,9 @@ namespace RopinStore.Models
         [ValidateNever]
         public Product Product { get; set; }
 
-
         [ValidateNever]
         [DisplayName("Product Gallery")]
         public List<ProductGallery> Gallery { get; set; }
-
 
         public string ApplicationUserId { get; set; }
         [ForeignKey("ApplicationUserId")]

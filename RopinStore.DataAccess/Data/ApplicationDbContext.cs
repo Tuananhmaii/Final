@@ -17,5 +17,7 @@ namespace RopinStore.DataAccess.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<ProductGallery> ProductGalleries { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Collection> Collections { get; set; }
     }
 }

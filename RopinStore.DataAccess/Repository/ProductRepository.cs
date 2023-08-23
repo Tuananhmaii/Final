@@ -30,6 +30,7 @@ namespace RopinStore.DataAccess.Repository
                 objFromProduct.Specification = obj.Specification;
                 objFromProduct.Price = obj.Price;
                 objFromProduct.BrandId = obj.BrandId;
+                objFromProduct.CollectionId = obj.CollectionId;
                 objFromProduct.CategoryId = obj.CategoryId;
 
                 if(obj.ImageUrl != null)

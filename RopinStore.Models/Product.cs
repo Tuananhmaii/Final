@@ -46,6 +46,13 @@ namespace RopinStore.Models
         [ValidateNever]
         public Brand Brand { get; set; }
 
+        [Required]
+        [DisplayName("Collection")]
+        public int CollectionId { get; set; }
+
+        [ValidateNever]
+        public Collection Collection { get; set; }
+
 
         [DisplayName("Product Gallery")]
         public List<ProductGallery> Gallery { get; set; } = new List<ProductGallery>();

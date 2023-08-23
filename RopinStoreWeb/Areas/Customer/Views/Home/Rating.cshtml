@@ -1,0 +1,57 @@
+﻿@model Review
+<form method="post">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <input asp-for="ProductId" hidden />
+    <input asp-for="ApplicationUserId" hidden />
+
+    <main class="page landing-page">
+        <section class="clean-block clean-info dark" style="margin-bottom: 160px;margin-top: -2px;padding-top: 50px;padding-bottom: 263px;padding-left: 0px;margin-left: 300px;margin-right: 300px;background:#eaeaeb;">
+            <div class="container">
+                <div class="row align-items-center" style="margin-right: -6px;margin-left: -182px;padding-left: 0px;">
+                    <div class="col-md-6" style="margin-right: -232px;padding-right: 227px;padding-left: 20px;margin-left: 217px;">
+                        <img class="img-thumbnail" src="@Model.Product.ImageUrl" style="margin-bottom: 2px;padding-left: 0px;margin-left: 3px;padding-bottom: 0px;padding-top: 0px;padding-right: 0px;" />
+                    </div>
+                    <div class="col-md-6" style="padding-right: 59px;margin-right: -58px;margin-left: 27px;">
+                        <h3 style="margin-bottom: 43px;margin-top: -39px;">@Model.Product.Name</h3>
+                        <div class="getting-started-info" style="margin-bottom:50px">
+                            <i class="ratingStar far fa-star" style="font-size:24px" data-value="1"></i>
+                            <i class="ratingStar far fa-star" style="font-size:24px" data-value="2"></i>
+                            <i class="ratingStar far fa-star" style="font-size:24px" data-value="3"></i>
+                            <i class="ratingStar far fa-star" style="font-size:24px" data-value="4"></i>
+                            <i class="ratingStar far fa-star" style="font-size:24px" data-value="5"></i>
+                        </div>
+                        <input hidden name="Rating" id="ratingValue" />
+                    </div>
+                </div>
+                <div>
+                    <input type="text" asp-for="@Model.Title" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;margin-top: 40px;margin-left: 30px;" placeholder="Review Title" />
+                    <input type="text" asp-for="@Model.Description" style="padding-left: 10px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;padding-top: 0px;margin-top: 8px;margin-left: 29px;" placeholder="What do you think about @Model.Product.Name" />
+                    <label class="form-label" style="padding-top: 0px;margin-top: 40px;font-weight: bold;margin-left: 70px;">Your Profile</label>
+                    <input type="text" asp-for="@Model.ApplicationUser.FullName" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;margin-top: 3px;border-width: 1px;margin-left: 31px;" placeholder="Name" />
+                    <input type="text" asp-for="@Model.ApplicationUser.Email" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;margin-top: 7px;margin-left: 32px;" placeholder="Email Address" />
+                </div>
+                <div>
+                    <label class="form-label fs-6" style="font-style: italic;margin-right: 0px;width: 739.672px;margin-left: 135px;margin-top: 69px;font-size: 11px;">By continuing you agree to our Terms and Conditions and Privacy Policy</label>
+                    <button class="btn btn-dark btn-sm shadow" type="submit" style="width: 659.7125px; font-size:13px;text-align: center;border-style: none;margin: 0px;color: var(--bs-btn-disabled-color);border-radius: 5px;height: 66px;padding-top: 0px;margin-top: 19px;padding-left: 0px;padding-right: 0px;margin-left: 19px;">Agree &amp; Submit</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</form>
+
+<partial name="_ValidationScriptsPartial" />
+<script>
+    $(".ratingStar").hover(function () {
+        $(".ratingStar").addClass("far").removeClass("fas");
+
+        $(this).addClass("fas").removeClass("far");
+        $(this).prevAll(".ratingStar").addClass("fas").removeClass("far");
+    });
+
+    $(".ratingStar").click(function () {
+        var starValue = $(this).data("value");
+
+        $("#ratingValue").val(starValue.toString());
+    });
+</script>
