@@ -1,12 +1,12 @@
 ﻿@model Review
-<form method="post">
+<form method="post" onsubmit="return validateForm()">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <input asp-for="ProductId" hidden />
     <input asp-for="ApplicationUserId" hidden />
 
     <main class="page landing-page">
-        <section class="clean-block clean-info dark" style="margin-bottom: 160px;margin-top: -2px;padding-top: 50px;padding-bottom: 263px;padding-left: 0px;margin-left: 300px;margin-right: 300px;background:#eaeaeb;">
+        <section class="clean-block clean-info dark" style="margin-top: -2px;padding-top: 50px;padding-bottom: 100px;padding-left: 0px;margin-left: 300px;margin-right: 300px;background:#eaeaeb;">
             <div class="container">
                 <div class="row align-items-center" style="margin-right: -6px;margin-left: -182px;padding-left: 0px;">
                     <div class="col-md-6" style="margin-right: -232px;padding-right: 227px;padding-left: 20px;margin-left: 217px;">
@@ -25,15 +25,15 @@
                     </div>
                 </div>
                 <div>
-                    <input type="text" asp-for="@Model.Title" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;margin-top: 40px;margin-left: 30px;" placeholder="Review Title" />
-                    <input type="text" asp-for="@Model.Description" style="padding-left: 10px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;padding-top: 0px;margin-top: 8px;margin-left: 29px;" placeholder="What do you think about @Model.Product.Name" />
+                    <input name="title" type="text" asp-for="@Model.Title" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;margin-top: 40px;margin-left: 30px;" placeholder="Review Title" />
+                    <input name="description" type="text" asp-for="@Model.Description" style="padding-left: 10px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;padding-top: 0px;margin-top: 8px;margin-left: 29px;" placeholder="What do you think about @Model.Product.Name" />
                     <label class="form-label" style="padding-top: 0px;margin-top: 40px;font-weight: bold;margin-left: 70px;">Your Profile</label>
-                    <input type="text" asp-for="@Model.ApplicationUser.FullName" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;margin-top: 3px;border-width: 1px;margin-left: 31px;" placeholder="Name" />
-                    <input type="text" asp-for="@Model.ApplicationUser.Email" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;margin-top: 7px;margin-left: 32px;" placeholder="Email Address" />
+                    <input name="name" type="text" asp-for="@Model.ApplicationUser.FullName" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;margin-top: 3px;border-width: 1px;margin-left: 31px;" placeholder="Name" />
+                    <input name="email" type="text" asp-for="@Model.ApplicationUser.Email" style="padding-left: 10px;padding-top: 0px;width: 610px;padding-right: 0px;margin-right: 68px;border-radius: 7px;height: 43px;border-width: 1px;margin-top: 7px;margin-left: 32px;" placeholder="Email Address" />
                 </div>
                 <div>
                     <label class="form-label fs-6" style="font-style: italic;margin-right: 0px;width: 739.672px;margin-left: 135px;margin-top: 69px;font-size: 11px;">By continuing you agree to our Terms and Conditions and Privacy Policy</label>
-                    <button class="btn btn-dark btn-sm shadow" type="submit" style="width: 659.7125px; font-size:13px;text-align: center;border-style: none;margin: 0px;color: var(--bs-btn-disabled-color);border-radius: 5px;height: 66px;padding-top: 0px;margin-top: 19px;padding-left: 0px;padding-right: 0px;margin-left: 19px;">Agree &amp; Submit</button>
+                    <button class="btn btn-dark btn-sm shadow" type="submit" style="width: 659.7125px; font-size:13px;text-align: center;border-style: none;margin: 0px;color: var(--bs-btn-disabled-color);border-radius: 5px;height: 66px;padding-top: 0px;margin-top: 19px;margin-left: 8px;">Agree &amp; Submit</button>
                 </div>
             </div>
         </section>
@@ -54,4 +54,22 @@
 
         $("#ratingValue").val(starValue.toString());
     });
+
+    function validateForm() {
+        var nameInput = document.querySelector('input[name="name"]');
+        var emailInput = document.querySelector('input[name="email"]');
+        var titleInput = document.querySelector('input[name="title"]');
+        var descriptionInput = document.querySelector('input[name="description"]');
+        var ratingInput = document.querySelector('input[name="Rating"]');
+
+        if (!nameInput.value || !emailInput.value || !titleInput.value || !descriptionInput.value || !ratingInput.value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter all necessary data',
+            })
+            return false;
+        }
+        return true;
+    }
 </script>

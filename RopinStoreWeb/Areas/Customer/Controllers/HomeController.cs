@@ -77,7 +77,8 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 Count = 1,
                 ProductId = productid,
                 Product = _unitOfWork.Product.GetFirstOrDefault(n => n.Id == productid, includeProperties: "Category,Brand,Collection"),
-                Gallery = _db.ProductGalleries.Where(u => u.ProductId == productid).ToList()
+                Gallery = _unitOfWork.ProductGallery.GetAll(u => u.ProductId == productid).ToList(),
+                Review = _unitOfWork.Review.GetAll(u => u.ProductId == productid, includeProperties: "ApplicationUser").ToList(),
             };
             return View(cartObj);
         }
@@ -106,12 +107,6 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             }
             return RedirectToAction("Index");
         }
-        //[HttpGet]
-        //public ActionResult Rating(int ProductId)
-        //{
-        //    string redirectUrl = $"https://www.example.com/product/details?ProductId={ProductId}";
-        //    return Redirect("https://www.google.com/");
-        //}
 
         [HttpGet]
         [Authorize]
@@ -128,32 +123,25 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Rating(Review review, string Rating)
+        public ActionResult Rating(Review review, string Rating, string name)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+
             review.Date = DateTime.Now;
             review.ApplicationUserId = claim.Value;
             review.Rating = Int32.Parse(Rating);
             review.Verify = "Verified";
+            user.FullName = name;
+
             _unitOfWork.Review.Add(review);
+            _unitOfWork.ApplicationUser.Update(user);
             _unitOfWork.Save();
             TempData["success"] = "Your rating will be review";
+
             return RedirectToAction(nameof(Index));
         }
-        //[HttpPost]
-        //public JsonResult LeaveComment(Review review)
-        //{
-        //    var claimsIdentity = (ClaimsIdentity)User.Identity;
-        //    var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-        //    JsonResult result = new JsonResult();
-        //    try
-        //    {
-        //        review.Date = DateTime.Now;
-        //        review.ApplicationUserId = claim.Value;
-        //        var res =
-        //    }
-        //}
 
         public IActionResult Privacy()
         {

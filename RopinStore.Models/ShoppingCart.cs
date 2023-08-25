@@ -32,5 +32,8 @@ namespace RopinStore.Models
         public int Count { get; set; }
         [NotMapped]
         public double Price { get; set; }
+        [ValidateNever]
+        [DisplayName("Reviews")]
+        public List<Review> Review { get; set; }
     }
 }

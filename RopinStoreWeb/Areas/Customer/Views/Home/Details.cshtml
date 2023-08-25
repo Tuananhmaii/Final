@@ -10,7 +10,7 @@
                 <div class="product-info" style="padding-bottom: 0px;height: 483px;width: 1262px;padding-left: 0px;">
                     <div class="row" style="height: 490px;">
                         <div class="col-md-6" style="padding-top: 0px;margin-bottom: 56px;padding-bottom: 0px;padding-right: 0px;height: 556px;width: 700px;padding-left: 0px;margin-left: 68px;">
-                            <div class="gallery" style="padding: 0; height: 547px; width: 798px; background: rgb(255,255,255);">
+                            <div class="gallery" style="padding: 0; height: 547px; width: 650px; background: rgb(255,255,255);">
                                 <div id="product-preview" class="vanilla-zoom" style="padding: 0; height: 550px; width: 650px;">
                                     <div class="sidebar" style="height: 550px;">
                                         <img class="img-fluid d-block small-preview" src="@Model.Product.ImageUrl" style="margin-bottom: 15px;" />
@@ -21,7 +21,7 @@
                                         }
                                     </div>
 
-                                    <div class="zoomed-image" style="margin-left: 45px; margin-right:200px"></div>
+                                    <div class="zoomed-image" style="margin-left: 50px; margin-right:50px"></div>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                                 <div class="price" style="padding-top: 0px;margin-bottom: 11px;">
                                     <p>@Model.Product.Brand.Name</p>
                                     <hr />
-                                    <h3 style="font-weight:lighter;font-style:italic">"@Model.Product.Collection.Description"</h3>
+                                    <span>"@Model.Product.Collection.Description"</span>
                                     <h3>$@Model.Product.Price</h3>
                                 </div>
                                 <form method="post">
@@ -65,25 +65,50 @@
         </div>
     </section>
 </main>
+<div class="product-info">
+    @foreach (var item in Model.Review)
+    {
+        var defaultStars = 5 - item.Rating;
+        <div class="reviews">
+            <div class="review-item">
+                <div class="rating">
+                    @for(int i = 1; i <= item.Rating; i++)
+                    {
+                        <i class="fas fa-star"></i>
+                    }
+                    @for (int i = 1; i <= defaultStars; i++)
+                    {
+                        <i class="far fa-star"></i>
+                    }
+                </div>
+                <h4>@item.Title</h4>
+                <span class="text-muted">
+                    @item.ApplicationUser.FullName, @item.Date</span>
+                <p>@item.Description</p>
+                <hr />
+            </div>
+        </div>
+    }
+</div>
 <h2>Click on the link below</h2>
 @Html.ActionLink("Rate the product", "Rating", "Home", new {productid = Model.Product.Id}, new { target = "_blank" })
 @*<form id="commentForm">
     <input hidden asp-for="ProductId" />
     <input hidden asp-for="ApplicationUserId" />
     <div class="form-group">
-        <label>Write comment</label>
-        <span class="text-warning float-right">
-            <i class="ratingStar far fa-star" data-value="1"></i>
-            <i class="ratingStar far fa-star" data-value="2"></i>
-            <i class="ratingStar far fa-star" data-value="3"></i>
-            <i class="ratingStar far fa-star" data-value="4"></i>
-            <i class="ratingStar far fa-star" data-value="5"></i>
-        </span>
-        <input name="Rating" id="ratingValue" hidden/>
-        <textarea class="form-control" name="Description" placeholder="Write your comment here"></textarea>
+    <label>Write comment</label>
+    <span class="text-warning float-right">
+    <i class="ratingStar far fa-star" data-value="1"></i>
+    <i class="ratingStar far fa-star" data-value="2"></i>
+    <i class="ratingStar far fa-star" data-value="3"></i>
+    <i class="ratingStar far fa-star" data-value="4"></i>
+    <i class="ratingStar far fa-star" data-value="5"></i>
+    </span>
+    <input name="Rating" id="ratingValue" hidden/>
+    <textarea class="form-control" name="Description" placeholder="Write your comment here"></textarea>
     </div>
     <button id="btnComment" type="button">Leave your comment</button>
-</form>*@
+    </form>*@
 
 <script>
 

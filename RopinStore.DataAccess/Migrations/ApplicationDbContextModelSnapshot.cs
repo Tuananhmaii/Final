@@ -477,6 +477,9 @@ namespace RopinStore.DataAccess.Migrations
                     b.Property<int>("Rating")
                         .HasColumnType("int");
 
+                    b.Property<int?>("ShoppingCartId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -490,6 +493,8 @@ namespace RopinStore.DataAccess.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("ProductId");
+
+                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("Reviews");
                 });
@@ -675,6 +680,10 @@ namespace RopinStore.DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("RopinStore.Models.ShoppingCart", null)
+                        .WithMany("Review")
+                        .HasForeignKey("ShoppingCartId");
+
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Product");
@@ -707,6 +716,8 @@ namespace RopinStore.DataAccess.Migrations
             modelBuilder.Entity("RopinStore.Models.ShoppingCart", b =>
                 {
                     b.Navigation("Gallery");
+
+                    b.Navigation("Review");
                 });
 #pragma warning restore 612, 618
         }

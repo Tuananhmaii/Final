@@ -43,6 +43,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             }
             return View(ShoppingCartVM);
         }
+        [HttpGet]
         public IActionResult Summary()
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
@@ -72,12 +73,12 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             return View(ShoppingCartVM);
         }
         [HttpPost]
-        [ActionName("Summary")]
         [ValidateAntiForgeryToken]
-        public IActionResult SummaryPOST(string? name, string? phone, string city, string address, string paymentType)
+        public IActionResult Summary(string? name, string? phone, string city, string address, string paymentType)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            var user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
 
             ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product");
@@ -123,8 +124,10 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             {
                 ShoppingCartVM.Order.TotalPrice += (item.Product.Price * item.Count);
             }
-            ApplicationUser applicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
+            user.FullName = name;
+            user.PhoneNumber = phone;
 
+            _unitOfWork.ApplicationUser.Update(user);
             _unitOfWork.Order.Add(ShoppingCartVM.Order);
             _unitOfWork.Save();
 
