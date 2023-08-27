@@ -70,21 +70,42 @@
     {
         var defaultStars = 5 - item.Rating;
         <div class="reviews">
-            <div class="review-item">
-                <div class="rating">
-                    @for(int i = 1; i <= item.Rating; i++)
-                    {
-                        <i class="fas fa-star"></i>
-                    }
-                    @for (int i = 1; i <= defaultStars; i++)
-                    {
-                        <i class="far fa-star"></i>
-                    }
+            <div class="review-item" style="display:flex">
+                <div style="width:35%">
+                    <h3>@item.ApplicationUser.FullName</h3>
+                    <div class="rating">
+                        @for (int i = 1; i <= item.Rating; i++)
+                        {
+                            <i class="fas fa-star"></i>
+                        }
+                        @for (int i = 1; i <= defaultStars; i++)
+                        {
+                            <i class="far fa-star"></i>
+                        }
+                    </div>
                 </div>
-                <h4>@item.Title</h4>
-                <span class="text-muted">
-                    @item.ApplicationUser.FullName, @item.Date</span>
-                <p>@item.Description</p>
+                @*                <div>
+            <h3>@item.Title</h3>
+            <div class="rating">
+            @for (int i = 1; i <= item.Rating; i++)
+            {
+            <i class="fas fa-star"></i>
+            }
+            @for (int i = 1; i <= defaultStars; i++)
+            {
+            <i class="far fa-star"></i>
+            }
+            </div>
+            </div>*@
+                <div style="width:55%">
+                    <h3>@item.Title</h3>
+                    <p>@item.Description</p>
+                </div>
+                <div>
+                    <span class="text-muted">
+                        @item.Date.ToShortDateString()
+                    </span>
+                </div>
                 <hr />
             </div>
         </div>

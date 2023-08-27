@@ -2,61 +2,69 @@
 
 <link rel="stylesheet" href="~/css/Index.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css">
+@{
+    Pager pager = new Pager();
+    int pageNo = 0;
 
-
-<form>
+    if (ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrenPage;
+    }
+}
+<form id="paginationForm">
     <div style="display: flex;margin-top: 20px;">
         <!-- Button trigger modal-->
         @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Launch modal</button>
         <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
 
-                    <section class="ftco-section" style="min-width:150px">
-                        <div class="container">
-                            <div class="inline w-100 field">
-                                <label>Brand</label>
-                                <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
-                                    @if (ViewBag.SelectedBrand != null)
-                                    {
-                                        foreach (var item in ViewBag.SelectedBrand)
-                                        {
-                                            <option value="@item.Id" selected>@item.Name</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="ftco-section">
-                        <div class="container">
-                            <div class="inline w-100 field">
-                                <label>Category</label>
-                                <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
-                                    @if (ViewBag.SelectedCategory != null)
-                                    {
-                                        foreach (var item in ViewBag.SelectedCategory)
-                                        {
-                                            <option value="@item.Id" selected>@item.Name</option>
-                                        }
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                    </section>
+        <section class="ftco-section" style="min-width:150px">
+        <div class="container">
+        <div class="inline w-100 field">
+        <label>Brand</label>
+        <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
+        @if (ViewBag.SelectedBrand != null)
+        {
+        foreach (var item in ViewBag.SelectedBrand)
+        {
+        <option value="@item.Id" selected>@item.Name</option>
+        }
+        }
+        </select>
+        </div>
+        </div>
+        </section>
+        <section class="ftco-section">
+        <div class="container">
+        <div class="inline w-100 field">
+        <label>Category</label>
+        <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
+        @if (ViewBag.SelectedCategory != null)
+        {
+        foreach (var item in ViewBag.SelectedCategory)
+        {
+        <option value="@item.Id" selected>@item.Name</option>
+        }
+        }
+        </select>
+        </div>
+        </div>
+        </section>
 
-                    <button asp-action="Index" type="submit" asp-controller="Home">Filter</button>
-                    <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
-                </div>
-            </div>
+        <button asp-action="Index" type="submit" asp-controller="Home">Filter</button>
+        <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
+        </div>
+        </div>
         </div>*@
         <!-- Modal: modalCart -->
         <section class="ftco-section" style="min-width:150px">
             <div class="container">
                 <div class="inline w-100 field">
                     <label>Brand</label>
-                    <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
+                    <select name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
                         @if (ViewBag.SelectedBrand != null)
                         {
                             foreach (var item in ViewBag.SelectedBrand)
@@ -89,35 +97,59 @@
         <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
 
     </div>
-</form>
 
-<section class="section-products">
-    <div class="row">
-        @foreach (var Product in Model)
-        {
-            <div class="col-md-3 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
-                            <img class="pic-1" src="@Product.ImageUrl">
-                            <img class="pic-2" src="@Product.ImageUrl">
-                        </a>
-                        <a href="" class="product-like-icon"><i class="far fa-heart"></i></a>
-                        <ul class="product-links">
-                            <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                        </ul>
-                    </div>
-                    <div class="product-content">
-                        <h2 class="title">@Product.Name</h2>
-                        <h3 class="price">@Product.Brand.Name</h3>
-                        <p class="price">$@Product.Price.ToString("0.00")</p>
+    <section class="section-products">
+        <div class="row">
+            @foreach (var Product in Model)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
+                                <img class="pic-1" src="@Product.ImageUrl">
+                                <img class="pic-2" src="@Product.ImageUrl">
+                            </a>
+                            <a href="" class="product-like-icon"><i class="far fa-heart"></i></a>
+                            <ul class="product-links">
+                                <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product-content">
+                            <h2 class="title">@Product.Name</h2>
+                            <h3 class="price">@Product.Brand.Name</h3>
+                            <p class="price">$@Product.Price.ToString("0.00")</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+        </div>
+    </section>
+
+    <div class="container d-flex justify-content-center" style="margin-top:100px">
+        @if (pager.TotalPages > 0)
+        {
+            <ul class="pagination">
+                @if (pager.CurrenPage > 1)
+                {
+                    <button type="button" class="pagination-button" data-page="@(pager.CurrenPage - 1)" onclick="changePage(this)">Previous</button>
+                }
+                @for (var i = pager.StartPage; i <= pager.EndPage; i++)
+                {
+                    <button type="submit" class="@(i == pager.CurrenPage ? "active pagination-button": "pagination-button")" asp-action="Index" data-page="@i">@i</button>
+                    
+                }
+
+                @if (pager.CurrenPage < pager.TotalPages)
+                {
+                    <button type="button" class="pagination-button" data-page="@(pager.CurrenPage + 1)" onclick="changePage(this)">Next</button>
+                }
+                
+                <input type="hidden" id="clickedPage" name="page" value="" />
+            </ul>
         }
     </div>
-</section>
+</form>
 
 <script src="~/js/jquery.min.js"></script>
 <script src="~/js/popper.js"></script>
@@ -125,26 +157,28 @@
 <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
 <script src="~/js/main.js"></script>
 
+<script>
+    // JavaScript to capture the value of clicked pagination button
+    const paginationButtons = document.querySelectorAll('.pagination-button');
+    const clickedPageInput = document.getElementById('clickedPage');
+    const form = document.getElementById('paginationForm'); // Replace 'paginationForm' with your form's ID
 
-@*<script>
-    $(document).ready(function () {
-        window.onload = function () {
-            var selItem = sessionStorage.getItem("SelItem");
-            $('#brand_filter').val(selItem);
-            console.log(selItem);
-        };
-
-        $('#brand_filter').change(function () {
-            var selVal = $(this).val();
-            sessionStorage.setItem("SelItem", selVal);
+    paginationButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const pageNumber = this.getAttribute('data-page');
+            clickedPageInput.value = pageNumber;
+            form.submit(); // Submit the form
         });
     });
-</script>*@
-@*<script>
-    var brand = document.getElementById('brand_filter').s
-    alert(brand)
-</script>*@
 
+    function changePage(button) {
+        const pageValue = button.getAttribute('data-page');
+        const clickedPageInput = document.getElementById('clickedPage');
+        const form = document.getElementById('paginationForm');
+        clickedPageInput.value = pageValue;
+        form.submit();
+    }
+</script>
 
 
 

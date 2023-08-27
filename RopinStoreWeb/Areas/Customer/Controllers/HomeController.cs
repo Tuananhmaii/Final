@@ -24,7 +24,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
             _db = db;
         }
-        public IActionResult Index(List<int>? filterBrand, List<int>? filterCategory)
+        public IActionResult Index(List<int>? filterBrand, List<int>? filterCategory, string? page)
         {
             var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             var brand = _unitOfWork.Brand.GetAll().ToList();
@@ -53,7 +53,23 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ViewBag.Categories = new SelectList(category, "Id", "Name");
             ViewBag.Brands = new SelectList(brand, "Id", "Name");
             IEnumerable<Product> productList = query.ToList();
-            return View(productList);
+
+            //Paging
+            const int pageSize = 10;
+            if (page == null)
+            {
+                page = "1";
+            }
+            int pg = Int32.Parse(page);
+            if (pg < 1) pg = 1;
+            int recsCount = productList.Count();
+            var pager = new Pager(recsCount, pg, pageSize);
+            int recSkip = (pg - 1) * pageSize;
+            var data = productList.Skip(recSkip).Take(pager.PageSize).ToList();
+
+            ViewBag.Pager = pager;
+
+            return View(data);
         }
         public IActionResult Chat()
         {
