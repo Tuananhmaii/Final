@@ -10,11 +10,6 @@
     background-color: white;
 }
 
-    .active, .collapsible:hover {
-        background-color: #9f9c9c;
-        color:white;
-    }
-
     .collapsible:after {
         content: '\002B';
         font-weight: bold;
@@ -27,7 +22,7 @@
 }
 
 .content {
-
+    padding-left: 20px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
