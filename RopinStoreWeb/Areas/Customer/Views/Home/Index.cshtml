@@ -1,106 +1,61 @@
-﻿@model IEnumerable<Product>
+﻿<link rel="stylesheet" href="~/css/Index.css" />
 
-<link rel="stylesheet" href="~/css/Index.css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.css">
-@{
-    Pager pager = new Pager();
-    int pageNo = 0;
-
-    if (ViewBag.Pager != null)
-    {
-        pager = ViewBag.Pager;
-        pageNo = pager.CurrenPage;
-    }
-}
-<form id="paginationForm">
-    <div style="display: flex;margin-top: 20px;">
-        <!-- Button trigger modal-->
-        @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Launch modal</button>
-        <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
-
-        <section class="ftco-section" style="min-width:150px">
-        <div class="container">
-        <div class="inline w-100 field">
-        <label>Brand</label>
-        <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
-        @if (ViewBag.SelectedBrand != null)
-        {
-        foreach (var item in ViewBag.SelectedBrand)
-        {
-        <option value="@item.Id" selected>@item.Name</option>
-        }
-        }
-        </select>
-        </div>
-        </div>
-        </section>
-        <section class="ftco-section">
-        <div class="container">
-        <div class="inline w-100 field">
-        <label>Category</label>
-        <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
-        @if (ViewBag.SelectedCategory != null)
-        {
-        foreach (var item in ViewBag.SelectedCategory)
-        {
-        <option value="@item.Id" selected>@item.Name</option>
-        }
-        }
-        </select>
-        </div>
-        </div>
-        </section>
-
-        <button asp-action="Index" type="submit" asp-controller="Home">Filter</button>
-        <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
-        </div>
-        </div>
-        </div>*@
-        <!-- Modal: modalCart -->
-        <section class="ftco-section" style="min-width:150px">
-            <div class="container">
-                <div class="inline w-100 field">
-                    <label>Brand</label>
-                    <select name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
-                        @if (ViewBag.SelectedBrand != null)
-                        {
-                            foreach (var item in ViewBag.SelectedBrand)
-                            {
-                                <option value="@item.Id" selected>@item.Name</option>
-                            }
-                        }
-                    </select>
+<section class="clean-block slider">
+    <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
+        <div class="carousel-inner" style="height:600px">
+            <div class="carousel-item active" style="background-image: url('https://curnonwatch.com/_next/image/?url=https%3A%2F%2Fcms.curnonwatch.com%2Fuploads%2FColo_Featured_Desk_c28ebc846d.jpeg&w=3840&q=100'); background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 650px ">
+                <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
+                    <h3 style="margin-bottom:0px">#Curnon #Colosseum</h3>
+                    <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">COLOSSEUM COLLECTION</p>
+                    <p style=" margin-bottom:30px">
+                        Timeless design meets modern sophistication
+                    </p>
+                    <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
+                        DISCOVER NOW
+                    </button>
                 </div>
             </div>
-        </section>
-        <section class="ftco-section">
-            <div class="container">
-                <div class="inline w-100 field">
-                    <label>Category</label>
-                    <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
-                        @if (ViewBag.SelectedCategory != null)
-                        {
-                            foreach (var item in ViewBag.SelectedCategory)
-                            {
-                                <option value="@item.Id" selected>@item.Name</option>
-                            }
-                        }
-                    </select>
+            <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/dc6xcnpke/image/upload/v1694145879/Dashboard/pexels-photo-6648416_wnkco4.webp');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 700px;  background-position:center right 50%">
+                <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
+                    <h3 style="margin-bottom:0px">#Dior #Suffle</h3>
+                    <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">SUFFLE COLLECTION</p>
+                    <p style=" margin-bottom:30px">
+                        Minimalist, feminine but no less dynamic look for the "summer girl"
+                    </p>
+                    <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
+                        DISCOVER NOW
+                    </button>
                 </div>
             </div>
-        </section>
-
-        <button asp-action="Index" type="submit" asp-controller="Home">Filter</button>
-        <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
-
+            <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/dc6xcnpke/image/upload/v1694146029/Dashboard/pexels-photo-691640_qwwruw.jpg');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 700px; background-position:center right 40%;">
+                <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
+                    <h3 style="margin-bottom:0px">#DW #Morain</h3>
+                    <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">MORAIN COLLECTION</p>
+                    <p style=" margin-bottom:30px">
+                        Represents strength and adventure
+                    </p>
+                    <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
+                        DISCOVER NOW
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
+        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="2"></button></div>
     </div>
+</section>
 
-    <section class="section-products">
+<div style="background: #cdcaca; display: flex; justify-content: center; align-items: center; gap: 12%; height:50px">
+    <label style="font-size:14px"><i style="font-size:16px; vertical-align: bottom; margin-right: 5px" class="bi bi-truck"></i> FREESHIP FOR ORDERS > 100$</label>
+    <label style="font-size:14px"><i style="font-size:16px; vertical-align: bottom; margin-right: 5px" class="bi bi-shield-check"></i> 10 YEAR WARRANTY</label>
+    <label style="font-size:14px"><i class="bi bi-box-seam" style="margin-right: 5px; vertical-align: bottom"></i> FREE RETURN WITHIN 7 DAYS</label>
+</div>
+
+<div style="margin-left:10%; margin-right:10%; margin-top:5%">
+    <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
+    <section class="section-products" style="padding-top:0px !important">
         <div class="row">
-            @foreach (var Product in Model)
+            @foreach (var Product in ViewBag.productList1)
             {
                 <div class="col-md-3 col-sm-6">
                     <div class="product-grid">
@@ -109,7 +64,7 @@
                                 <img class="pic-1" src="@Product.ImageUrl">
                                 <img class="pic-2" src="@Product.ImageUrl">
                             </a>
-                            <a href="" class="product-like-icon"><i class="far fa-heart"></i></a>
+                            <a href="" class="product-like-icon"></a>
                             <ul class="product-links">
                                 <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
@@ -124,63 +79,46 @@
                 </div>
             }
         </div>
+
+        <div style="text-align: center; margin-top: 5%;">
+            @*<button href="" style="border:none; background-color:none">See all <i class="bi bi-arrow-right"></i></button>*@
+            <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+        </div>
     </section>
+</div>
 
-    <div class="container d-flex justify-content-center" style="margin-top:100px">
-        @if (pager.TotalPages > 0)
-        {
-            <ul class="pagination">
-                @if (pager.CurrenPage > 1)
-                {
-                    <button type="button" class="pagination-button" data-page="@(pager.CurrenPage - 1)" onclick="changePage(this)">Previous</button>
-                }
-                @for (var i = pager.StartPage; i <= pager.EndPage; i++)
-                {
-                    <button type="submit" class="@(i == pager.CurrenPage ? "active pagination-button": "pagination-button")" asp-action="Index" data-page="@i">@i</button>
-                    
-                }
+<div style="margin-left:10%; margin-right:10%; margin-top:5%">
+    <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
+    <section class="section-products" style="padding-top:0px !important">
+        <div class="row">
+            @foreach (var Product in ViewBag.productList2)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
+                                <img class="pic-1" src="@Product.ImageUrl">
+                                <img class="pic-2" src="@Product.ImageUrl">
+                            </a>
+                            <a href="" class="product-like-icon"></a>
+                            <ul class="product-links">
+                                <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="product-content">
+                            <h2 class="title">@Product.Name</h2>
+                            <h3 class="price">@Product.Brand.Name</h3>
+                            <p class="price">$@Product.Price.ToString("0.00")</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
 
-                @if (pager.CurrenPage < pager.TotalPages)
-                {
-                    <button type="button" class="pagination-button" data-page="@(pager.CurrenPage + 1)" onclick="changePage(this)">Next</button>
-                }
-                
-                <input type="hidden" id="clickedPage" name="page" value="" />
-            </ul>
-        }
-    </div>
-</form>
-
-<script src="~/js/jquery.min.js"></script>
-<script src="~/js/popper.js"></script>
-<script src="~/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.2.13/dist/semantic.min.js"></script>
-<script src="~/js/main.js"></script>
-
-<script>
-    // JavaScript to capture the value of clicked pagination button
-    const paginationButtons = document.querySelectorAll('.pagination-button');
-    const clickedPageInput = document.getElementById('clickedPage');
-    const form = document.getElementById('paginationForm'); // Replace 'paginationForm' with your form's ID
-
-    paginationButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            const pageNumber = this.getAttribute('data-page');
-            clickedPageInput.value = pageNumber;
-            form.submit(); // Submit the form
-        });
-    });
-
-    function changePage(button) {
-        const pageValue = button.getAttribute('data-page');
-        const clickedPageInput = document.getElementById('clickedPage');
-        const form = document.getElementById('paginationForm');
-        clickedPageInput.value = pageValue;
-        form.submit();
-    }
-</script>
-
-
-
-
-
+        <div style="text-align: center; margin-top: 5%;">
+            @*<button href="" style="border:none; background-color:none">See all <i class="bi bi-arrow-right"></i></button>*@
+            <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </section>
+</div>

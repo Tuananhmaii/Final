@@ -24,7 +24,13 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             _unitOfWork = unitOfWork;
             _db = db;
         }
-        public IActionResult Index(List<int>? filterBrand, List<int>? filterCategory, string? page)
+        public IActionResult Index()
+        {
+            ViewBag.productList1 = _unitOfWork.Product.GetAll(includeProperties:"Brand").Where(u => u.CollectionId == 1).Take(4).ToList();
+            ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).Take(4).ToList();
+            return View();
+        }
+        public IActionResult Main(List<int>? filterBrand, List<int>? filterCategory, string? page)
         {
             var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             var brand = _unitOfWork.Brand.GetAll().ToList();

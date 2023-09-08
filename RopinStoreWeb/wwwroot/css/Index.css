@@ -1,27 +1,7 @@
-﻿/* Style for the pagination button */
-.pagination-button {
-    background-color: #ffffff; /* Default background color */
-    color: #333; /* Default text color */
-    border: none;
-    padding: 5px 10px;
-    margin: 0 2px;
-    text-decoration: none;
-    cursor: pointer;
-    font-size:20px;
+﻿.landing-button:hover {
+    background-color: white !important;
+    color: black !important;
 }
-
-    /* Style for the active pagination button */
-    .pagination-button.active {
-        background-color: #898484; /* Active background color */
-        color: white; /* Active text color */
-    }
-
-    /* Style for the hover state */
-    .pagination-button:hover {
-        background-color: #f0f0f0; /* Hover background color */
-        color: #333; /* Hover text color */
-    }
-
 
 .section-products {
     padding-top: 40px !important;

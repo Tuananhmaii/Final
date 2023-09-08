@@ -28,7 +28,6 @@
     <style>
         body {
             font-size: 16px !important;
-/*            background-color:#f4F4F4 !important*/
         }
 
         h3 {
@@ -44,12 +43,12 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" style="border-bottom-width: 0.5px; border-color:#ccc8c8; padding-bottom:22px !important;background-color: white" id="mainNav">
+        <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" style="border-bottom-width: 0.5px; border-color:#ccc8c8; padding-bottom:22px !important;background-color: #f8f7f4" id="mainNav">
             <partial name="_NavBar" />
         </nav>
 
     </header>
-    <div class="container" style="padding-top:100px">
+    <div style="padding-top:100px; margin-bottom:100px; min-height:80%">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -60,7 +59,7 @@
             @RenderBody()
         </main>
     </div>
-    <footer class="bg-primary-gradient">
+    <footer style="background-color: #f8f7f4; bottom:0; width:100%; margin-top:-70px; position:relative">
         <partial name="_Footer" />
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
