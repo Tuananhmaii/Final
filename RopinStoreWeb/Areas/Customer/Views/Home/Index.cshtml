@@ -2,211 +2,213 @@
 
 <style>
     .accordion-button:not(.collapsed) {
-        color:black !important;
+        color: black !important;
         background-color: white !important;
     }
 </style>
-<section class="clean-block slider">
-    <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
-        <div class="carousel-inner" style="height:600px">
-            <div class="carousel-item active" style="background-image: url('https://curnonwatch.com/_next/image/?url=https%3A%2F%2Fcms.curnonwatch.com%2Fuploads%2FColo_Featured_Desk_c28ebc846d.jpeg&w=3840&q=100'); background-repeat:no-repeat; background-size: 110% auto; min-width: 80%; height: 800px ">
-                <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
-                    <h3 style="margin-bottom:0px">#Curnon #Colosseum</h3>
-                    <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">COLOSSEUM COLLECTION</p>
-                    <p style=" margin-bottom:30px">
-                        Timeless design meets modern sophistication
-                    </p>
-                    <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
-                        DISCOVER NOW
-                    </button>
-                </div>
-            </div>
-            <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/dc6xcnpke/image/upload/v1694145879/Dashboard/pexels-photo-6648416_wnkco4.webp');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 610px;  background-position:center right 40%">
-                <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
-                    <h3 style="margin-bottom:0px">#Dior #Suffle</h3>
-                    <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">SUFFLE COLLECTION</p>
-                    <p style=" margin-bottom:30px">
-                        Minimalist, feminine but no less dynamic look for the "summer girl"
-                    </p>
-                    <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
-                        DISCOVER NOW
-                    </button>
-                </div>
-            </div>
-            <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/1129045/pexels-photo-1129045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 800px; background-position:center top 30%;">
-                <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
-                    <h3 style="margin-bottom:0px">#Burberry #Moraine</h3>
-                    <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">MORAINE COLLECTION</p>
-                    <p style=" margin-bottom:30px">
-                        Step into sunny style with our trendsetting sunglasses 
-                    </p>
-                    <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
-                        DISCOVER NOW
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
-        <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="2"></button></div>
-    </div>
-</section>
-
-<div style="background: #cdcaca; display: flex; justify-content: center; align-items: center; gap: 12%; height:50px">
-    <label style="font-size:14px"><i style="font-size:16px; vertical-align: bottom; margin-right: 5px" class="bi bi-truck"></i> FREESHIP FOR ORDERS > 100$</label>
-    <label style="font-size:14px"><i style="font-size:16px; vertical-align: bottom; margin-right: 5px" class="bi bi-shield-check"></i> 10 YEAR WARRANTY</label>
-    <label style="font-size:14px"><i class="bi bi-box-seam" style="margin-right: 5px; vertical-align: bottom"></i> FREE RETURN WITHIN 7 DAYS</label>
-</div>
-
-<div style="margin-left:10%; margin-right:10%; margin-top:5%">
-    <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
-    <section class="section-products" style="padding-top:0px !important">
-        <div class="row">
-            @foreach (var Product in ViewBag.productList1)
-            {
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
-                                <img class="pic-1" src="@Product.ImageUrl">
-                                <img class="pic-2" src="@Product.ImageUrl">
-                            </a>
-                            <a href="" class="product-like-icon"></a>
-                            <ul class="product-links">
-                                <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="product-content">
-                            <h2 class="title">@Product.Name</h2>
-                            <h3 class="price">@Product.Brand.Name</h3>
-                            <p class="price">$@Product.Price.ToString("0.00")</p>
-                        </div>
+<form>
+    <section class="clean-block slider">
+        <div class="carousel slide" data-bs-ride="carousel" id="carousel-1">
+            <div class="carousel-inner" style="height:600px">
+                <div class="carousel-item active" style="background-image: url('https://curnonwatch.com/_next/image/?url=https%3A%2F%2Fcms.curnonwatch.com%2Fuploads%2FColo_Featured_Desk_c28ebc846d.jpeg&w=3840&q=100'); background-repeat:no-repeat; background-size: 110% auto; min-width: 80%; height: 800px ">
+                    <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
+                        <h3 style="margin-bottom:0px">#Curnon #Colosseum</h3>
+                        <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">COLOSSEUM COLLECTION</p>
+                        <p style=" margin-bottom:30px">
+                            Timeless design meets modern sophistication
+                        </p>
+                        <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
+                            DISCOVER NOW
+                        </button>
                     </div>
                 </div>
-            }
-        </div>
-
-        <div style="text-align: center; margin-top: 5%;">
-            @*<button href="" style="border:none; background-color:none">See all <i class="bi bi-arrow-right"></i></button>*@
-            <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+                <div class="carousel-item" style="background-image: url('https://res.cloudinary.com/dc6xcnpke/image/upload/v1694145879/Dashboard/pexels-photo-6648416_wnkco4.webp');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 610px;  background-position:center right 40%">
+                    <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
+                        <h3 style="margin-bottom:0px">#Dior #Suffle</h3>
+                        <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">SUFFLE COLLECTION</p>
+                        <p style=" margin-bottom:30px">
+                            Minimalist, feminine but no less dynamic look for the "summer girl"
+                        </p>
+                        <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
+                            DISCOVER NOW
+                        </button>
+                    </div>
+                </div>
+                <div class="carousel-item" style="background-image: url('https://images.pexels.com/photos/1129045/pexels-photo-1129045.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 800px; background-position:center top 30%;">
+                    <div style="padding-left:18%; padding-top:10%; width:100%; color:#dfdfdf">
+                        <h3 style="margin-bottom:0px">#Burberry #Moraine</h3>
+                        <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">MORAINE COLLECTION</p>
+                        <p style=" margin-bottom:30px">
+                            Step into sunny style with our trendsetting sunglasses
+                        </p>
+                        <button class="landing-button" style="border: 1px solid; width: 20%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
+                            DISCOVER NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div><a class="carousel-control-prev" href="#carousel-1" role="button" data-bs-slide="prev"><span class="carousel-control-prev-icon"></span><span class="visually-hidden">Previous</span></a><a class="carousel-control-next" href="#carousel-1" role="button" data-bs-slide="next"><span class="carousel-control-next-icon"></span><span class="visually-hidden">Next</span></a></div>
+            <div class="carousel-indicators"><button type="button" data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="1"></button> <button type="button" data-bs-target="#carousel-1" data-bs-slide-to="2"></button></div>
         </div>
     </section>
-</div>
 
-<div style="margin-left:10%; margin-right:10%; margin-top:5%">
-    <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
-    <section class="section-products" style="padding-top:0px !important">
-        <div class="row">
-            @foreach (var Product in ViewBag.productList2)
-            {
-                <div class="col-md-3 col-sm-6">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
-                                <img class="pic-1" src="@Product.ImageUrl">
-                                <img class="pic-2" src="@Product.ImageUrl">
-                            </a>
-                            <a href="" class="product-like-icon"></a>
-                            <ul class="product-links">
-                                <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
+    <div style="background: #cdcaca; display: flex; justify-content: center; align-items: center; gap: 12%; height:50px">
+        <label style="font-size:14px"><i style="font-size:16px; vertical-align: bottom; margin-right: 5px" class="bi bi-truck"></i> FREESHIP FOR ORDERS > 100$</label>
+        <label style="font-size:14px"><i style="font-size:16px; vertical-align: bottom; margin-right: 5px" class="bi bi-shield-check"></i> 10 YEAR WARRANTY</label>
+        <label style="font-size:14px"><i class="bi bi-box-seam" style="margin-right: 5px; vertical-align: bottom"></i> FREE RETURN WITHIN 7 DAYS</label>
+    </div>
+
+    <div style="margin-left:10%; margin-right:10%; margin-top:5%">
+        <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
+        <section class="section-products" style="padding-top:0px !important">
+            <div class="row">
+                @foreach (var Product in ViewBag.productList1)
+                {
+                    <div class="col-md-3 col-sm-6">
+                        <div class="product-grid">
+                            <div class="product-image">
+                                <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
+                                    <img class="pic-1" src="@Product.ImageUrl">
+                                    <img class="pic-2" src="@Product.ImageUrl">
+                                </a>
+                                <a href="" class="product-like-icon"></a>
+                                <ul class="product-links">
+                                    <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="product-content">
+                                <h2 class="title">@Product.Name</h2>
+                                <h3 class="price">@Product.Brand.Name</h3>
+                                <p class="price">$@Product.Price.ToString("0.00")</p>
+                            </div>
                         </div>
-                        <div class="product-content">
-                            <h2 class="title">@Product.Name</h2>
-                            <h3 class="price">@Product.Brand.Name</h3>
-                            <p class="price">$@Product.Price.ToString("0.00")</p>
+                    </div>
+                }
+            </div>
+
+            <div style="text-align: center; margin-top: 5%;">
+                @*<button href="" style="border:none; background-color:none">See all <i class="bi bi-arrow-right"></i></button>*@
+                <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </section>
+    </div>
+
+    <div style="margin-left:10%; margin-right:10%; margin-top:5%">
+        <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
+        <section class="section-products" style="padding-top:0px !important">
+            <div class="row">
+                @foreach (var Product in ViewBag.productList2)
+                {
+                    <div class="col-md-3 col-sm-6">
+                        <div class="product-grid">
+                            <div class="product-image">
+                                <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
+                                    <img class="pic-1" src="@Product.ImageUrl">
+                                    <img class="pic-2" src="@Product.ImageUrl">
+                                </a>
+                                <a href="" class="product-like-icon"></a>
+                                <ul class="product-links">
+                                    <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="product-content">
+                                <h2 class="title">@Product.Name</h2>
+                                <h3 class="price">@Product.Brand.Name</h3>
+                                <p class="price">$@Product.Price.ToString("0.00")</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div style="text-align: center; margin-top: 5%;">
+                @*<button href="" style="border:none; background-color:none">See all <i class="bi bi-arrow-right"></i></button>*@
+                <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+            </div>
+        </section>
+    </div>
+
+    <div class="container" style="background-image: url('https://images.pexels.com/photos/5794271/pexels-photo-5794271.jpeg?auto=compress&cs=tinysrgb&w=1600'); margin-top:5%; background-repeat: no-repeat; background-size: 100% auto; min-width: 80%; height: 800px; background-position: 70% 25% !important;">
+        <div style="padding-left:10%; padding-top:10%; width:60%; color:#dfdfdf">
+            <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">MEN'S COLLECTION</p>
+            <p style=" margin-bottom:30px">
+                Elevate your wardrobe with our curated men's accessories. From timeless <br /> classics to contemporary trends, redefine your style effortlessly.
+            </p>
+            <a asp-action="Main" asp-route-filterGender="Men" class="landing-button" style="border: 1px solid; width: 40%; height: 50px; background-color: transparent; color: white; border-color: white; transition: background-color 0.3s, color 0.3s; display: block;text-align: center; padding-top: 1.8%;">
+                DISCOVER NOW
+            </a>
+        </div>
+    </div>
+
+
+    <div class="container" style="background-image: url('https://images.pexels.com/photos/800246/pexels-photo-800246.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 800px; background-position:center top 30%;">
+        <div style="padding-left:50%; padding-top:10%; width:100%; color:white">
+            <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">WOMEN'S COLLECTION</p>
+            <p style=" margin-bottom:30px">
+
+                Discover sophistication in our women's choices that empower your unique <br /> elegance, from timeless classics to the latest trendsetters
+            </p>
+            <a asp-action="Main" asp-route-filterGender="Women" class="landing-button" style="border: 1px solid; width: 40%; height: 50px; background-color: transparent; color: white; border-color: white; transition: background-color 0.3s, color 0.3s; display: block;text-align: center; padding-top: 1.8%;">
+                DISCOVER NOW
+            </a>
+        </div>
+    </div>
+
+    <section class="py-4 py-xl-5 mb-5" style="margin-top:3%; padding-bottom:0 !important;">
+        <div class="container">
+            <div class="row mb-2">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="display-6 fw-bold mb-5">FAQ<br /></h2>
+                    <p class="text-muted mb-5">
+                        Our goal is to ensure that you have all the information you need to make informed decisions and enjoy your shopping journey with us. If you can't find the answer to your question here or require further assistance, please don't hesitate to reach out to our dedicated customer support team.
+                    </p>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-8 mx-auto">
+                    <div id="accordion-1" class="accordion text-muted" role="tablist">
+                        <div class="accordion-item" style="border: none; margin-left:4%; margin-right:4%; margin-bottom:1%">
+                            <h2 class="accordion-header" role="tab">
+                                <button class="accordion-button" style="font-size:16px;font-weight:bold" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-1" aria-expanded="true" aria-controls="accordion-1 .item-1">
+                                    How can I place an order on your website?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse show item-1" role="tabpanel" data-bs-parent="#accordion-1">
+                                <div class="accordion-body">
+                                    <p>To place an order, simply browse our collection of accessories and click on the product you wish to purchase. You will be directed to the product page, where you can select the desired color, size, and quantity. Click the "Add to Cart" button, and the item will be added to your shopping cart. You can continue shopping or proceed to checkout. Follow the checkout process by providing your shipping information, payment details, and any applicable discount codes.</p>
+                                    <p class="mb-0">Once your order is confirmed, you will receive an order confirmation email.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" style="border: none; margin-left:4%; margin-right:4%; margin-bottom:1%">
+                            <h2 class="accordion-header" role="tab">
+                                <button class="accordion-button collapsed" style="font-size:16px;font-weight:bold" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-2" aria-expanded="false" aria-controls="accordion-1 .item-2">
+                                    What payment methods do you accept?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse item-2" role="tabpanel" data-bs-parent="#accordion-1">
+                                <div class="accordion-body">
+                                    <p class="mb-0">We accept a variety of payment methods to make your shopping experience convenient. Currently, we accept major credit cards, including Visa, MasterCard, American Express, and Discover. Additionally, we also offer the option to pay using popular digital wallets like PayPal and Apple Pay for a secure and seamless checkout process.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item" style="border: none; margin-left:4%; margin-right:4%; margin-bottom:1%">
+                            <h2 class="accordion-header" role="tab">
+                                <button class="accordion-button collapsed" style="font-size:16px;font-weight:bold" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-3" aria-expanded="false" aria-controls="accordion-1 .item-3">
+                                    What is your return and exchange policy?
+                                </button>
+                            </h2>
+                            <div class="accordion-collapse collapse item-3" role="tabpanel" data-bs-parent="#accordion-1">
+                                <div class="accordion-body">
+                                    <p class="mb-0">We want you to be completely satisfied with your purchase. If you're not happy with your accessory, we offer a hassle-free return and exchange policy. You can return or exchange an item within Z days of receiving it, provided that it is in its original condition with all tags and packaging intact. To initiate a return or exchange, please visit our "Returns & Exchanges" page and follow the instructions. Once we receive your returned item, we will process your refund or exchange promptly. Please note that certain products, such as personalized items, may not be eligible for returns or exchanges. For more details on our return and exchange policy, please refer to our "Returns & Exchanges" page.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            }
-        </div>
-
-        <div style="text-align: center; margin-top: 5%;">
-            @*<button href="" style="border:none; background-color:none">See all <i class="bi bi-arrow-right"></i></button>*@
-            <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+            </div>
         </div>
     </section>
-</div>
-
-<div class="container" style="background-image: url('https://images.pexels.com/photos/5794271/pexels-photo-5794271.jpeg?auto=compress&cs=tinysrgb&w=1600'); margin-top:5%; background-repeat: no-repeat; background-size: 100% auto; min-width: 80%; height: 800px; background-position: 70% 25% !important;">
-    <div style="padding-left:10%; padding-top:10%; width:60%; color:#dfdfdf">
-        <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">MEN'S COLLECTION</p>
-        <p style=" margin-bottom:30px">
-            Elevate your wardrobe with our curated men's accessories. From timeless <br /> classics to contemporary trends, redefine your style effortlessly.
-        </p>
-        <button class="landing-button" style="border: 1px solid; width: 40%; height: 50px; background-color: transparent; color: #dfdfdf; border-color: #dfdfdf; transition: background-color 0.3s, color 0.3s;">
-            DISCOVER NOW
-        </button>
-    </div>
-</div>
-
-
-<div class="container" style="background-image: url('https://images.pexels.com/photos/800246/pexels-photo-800246.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');background-repeat:no-repeat; background-size: 100% auto; min-width: 80%; height: 800px; background-position:center top 30%;">
-    <div style="padding-left:50%; padding-top:10%; width:100%; color:white">
-        <p style="font-size:3em; font-weight:bolder; margin-bottom:0px">WOMEN'S COLLECTION</p>
-        <p style=" margin-bottom:30px">
-
-            Discover sophistication in our women's choices that empower your unique <br /> elegance, from timeless classics to the latest trendsetters
-        </p>
-        <button class="landing-button" style="border: 1px solid; width: 40%; height: 50px; background-color: transparent; color: white; border-color: white; transition: background-color 0.3s, color 0.3s;">
-            DISCOVER NOW
-        </button>
-    </div>
-</div>
-
-<section class="py-4 py-xl-5 mb-5" style="margin-top:3%; padding-bottom:0 !important;">
-    <div class="container">
-        <div class="row mb-2">
-            <div class="col-md-8 col-xl-6 text-center mx-auto">
-                <h2 class="display-6 fw-bold mb-5">FAQ<br /></h2>
-                <p class="text-muted mb-5">
-                    Our goal is to ensure that you have all the information you need to make informed decisions and enjoy your shopping journey with us. If you can't find the answer to your question here or require further assistance, please don't hesitate to reach out to our dedicated customer support team.
-                </p>
-            </div>
-        </div>
-        <div class="row mb-2">
-            <div class="col-md-8 mx-auto">
-                <div id="accordion-1" class="accordion text-muted" role="tablist">
-                    <div class="accordion-item" style="border: none; margin-left:4%; margin-right:4%; margin-bottom:1%">
-                        <h2 class="accordion-header" role="tab">
-                            <button class="accordion-button" style="font-size:16px;font-weight:bold" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-1" aria-expanded="true" aria-controls="accordion-1 .item-1">
-                                How can I place an order on your website?
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse show item-1" role="tabpanel" data-bs-parent="#accordion-1">
-                            <div class="accordion-body">
-                                <p>To place an order, simply browse our collection of accessories and click on the product you wish to purchase. You will be directed to the product page, where you can select the desired color, size, and quantity. Click the "Add to Cart" button, and the item will be added to your shopping cart. You can continue shopping or proceed to checkout. Follow the checkout process by providing your shipping information, payment details, and any applicable discount codes.</p>
-                                <p class="mb-0">Once your order is confirmed, you will receive an order confirmation email.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item" style="border: none; margin-left:4%; margin-right:4%; margin-bottom:1%">
-                        <h2 class="accordion-header" role="tab">
-                            <button class="accordion-button collapsed" style="font-size:16px;font-weight:bold" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-2" aria-expanded="false" aria-controls="accordion-1 .item-2">
-                                What payment methods do you accept?
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse item-2" role="tabpanel" data-bs-parent="#accordion-1">
-                            <div class="accordion-body">
-                                <p class="mb-0">We accept a variety of payment methods to make your shopping experience convenient. Currently, we accept major credit cards, including Visa, MasterCard, American Express, and Discover. Additionally, we also offer the option to pay using popular digital wallets like PayPal and Apple Pay for a secure and seamless checkout process.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item" style="border: none; margin-left:4%; margin-right:4%; margin-bottom:1%">
-                        <h2 class="accordion-header" role="tab">
-                            <button class="accordion-button collapsed" style="font-size:16px;font-weight:bold" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-1 .item-3" aria-expanded="false" aria-controls="accordion-1 .item-3">
-                                What is your return and exchange policy?
-                            </button>
-                        </h2>
-                        <div class="accordion-collapse collapse item-3" role="tabpanel" data-bs-parent="#accordion-1">
-                            <div class="accordion-body">
-                                <p class="mb-0">We want you to be completely satisfied with your purchase. If you're not happy with your accessory, we offer a hassle-free return and exchange policy. You can return or exchange an item within Z days of receiving it, provided that it is in its original condition with all tags and packaging intact. To initiate a return or exchange, please visit our "Returns & Exchanges" page and follow the instructions. Once we receive your returned item, we will process your refund or exchange promptly. Please note that certain products, such as personalized items, may not be eligible for returns or exchanges. For more details on our return and exchange policy, please refer to our "Returns & Exchanges" page.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+</form>

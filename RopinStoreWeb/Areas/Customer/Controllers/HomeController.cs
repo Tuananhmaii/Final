@@ -30,11 +30,12 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).Take(4).ToList();
             return View();
         }
-        public IActionResult Main(List<int>? filterBrand, List<int>? filterCategory, string? page)
+        public IActionResult Main(List<int>? filterBrand, List<int>? filterCategory, List<string>? filterGender, string? page)
         {
             var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             var brand = _unitOfWork.Brand.GetAll().ToList();
             var category = _unitOfWork.Category.GetAll().ToList();
+            var gender = new List<string> { "Men", "Women" };
 
             if (filterBrand != null && filterBrand.Any())
             {
@@ -56,8 +57,19 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 }
             }
 
+            if (filterGender != null && filterGender.Any())
+            {
+                query = query.Where(u => filterGender.Contains(u.Gender));
+                ViewBag.SelectedGender = filterGender;
+                foreach (var item in ViewBag.SelectedGender)
+                {
+                    gender.RemoveAll(gender => gender == item);
+                }
+            }
+
             ViewBag.Categories = new SelectList(category, "Id", "Name");
             ViewBag.Brands = new SelectList(brand, "Id", "Name");
+            ViewBag.Gender = new SelectList(gender);
             IEnumerable<Product> productList = query.ToList();
 
             //Paging
