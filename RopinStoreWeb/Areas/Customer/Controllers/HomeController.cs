@@ -26,11 +26,11 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.productList1 = _unitOfWork.Product.GetAll(includeProperties:"Brand").Where(u => u.CollectionId == 1).Take(4).ToList();
+            ViewBag.productList1 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 1).Take(4).ToList();
             ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).Take(4).ToList();
             return View();
         }
-        public IActionResult Main(List<int>? filterBrand, List<int>? filterCategory, List<string>? filterGender, string? page)
+        public IActionResult Main(int minPrice = 0, int maxPrice = 10000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<string>? filterGender = null, string? page = null)
         {
             var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             var brand = _unitOfWork.Brand.GetAll().ToList();
@@ -66,6 +66,9 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                     gender.RemoveAll(gender => gender == item);
                 }
             }
+            query = query.Where(u => u.Price >= minPrice && u.Price <= maxPrice);
+            ViewBag.MinPrice = minPrice;
+            ViewBag.MaxPrice = maxPrice;
 
             ViewBag.Categories = new SelectList(category, "Id", "Name");
             ViewBag.Brands = new SelectList(brand, "Id", "Name");
@@ -73,7 +76,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             IEnumerable<Product> productList = query.ToList();
 
             //Paging
-            const int pageSize = 10;
+            const int pageSize = 20;
             if (page == null)
             {
                 page = "1";

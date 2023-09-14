@@ -15,103 +15,104 @@
 <form id="paginationForm" style="margin-left:10%; margin-right:10%">
     <div style="display: flex;margin-top: 20px">
         <!-- Button trigger modal-->
-        @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Launch modal</button>
+@*        <label>Sort by</label>
+        <select multiple class="label ui selection fluid dropdown">
+            <option>Price: Low - High</option>
+            <option>Price: High - Low</option>
+        </select>*@
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart" style="background-color:white; color: black; border:none; margin-left:90%; font-size: 16px">Filter <i class="bi bi-arrow-down"></i></button>
         <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
+             aria-hidden="true">
+            <div class="modal-dialog" role="document" style="margin-left:20%; margin-top:6%">
+                <div class="modal-content" style="width:200%; height:500px">
+                    <div style="display:flex; margin: 3%;">
+                        <section class="ftco-section" style="min-width:60%; margin-right:5%">
+                            <div>
+                                <label>Brand</label>
+                                <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
+                                    @if (ViewBag.SelectedBrand != null)
+                                    {
+                                        foreach (var item in ViewBag.SelectedBrand)
+                                        {
+                                            <option value="@item.Id" selected>@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </section>
+                        <section class="ftco-section" style="min-width:25%; margin-right:5%">
+                            <div class="inline w-100 field">
+                                <div style="display:flex">
+                                <label>Gender</label>
+                                <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none; padding:0; padding-left:58%; font-size:10px; text-decoration:underline">Clear all</button>
+                                </div>
+                                <select name="filterGender" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Gender">
+                                    @if (ViewBag.SelectedGender != null)
+                                    {
+                                        foreach (var item in ViewBag.SelectedGender)
+                                        {
+                                            <option value="@item" selected>@item</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </section>
+                    </div>
+                    <div style="display:flex; margin: 3%; margin-top:0%">
+                        <section class="ftco-section" style="min-width:60%">
+                            <div class="inline w-100 field">
+                                <label>Category</label>
+                                <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
+                                    @if (ViewBag.SelectedCategory != null)
+                                    {
+                                        foreach (var item in ViewBag.SelectedCategory)
+                                        {
+                                            <option value="@item.Id" selected>@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </section>
+                        
+                        @* <section class="ftco-section" style="min-width:45%">
+                        <div class="inline w-100 field">
+                        <label>Color</label>
+                        <select>
+                        <option>Black</option>
+                        <option>White</option>
+                        <option>Red</option>
+                        <option>Grey</option>
+                        </select>
+                        </div>
+                        </section>*@
+                    </div>
+                    <div>
+                        <label style="min-width:25%; margin-left:3%">Price</label>
+                            <div class="card">
+                                <div class="price-content">
+                                    <div>
+                                        <label>Min</label>
+                                        <p id="min-value">$50</p>
+                                    </div>
 
-        <section class="ftco-section" style="min-width:150px">
-        <div class="container">
-        <div class="inline w-100 field">
-        <label>Brand</label>
-        <select id="brand_filter" name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
-        @if (ViewBag.SelectedBrand != null)
-        {
-        foreach (var item in ViewBag.SelectedBrand)
-        {
-        <option value="@item.Id" selected>@item.Name</option>
-        }
-        }
-        </select>
-        </div>
-        </div>
-        </section>
-        <section class="ftco-section">
-        <div class="container">
-        <div class="inline w-100 field">
-        <label>Category</label>
-        <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
-        @if (ViewBag.SelectedCategory != null)
-        {
-        foreach (var item in ViewBag.SelectedCategory)
-        {
-        <option value="@item.Id" selected>@item.Name</option>
-        }
-        }
-        </select>
-        </div>
-        </div>
-        </section>
+                                    <div>
+                                        <label>Max</label>
+                                        <p id="max-value">$500</p>
+                                    </div>
+                                </div>
 
-        <button asp-action="Index" type="submit" asp-controller="Home">Filter</button>
-        <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
+
+                                <div class="range-slider">
+                                    <input type="range" name="minPrice" class="min-price" value="@ViewBag.MinPrice" min="10" max="10000" step="10">
+                                    <input type="range" name="maxPrice" class="max-price" value="@ViewBag.MaxPrice" min="10" max="10000" step="10">
+                                </div>
+                            </div>
+                    </div>
+                    <button class="btn btn-primary" style="background: rgb(60,61,67); width:50%; height:10%; border:none; margin-left:25%; margin-top:5%" asp-action="Main" type="submit" asp-controller="Home">Filter</button>
+                </div>
+            </div>
         </div>
-        </div>
-        </div>*@
         <!-- Modal: modalCart -->
-        <section class="ftco-section" style="min-width:150px">
-            <div class="container">
-                <div class="inline w-100 field">
-                    <label>Brand</label>
-                    <select name="filterBrand" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Brands">
-                        @if (ViewBag.SelectedBrand != null)
-                        {
-                            foreach (var item in ViewBag.SelectedBrand)
-                            {
-                                <option value="@item.Id" selected>@item.Name</option>
-                            }
-                        }
-                    </select>
-                </div>
-            </div>
-        </section>
-        <section class="ftco-section">
-            <div class="container">
-                <div class="inline w-100 field">
-                    <label>Category</label>
-                    <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
-                        @if (ViewBag.SelectedCategory != null)
-                        {
-                            foreach (var item in ViewBag.SelectedCategory)
-                            {
-                                <option value="@item.Id" selected>@item.Name</option>
-                            }
-                        }
-                    </select>
-                </div>
-            </div>
-        </section>
-        <section class="ftco-section">
-            <div class="container">
-                <div class="inline w-100 field">
-                    <label>Gender</label>
-                    <select name="filterGender" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Gender">
-                        @if (ViewBag.SelectedGender != null)
-                        {
-                            foreach (var item in ViewBag.SelectedGender)
-                            {
-                                <option value="@item" selected>@item</option>
-                            }
-                        }
-                    </select>
-                </div>
-            </div>
-        </section>
-
-        <button asp-action="Main" type="submit" asp-controller="Home">Filter</button>
-        <button class="btn btn-primary" type="button" style="background: rgb(255,255,255);color: rgb(0,0,0);border-style: none;margin-left: 100px;font-size: 12px;text-decoration: underline;padding-left: 0px;padding-right: 0px;padding-bottom: 0px;padding-top: 0px;margin-top: 0px;">Clear all</button>
-
     </div>
 
     <section class="section-products">
@@ -153,14 +154,14 @@
                 @for (var i = pager.StartPage; i <= pager.EndPage; i++)
                 {
                     <button type="submit" class="@(i == pager.CurrenPage ? "active pagination-button": "pagination-button")" asp-action="Main" data-page="@i">@i</button>
-                    
+
                 }
 
                 @if (pager.CurrenPage < pager.TotalPages)
                 {
                     <button type="button" class="pagination-button" data-page="@(pager.CurrenPage + 1)" onclick="changePage(this)">Next</button>
                 }
-                
+
                 <input type="hidden" id="clickedPage" name="page" value="" />
             </ul>
         }
@@ -194,6 +195,34 @@
         clickedPageInput.value = pageValue;
         form.submit();
     }
+    let minValue = document.getElementById("min-value");
+    let maxValue = document.getElementById("max-value");
+
+    function validateRange(minPrice, maxPrice) {
+        if (minPrice > maxPrice) {
+            // Swap Values
+            let tempValue = maxPrice;
+            maxPrice = minPrice;
+            minPrice = tempValue;
+        }
+
+        minValue.innerHTML = "$" + minPrice;
+        maxValue.innerHTML = "$" + maxPrice;
+    }
+
+    const inputElements = document.querySelectorAll("input");
+
+    inputElements.forEach((element) => {
+        element.addEventListener("input", () => {
+            let minPrice = parseInt(inputElements[0].value);
+            let maxPrice = parseInt(inputElements[1].value);
+
+            validateRange(minPrice, maxPrice);
+        });
+    });
+
+    validateRange(inputElements[0].value, inputElements[1].value);
+
 </script>
 
 
