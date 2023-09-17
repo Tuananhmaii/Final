@@ -33,9 +33,11 @@
         h3 {
             font-size: 20px !important;
         }
-        hr{
+
+        hr {
             margin: 0;
         }
+
         a {
             font-size: 16px !important;
         }
@@ -47,18 +49,25 @@
             <partial name="_NavBar" />
         </nav>
     </header>
-@*    <div style="padding-top:6.5%"><label class="form-label">asgvasvbel</label><label class="form-label">Laasdfasdfbel</label><label class="form-label">Labasdfsafdas</label></div>*@
+    @*    <div style="padding-top:6.5%"><label class="form-label">asgvasvbel</label><label class="form-label">Laasdfasdfbel</label><label class="form-label">Labasdfsafdas</label></div>*@
     <div style="padding-top:80px; margin-bottom:5%; min-height:80%">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_Notification" />
             @RenderBody()
         </main>
     </div>
+
+    <div class="container">
+            <partial name="_Chat" />
+            @RenderBody()
+    </div>
+    
     <footer style="background-color: #f8f7f4; bottom:0; width:100%; margin-top:-70px; position:relative">
         <partial name="_Footer" />
     </footer>
