@@ -2,13 +2,25 @@
 @inject SignInManager<IdentityUser> SignInManager
 
 <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="/"><span  style="font-size:18px" class="fw-semibold">ROPIN STORE</span></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-4"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <a class="navbar-brand d-flex align-items-center" href="/"><span style="font-size:18px" class="fw-semibold">ROPIN STORE</span></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-4"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
     <div id="navcol-4" class="collapse navbar-collapse flex-grow-0 order-md-first">
         <ul class="navbar-nav me-auto">
-            <li class="nav-item"><a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Men" style="padding-right: 6px;margin-right: 36px;">Men</a></li>
-            <li class="nav-item"><a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Women" style="margin-right: 20px;">Women</a></li>
+            @*<li class="nav-item" onmouseover="showDiv('menDiv')" onmouseout="hideDiv('menDiv')">
+            <a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Men" style="padding-right: 6px; margin-right: 36px;">Men</a>
+            </li>
+            <li class="nav-item" onmouseover="showDiv('womenDiv')" onmouseout="hideDiv('womenDiv')">
+            <a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Women" style="margin-right: 20px;">Women</a>
+            </li>*@
+            <li class="nav-item">
+                <a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Men" style="padding-right: 6px; margin-right: 36px;">Men</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Women" style="margin-right: 20px;">Women</a>
+            </li>
             <li class="nav-item"><a class="nav-link fw-semibold" href="#">About us</a></li>
         </ul>
+
+
     </div>
     <div class="d-none d-md-block">
         <ul class="navbar-nav ms-auto" style="position: relative;">
@@ -36,10 +48,15 @@
                 </a>
             </li>
             <li class="nav-item">
-                <svg class="bi bi-search" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 20px;margin-top: 10px;">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
-                </svg>
+                <button style="border:none; background-color:#f8f7f4" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    <svg class="bi bi-search" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 20px;margin-top: 10px;">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"></path>
+                    </svg>
+                </button>
             </li>
         </ul>
     </div>
 </div>
+
+
+

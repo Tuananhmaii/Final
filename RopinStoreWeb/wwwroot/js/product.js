@@ -7,6 +7,7 @@ function loadDataTable() {
         "ajax": {
             "url": "/Admin/Product/GetAll"
         },
+        "bDestroy": true,
         "columns": [
             { "data": "name", "width": "15%" },
             { "data": "brand.name", "width": "15%" },

@@ -19,7 +19,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="~/css/ToolKitMinV2_Custom.css" />
 
-
     <link rel="stylesheet" href="~/assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="~/assets/css/baguetteBox.min.css">
     <link rel="stylesheet" href="~/assets/css/vanilla-zoom.min.css">
@@ -41,21 +40,97 @@
         a {
             font-size: 16px !important;
         }
+
+        .dropdown-container {
+            display: none;
+            padding-top: 10px;
+            transition: opacity 0.3s, padding-top 0s 0.3s;
+        }
+
+        .show-dropdown {
+            display: block;
+            padding-top: 80px;
+            transition: opacity 0.3s, padding-top 0s;
+        }
+
+        .dropdown-content {
+            padding-top: 130px;
+            display: flex;
+            justify-content: center;
+        }
+
+            .dropdown-content ul {
+                display: flex;
+                list-style-type: none;
+            }
+
     </style>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" style="border-bottom-width: 0.5px; border-color:#ccc8c8;margin-bottom:100px ;padding-bottom:1% !important; height:12%;background-color: #f8f7f4" id="mainNav">
+        <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" style="border-bottom-width: 0.5px; border-color:#ccc8c8;margin-bottom:100px ;padding-bottom:1% !important; height:12%;background-color: #f8f7f4; transition: none !important;" id="mainNav">
             <partial name="_NavBar" />
         </nav>
+        @*<div id="menDiv" style="display: none; padding-top: 10px;"
+             onmouseover="clearHideTimer('menDiv')" onmouseout="setHideTimer('menDiv')">
+            <div style="padding-top: 130px; display: flex; justify-content: center;">
+                <ul style="display: flex; list-style-type: none;">
+                    <li>Watch</li>
+                    <li>Bag</li>
+                    <li>Belt</li>
+                    <li>Sunglasses</li>
+                    <li>Watch</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="womenDiv" style="display: none; padding-top: 10px;"
+             onmouseover="clearHideTimer('womenDiv')" onmouseout="setHideTimer('womenDiv')">
+            <div style="padding-top: 130px; display: flex; justify-content: center;">
+                <ul style="display: flex; list-style-type: none;">
+                    <li>asd</li>
+                    <li>sdasd</li>
+                    <li>asdfga</li>
+                    <li>saggd</li>
+                    <li>Waasgatch</li>
+                </ul>
+            </div>
+        </div>
+
+        <script>
+            var hideTimers = {};
+
+            function showDiv(divId) {
+                var div = document.getElementById(divId);
+                div.style.display = "block";
+            }
+
+            function hideDiv(divId) {
+                hideTimers[divId] = setTimeout(function () {
+                    var div = document.getElementById(divId);
+                    div.style.display = "none";
+                }, 3000); // Adjust the delay time as needed (500 milliseconds in this example).
+            }
+
+            function clearHideTimer(divId) {
+                clearTimeout(hideTimers[divId]);
+            }
+
+            function setHideTimer(divId) {
+                hideDiv(divId);
+            }
+        </script>*@
+        
     </header>
+    @await Component.InvokeAsync("ProductList")
     @*    <div style="padding-top:6.5%"><label class="form-label">asgvasvbel</label><label class="form-label">Laasdfasdfbel</label><label class="form-label">Labasdfsafdas</label></div>*@
-    <div style="padding-top:80px; margin-bottom:5%; min-height:80%">
+    <div style="padding-top:50px; margin-bottom:5%; min-height:80%">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
+    
     <div class="container">
         <main role="main" class="pb-3">
             <partial name="_Notification" />
@@ -71,6 +146,7 @@
     <footer style="background-color: #f8f7f4; bottom:0; width:100%; margin-top:-70px; position:relative">
         <partial name="_Footer" />
     </footer>
+  
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -87,5 +163,6 @@
     <script src="~/assets/js/theme.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

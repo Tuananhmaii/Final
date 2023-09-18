@@ -92,20 +92,6 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
             return View(data);
         }
-        public IActionResult Chat()
-        {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-            if (claim == null)
-            {
-                return View();
-            }
-            else
-            {
-                ApplicationUser user = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == claim.Value);
-                return View(user);
-            }
-        }
         public IActionResult Details(int productid)
         {
             //var list = _db.ProductGalleries.Where(u => u.ProductId == productid).ToList();
@@ -185,7 +171,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] 
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

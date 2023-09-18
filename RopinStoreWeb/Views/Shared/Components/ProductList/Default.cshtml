@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Product>
+
+
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+</button>
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <!-- Use modal-lg class to make the modal larger -->
+        <div class="modal-content">
+            <div class="modal-body">
+                <input type="text" id="search" placeholder="Search...">
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                        <li class="Search" style="display:flex">
+                            <div style="width: 346px">
+                                <img src="@item.ImageUrl" style="width:40%">
+                            </div>
+                            <div>
+                                <h4>@item.Name</h4>
+                                <h4>@item.Brand.Name</h4>
+                                <h4>@item.Category.Name</h4>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+    (function () {
+        $(document).ready(function () {
+            $("#search").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $(".Search").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
+    })();
+</script>
+
+
