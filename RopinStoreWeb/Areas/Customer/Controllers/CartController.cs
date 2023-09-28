@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Stripe.Checkout;
 using System.Security.Claims;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace RopinStoreWeb.Areas.Customer.Controllers
 {
@@ -74,7 +78,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Summary(string? name, string? phone, string city, string address, string paymentType)
+        public async Task<IActionResult> SummaryAsync(string? name, string? phone, string city, string address, string paymentType)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -83,7 +87,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ShoppingCartVM.ListCart = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value,
                 includeProperties: "Product");
 
-            
+
             ShoppingCartVM.Order.ApplicationUserId = claim.Value;
 
             ShoppingCartVM.Order.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(
@@ -131,8 +135,24 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             _unitOfWork.Order.Add(ShoppingCartVM.Order);
             _unitOfWork.Save();
 
+            var lineItems = new List<object>();
+            string totalPrice = (ShoppingCartVM.Order.TotalPrice + 10.4).ToString("0.00");
+
             foreach (var item in ShoppingCartVM.ListCart)
             {
+
+                var lineItem = new
+                {
+                    quantity = item.Count,
+                    title = item.Product.Name,
+                    total_price = item.Product.Price.ToString("0.00"), // Format the total price as needed
+                    currency = "USD",// You can adjust this as needed
+                    weight = "0.5",
+                    weight_unit = "lb"
+                };
+
+                lineItems.Add(lineItem);
+
                 OrderDetail orderDetail = new()
                 {
                     OrderId = ShoppingCartVM.Order.Id,
@@ -143,7 +163,72 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
                 _unitOfWork.OrderDetail.Add(orderDetail);
                 _unitOfWork.Save();
+            };
+
+            try
+            {
+                var orderData = new
+                {
+                    to_address = new
+                    {
+                        city = "Brooklyn",
+                        country = "US",
+                        email = "maitrantuananh4802@gmail.com",
+                        name = "Tuan Anh",
+                        phone = "15553419393",
+                        state = "New York",
+                        street1 = "301 Legion St."
+                    },
+                    line_items = lineItems,
+                    placed_at = "2023-09-23T01:28:12Z",
+                    order_number = "#9510",
+                    order_status = "PAID",
+                    shipping_cost = "10.40",
+                    shipping_cost_currency = "USD",
+                    shipping_method = "USPS Priority",
+                    subtotal_price = ShoppingCartVM.Order.TotalPrice.ToString("0.00"),
+                    total_price = totalPrice,
+                    total_tax = "0.00",
+                    currency = "USD",
+                    weight = "1.5",
+                    weight_unit = "lb"
+                };
+
+                using (var httpClient = new HttpClient())
+                {
+                    // Set Shippo API URL
+                    var apiUrl = "https://api.goshippo.com/orders/";
+
+                    // Serialize the order data to JSON
+                    var json = JsonSerializer.Serialize(orderData);
+
+                    // Create the HTTP request
+                    var request = new HttpRequestMessage(HttpMethod.Post, apiUrl);
+                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+                    request.Headers.Add("Authorization", "ShippoToken shippo_test_4225adc69f71381a3274219247e106445ba507a9");
+
+                    // Send the request to Shippo API
+                    var response = await httpClient.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Order placed successfully
+                        return Content("Order placed successfully.");
+                    }
+                    else
+                    {
+                        // Handle API error here
+                        var errorMessage = await response.Content.ReadAsStringAsync();
+                        return Content($"Error placing order: {errorMessage}");
+                    }
+                }
             }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                return Content($"An error occurred: {ex.Message}");
+            }
+
             if (paymentType == "VISA")
             {
                 var domain = "https://localhost:44340/";
@@ -208,6 +293,96 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             return View(id);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> PlaceOrder()
+        {
+            try
+            {
+                var orderData = new
+                {
+                    to_address = new
+                    {
+                        city = "San Francisco",
+                        country = "US",
+                        email = "anhmttgcd201452@fpt.edu.vn",
+                        name = "Tuan Anh",
+                        phone = "15553419393",
+                        state = "CA",
+                        street1 = "215 Clayton St."
+                    },
+                    line_items = new[]
+                    {
+                        new
+                        {
+                            quantity = 1,
+                            title = "Hippo Magazines",
+                            total_price = "12.10",
+                            currency = "USD",
+                            weight = "0.40",
+                            weight_unit = "lb"
+                        },
+                        new
+                        {
+                            quantity = 2,
+                            title = "Chain Saw",
+                            total_price = "5.6",
+                            currency = "USD",
+                            weight = "0.5",
+                            weight_unit = "lb"
+                        }
+                    },
+                    placed_at = "2023-09-23T01:28:12Z",
+                    order_number = "#9509",
+                    order_status = "PAID",
+                    shipping_cost = "10.40",
+                    shipping_cost_currency = "USD",
+                    shipping_method = "USPS Priority",
+                    subtotal_price = "12.10",
+                    total_price = "24.93",
+                    total_tax = "0.00",
+                    currency = "USD",
+                    weight = "1.5",
+                    weight_unit = "lb"
+                };
+
+                using (var httpClient = new HttpClient())
+                {
+                    // Set Shippo API URL
+                    var apiUrl = "https://api.goshippo.com/orders/";
+
+                    // Serialize the order data to JSON
+                    var json = JsonSerializer.Serialize(orderData);
+
+                    // Create the HTTP request
+                    var request = new HttpRequestMessage(HttpMethod.Post, apiUrl);
+                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    // Set the Shippo API Key in the request header
+                    request.Headers.Add("Authorization", "ShippoToken shippo_test_4225adc69f71381a3274219247e106445ba507a9");
+
+                    // Send the request to Shippo API
+                    var response = await httpClient.SendAsync(request);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Order placed successfully
+                        return Content("Order placed successfully.");
+                    }
+                    else
+                    {
+                        // Handle API error here
+                        var errorMessage = await response.Content.ReadAsStringAsync();
+                        return Content($"Error placing order: {errorMessage}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                return Content($"An error occurred: {ex.Message}");
+            }
+        }
+
         public IActionResult Plus(int cartId)
         {
             var cart = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId);
@@ -241,5 +416,5 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             return RedirectToAction("Index");
         }
     }
-
 }
+

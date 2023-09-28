@@ -326,6 +326,10 @@
             "Stripe.net": {
               "target": "Package",
               "version": "[40.14.0, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[7.0.1, )"
             }
           },
           "imports": [

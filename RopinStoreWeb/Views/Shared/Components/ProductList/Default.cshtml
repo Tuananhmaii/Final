@@ -9,21 +9,25 @@
     <div class="modal-dialog modal-lg">
         <!-- Use modal-lg class to make the modal larger -->
         <div class="modal-content">
-            <div class="modal-body">
-                <input type="text" id="search" placeholder="Search...">
+            <div class="modal-body" style="margin-left:5%; margin-right:5%;margin-top:3%">
+                <div class="input-group mb-3">
+                    <input id="search" type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button style="border-radius:2px; border-color:black; color:black" class="btn btn-outline-secondary" type="button">Search</button>
+                    </div>
+                </div>
                 <ul>
                     @foreach (var item in Model)
                     {
-                        <li class="Search" style="display:flex">
-                            <div style="width: 346px">
-                                <img src="@item.ImageUrl" style="width:40%">
-                            </div>
-                            <div>
-                                <h4>@item.Name</h4>
-                                <h4>@item.Brand.Name</h4>
-                                <h4>@item.Category.Name</h4>
-                            </div>
-                        </li>
+                            <a asp-action="Details" asp-route-productid="@item.Id" class="Search" style="display:flex; margin-bottom:4%; margin-left:3%; height:100px">
+                                <div style="width: 50%">
+                                    <img src="@item.ImageUrl" style="width:50%; margin-top:-5% ">
+                                </div>
+                                <div style="margin-top:4%; margin-left:-10%">
+                                <h5>@item.Name - @item.Brand.Name</h5>
+                                    <h5>@item.Collection.Name</h5>
+                                </div>
+                            </a>
                     }
                 </ul>
             </div>
@@ -38,21 +42,40 @@
 
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Bootstrap JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
     (function () {
         $(document).ready(function () {
             $("#search").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $(".Search").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-                });
+                var query = $(this).val().toLowerCase();
+
+                // Check if the input is empty or contains only spaces
+                if (query.trim() === "" || query === " ") {
+                    // If the input is empty or just contains a space, do nothing
+                    $(".Search").hide();
+                } else {
+                    var words = query.split(' ');
+
+                    var $searchResults = $(".Search").filter(function () {
+                        var itemText = $(this).text().toLowerCase();
+
+                        // Check if all words in the query are present in the item's text
+                        return words.every(function (word) {
+                            return itemText.indexOf(word) > -1;
+                        });
+                    });
+
+                    // Hide all results first
+                    $(".Search").hide();
+
+                    // Display the first 4 filtered results
+                    $searchResults.slice(0, 4).show();
+                }
             });
         });
     })();
+
 </script>
 
 

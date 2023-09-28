@@ -145,4 +145,72 @@
         }
         return true;
     }
+
+    //document.getElementById("frm").addEventListener("submit", function (event) {
+    //    event.preventDefault();
+
+    //    const url = "https://api.goshippo.com/orders/";
+    //    const lineItems = [];
+
+    //        const newItem = {
+    //            "quantity": item.Count,
+    //            "title": item.Product.Name,
+    //            "total_price": parseFloat(item.Product.Price).toFixed(2),
+    //            "currency": "USD",
+    //            "weight": "0.40",
+    //            "weight_unit": "lb"
+    //        };
+
+    //        lineItems.push(newItem);
+    //    });
+
+    //    alert(lineItems);
+    //    console.log(lineItems);
+    //    // Create a JSON object with the order data
+    //    const orderData = {
+    //        "to_address": {
+    //            "city": "Brooklyn",
+    //            "company": "Shippo",
+    //            "country": "US",
+    //            "email": "maitrantuananh4802@gmail.com",
+    //            "name": "Tuan Anh",
+    //            "phone": "15553419393",
+    //            "state": "New York",
+    //            "street1": "301 Legion St."
+    //        },
+    //        "line_items": lineItems,
+    //        "placed_at": "2023-09-23T01:28:12Z",
+    //        "order_number": "#9509",
+    //        "order_status": "PAID",
+    //        "shipping_cost": "10.40",
+    //        "shipping_cost_currency": "USD",
+    //        "shipping_method": "USPS Priority",
+    //        "subtotal_price": "12.10",
+    //        "total_price": "24.93",
+    //        "total_tax": "0.00",
+    //        "currency": "USD",
+    //        "weight": "1.5",
+    //        "weight_unit": "lb"
+    //    };
+
+    //    fetch(url, {
+    //        method: "POST",
+    //        headers: {
+    //            "Content-Type": "application/json",
+    //            "Authorization": "ShippoToken shippo_test_4225adc69f71381a3274219247e106445ba507a9"
+    //        },
+    //        body: JSON.stringify(orderData)
+    //    })
+    //        .then(response => response.json())
+    //        .then(data => {
+    //            // Handle the response from the Shippo API as needed
+    //            console.log("Order placed successfully:", data);
+    //            // You can update the UI or perform other actions here
+    //        })
+    //        .catch(error => {
+    //            console.error("Error placing order:", error);
+    //            // Handle errors here
+    //        });
+    //});
+
 </script>

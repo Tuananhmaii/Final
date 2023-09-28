@@ -15,7 +15,7 @@ namespace RopinStoreWeb.ViewComponents
         }
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            IEnumerable<Product> list = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand,Collection").ToList().Take(5);
+            IEnumerable<Product> list = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand,Collection").ToList();
             return View(list);
         }
     }
