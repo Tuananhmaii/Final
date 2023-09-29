@@ -53,15 +53,15 @@
 								</div>
 							</div>
 							<div class="row my-1">
-								<div class="col-3">Address</div>
+								<div class="col-3">Street</div>
 								<div class="col-9">
 									@if(User.IsInRole(SD.Role_Admin) || User.IsInRole(SD.Role_Employee)){
-										<input asp-for="Order.Address" type="text" class="form-control" />
-										<span asp-validation-for="Order.Address" class="text-danger"></span>
+										<input asp-for="Order.Street" type="text" class="form-control" />
+										<span asp-validation-for="Order.Street" class="text-danger"></span>
 									}
 									else
 									{
-										<input asp-for="Order.Address" readonly type="text" class="form-control" />
+										<input asp-for="Order.Street" readonly type="text" class="form-control" />
 									}
 								</div>
 							</div>

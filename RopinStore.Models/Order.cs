@@ -34,7 +34,11 @@ namespace RopinStore.Models
         [Required]
         public string City { get; set; }
         [Required]
-        public string Address { get; set; }
-        
+        [DisplayName("Zip Code")]
+        public string ZipCode { get; set; }
+        [Required]
+        public string Street { get; set; }
+        [Required]
+        public string State { get; set; }
     }
 }

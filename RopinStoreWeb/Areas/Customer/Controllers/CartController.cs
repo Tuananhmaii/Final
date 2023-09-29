@@ -69,7 +69,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
             ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
             ShoppingCartVM.Order.City = ShoppingCartVM.Order.ApplicationUser.City;
-            ShoppingCartVM.Order.Address = ShoppingCartVM.Order.ApplicationUser.Address;
+            ShoppingCartVM.Order.Street = ShoppingCartVM.Order.ApplicationUser.Street;
             foreach (var item in ShoppingCartVM.ListCart)
             {
                 //item.Price = GetPriceBasedOnQuantity(item.Count, item.Product.Price,
@@ -80,7 +80,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SummaryAsync(string? name, string? phone, string city, string address, string paymentType)
+        public async Task<IActionResult> SummaryAsync(string email, string name, string phone, string city, string street, string zip, string state, string paymentType)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -95,43 +95,30 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ShoppingCartVM.Order.ApplicationUser = _unitOfWork.ApplicationUser.GetFirstOrDefault(
                 u => u.Id == claim.Value);
 
-            //ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
-            if (name == null)
-            {
-                ShoppingCartVM.Order.Name = ShoppingCartVM.Order.ApplicationUser.FullName;
-            }
-            else
-            {
-                ShoppingCartVM.Order.Name = name;
-            }
-            if (phone == null)
-            {
-                ShoppingCartVM.Order.PhoneNumber = ShoppingCartVM.Order.ApplicationUser.PhoneNumber;
-            }
-            else
-            {
-                ShoppingCartVM.Order.PhoneNumber = phone;
-            }
-            ShoppingCartVM.Order.Email = ShoppingCartVM.Order.ApplicationUser.Email;
+            ShoppingCartVM.Order.Email = email;
+            ShoppingCartVM.Order.Name = name;
+            ShoppingCartVM.Order.PhoneNumber = phone;
             ShoppingCartVM.Order.City = city;
-            ShoppingCartVM.Order.Address = address;
+            ShoppingCartVM.Order.Street = street;
+            ShoppingCartVM.Order.ZipCode = zip;
+            ShoppingCartVM.Order.State = state;
             ShoppingCartVM.Order.OrderStatus = "Delivering";
+            ShoppingCartVM.Order.PaymentType = paymentType;
+
             ShoppingCartVM.Order.OrderDate = DateTime.Now;
-            if (paymentType == "VISA")
-            {
-                ShoppingCartVM.Order.PaymentType = "VISA";
-            }
-            else
-            {
-                ShoppingCartVM.Order.PaymentType = "COD";
-            }
+
 
             foreach (var item in ShoppingCartVM.ListCart)
             {
                 ShoppingCartVM.Order.TotalPrice += (item.Product.Price * item.Count);
             }
+
             user.FullName = name;
             user.PhoneNumber = phone;
+            user.City = city;
+            user.Street = street;
+            user.State = state;
+            user.ZipCode = zip;
 
             _unitOfWork.ApplicationUser.Update(user);
             _unitOfWork.Order.Add(ShoppingCartVM.Order);
@@ -139,6 +126,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
             var lineItems = new List<object>();
             string totalPrice = (ShoppingCartVM.Order.TotalPrice + 10.4).ToString("0.00");
+            string formattedDateTime = DateTime.Now.ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
 
             foreach (var item in ShoppingCartVM.ListCart)
             {
@@ -173,16 +161,16 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 {
                     to_address = new
                     {
-                        city = "Brooklyn",
+                        city = city,
                         country = "US",
-                        email = "maitrantuananh4802@gmail.com",
-                        name = "Tuan Anh",
-                        phone = "15553419393",
-                        state = "New York",
-                        street1 = "301 Legion St."
+                        email = email,
+                        name = name,
+                        phone = "+1 " + phone,
+                        state = state,
+                        street1 = street
                     },
                     line_items = lineItems,
-                    placed_at = "2023-09-23T01:28:12Z",
+                    placed_at = formattedDateTime,
                     order_number = "#9509",
                     order_status = "PAID",
                     shipping_cost = "10.40",
@@ -219,7 +207,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                         var responseObject = JsonSerializer.Deserialize<Dictionary<string, object>>(responseJson);
 
                         var objectId = responseObject["object_id"].ToString();
-                        PlaceOrder(objectId);
+                        await PlaceOrder(objectId, name, street, city, state, zip, phone, email);
                     }
                     else
                     {
@@ -276,6 +264,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             {
                 return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.Order.Id });
             }
+            return RedirectToAction(nameof(Index));
         }
         public IActionResult OrderConfirmation(int id)
         {
@@ -292,7 +281,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder(string objectId)
+        public async Task<IActionResult> PlaceOrder(string objectId, string Name, string Street, string City, string State, string Zip, string Phone, string Email)
         {
             var shipmentData = new
             {
@@ -311,14 +300,14 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                     },
                     address_to = new
                     {
-                        name = "Tuan Anh",
-                        street1 = "45 Ridgeview St.",
-                        city = "San Jose",
-                        state = "CA",
-                        zip = "95122",
+                        name = Name,
+                        street1 = Street,
+                        city = City,
+                        state = State,
+                        zip = Zip,
                         country = "US",
-                        phone = "+1 555 341 9393",
-                        email = "anhmttgcd201452@fpt.edu.vn"
+                        phone = "+1 " + Phone,
+                        email = Email
                     },
                     parcels = new[]
                     {

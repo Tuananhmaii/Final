@@ -109,7 +109,7 @@
 <script>
     // Get all product rows in the cart
     var cartItems = document.querySelectorAll('.ref-product');
-    
+
 
     // Loop through each cart item
     for (var i = 0; i < cartItems.length; i++) {
@@ -130,8 +130,8 @@
         totalAmountElement.innerHTML = totalPrice.toFixed(2);
 
         var orderPrice = document.querySelector('.ref-subtotal-value').innerHTML;
-        orderPrice += totalPrice[i]; 
-        
+        orderPrice += totalPrice[i];
+
 
         const increaseEvent = plusBtn.addEventListener('click', function () {
             itemQuantity.value = parseInt(itemQuantity.value) + 1;

@@ -28,42 +28,40 @@
                                     <span class="text-info" style="color: rgb(60, 61, 67) !important; font-weight: bold;">Shipping Details:</span>
                                 </h4>
                             </div>
-                            <div class="row my-1">
-                                <div class="col-3">
-                                    <label>Name</label>
-                                </div>
-                                <div class="col-9">
-                                    <input asp-for="Order.Name" class="form-control" name="name" />
-                                    <span asp-validation-for="Order.Name" class="text-danger"></span>
-                                </div>
+                            <div class="group">
+                                <label>Email</label>
+                                <input readonly asp-for="Order.Email" class="form-control" name="email">
                             </div>
-                            <div class="row my-1">
-                                <div class="col-3">
+                            <div class="group">
+                                <label>Name</label>
+                                <input asp-for="Order.Name" class="form-control" name="name">
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
                                     <label>Phone</label>
+                                    <input asp-for="Order.PhoneNumber" class="form-control" name="phone">
                                 </div>
-                                <div class="col-9">
-                                    <input asp-for="Order.PhoneNumber" class="form-control" name="phone" />
-                                    <span asp-validation-for="Order.PhoneNumber" class="text-danger"></span>
-                                </div>
-                            </div>
-                            <div class="row my-1">
-                                <div class="col-3">
-                                    <label>City</label>
-                                </div>
-                                <div class="col-9">
-                                    <input asp-for="Order.City" class="form-control" name="city" />
-                                    <span asp-validation-for="Order.City" class="text-danger"></span>
+                                <div class="form-group col-md-7">
+                                    <label>Street</label>
+                                    <input asp-for="Order.Street" class="form-control" name="street">
                                 </div>
                             </div>
-                            <div class="row my-1">
-                                <div class="col-3">
-                                    <label>Street Address</label>
+
+                            <div class="row">
+                                <div class="col-5">
+                                    <label for="inputAddress">City</label>
+                                    <input asp-for="Order.City" class="form-control" name="city">
                                 </div>
-                                <div class="col-9">
-                                    <input asp-for="Order.Address" class="form-control" name="address" />
-                                    <span asp-validation-for="Order.Address" class="text-danger"></span>
+                                <div class="col-4">
+                                    <label for="inputAddress">State</label>
+                                    <input asp-for="Order.State" class="form-control" name="state">
+                                </div>
+                                <div class="col">
+                                    <label for="inputAddress">Zip</label>
+                                    <input asp-for="Order.ZipCode" class="form-control" name="zip">
                                 </div>
                             </div>
+
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="paymentType" id="flexRadioDefault1" value="VISA" checked>
                                 <label class="form-check-label" for="flexRadioDefault1">
@@ -133,9 +131,11 @@
         var nameInput = document.querySelector('input[name="name"]');
         var phoneInput = document.querySelector('input[name="phone"]');
         var cityInput = document.querySelector('input[name="city"]');
-        var addressInput = document.querySelector('input[name="address"]');
+        var streetInput = document.querySelector('input[name="street"]');
+        var stateInput = document.querySelector('input[name="state"]');
+        var zipInput = document.querySelector('input[name="zip"]');
 
-        if (!nameInput.value || !phoneInput.value || !cityInput.value || !addressInput.value) {
+        if (!nameInput.value || !phoneInput.value || !cityInput.value || !streetInput.value || !stateInput.value || !zipInput.value) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
