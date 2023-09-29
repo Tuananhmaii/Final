@@ -11,6 +11,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using Microsoft.CodeAnalysis.CSharp;
+using Azure;
+using System.Net.Http;
 
 namespace RopinStoreWeb.Areas.Customer.Controllers
 {
@@ -181,7 +183,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                     },
                     line_items = lineItems,
                     placed_at = "2023-09-23T01:28:12Z",
-                    order_number = "#9510",
+                    order_number = "#9509",
                     order_status = "PAID",
                     shipping_cost = "10.40",
                     shipping_cost_currency = "USD",
@@ -213,7 +215,11 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                     if (response.IsSuccessStatusCode)
                     {
                         // Order placed successfully
-                        return Content("Order placed successfully.");
+                        var responseJson = await response.Content.ReadAsStringAsync();
+                        var responseObject = JsonSerializer.Deserialize<Dictionary<string, object>>(responseJson);
+
+                        var objectId = responseObject["object_id"].ToString();
+                        PlaceOrder(objectId);
                     }
                     else
                     {
@@ -221,6 +227,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                         var errorMessage = await response.Content.ReadAsStringAsync();
                         return Content($"Error placing order: {errorMessage}");
                     }
+
                 }
             }
             catch (Exception ex)
@@ -273,18 +280,9 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         public IActionResult OrderConfirmation(int id)
         {
             Order orderHeader = _unitOfWork.Order.GetFirstOrDefault(u => u.Id == id, includeProperties: "ApplicationUser");
-            //if (orderHeader.PaymentStatus != SD.PaymentStatusDelayedPayment)
-            //{
-            //    var service = new SessionService();
-            //    Session session = service.Get(orderHeader.SessionId);
-            //    //check the stripe status
-            //    if (session.PaymentStatus.ToLower() == "paid")
-            //    {
-            //        _unitOfWork.Order.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusAprroved);
-            //        _unitOfWork.Save();
-            //    }
-            //}
+
             _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order", "<p> New order created </p>");
+
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId ==
             orderHeader.ApplicationUserId).ToList();
             HttpContext.Session.Clear();
@@ -294,92 +292,84 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder()
+        public async Task<IActionResult> PlaceOrder(string objectId)
         {
-            try
+            var shipmentData = new
             {
-                var orderData = new
+                shipment = new
                 {
-                    to_address = new
+                    address_from = new
                     {
-                        city = "San Francisco",
+                        name = "Ropin Store",
+                        street1 = "301 Legion Str",
+                        city = "Brooklyn",
+                        state = "New York",
+                        zip = "11212",
                         country = "US",
-                        email = "anhmttgcd201452@fpt.edu.vn",
+                        phone = "+1 (717) 550-1675",
+                        email = "maitrantuananh4802@gmail.com"
+                    },
+                    address_to = new
+                    {
                         name = "Tuan Anh",
-                        phone = "15553419393",
+                        street1 = "45 Ridgeview St.",
+                        city = "San Jose",
                         state = "CA",
-                        street1 = "215 Clayton St."
+                        zip = "95122",
+                        country = "US",
+                        phone = "+1 555 341 9393",
+                        email = "anhmttgcd201452@fpt.edu.vn"
                     },
-                    line_items = new[]
+                    parcels = new[]
                     {
                         new
-                        {
-                            quantity = 1,
-                            title = "Hippo Magazines",
-                            total_price = "12.10",
-                            currency = "USD",
-                            weight = "0.40",
-                            weight_unit = "lb"
-                        },
-                        new
-                        {
-                            quantity = 2,
-                            title = "Chain Saw",
-                            total_price = "5.6",
-                            currency = "USD",
-                            weight = "0.5",
-                            weight_unit = "lb"
-                        }
-                    },
-                    placed_at = "2023-09-23T01:28:12Z",
-                    order_number = "#9509",
-                    order_status = "PAID",
-                    shipping_cost = "10.40",
-                    shipping_cost_currency = "USD",
-                    shipping_method = "USPS Priority",
-                    subtotal_price = "12.10",
-                    total_price = "24.93",
-                    total_tax = "0.00",
-                    currency = "USD",
-                    weight = "1.5",
-                    weight_unit = "lb"
-                };
-
-                using (var httpClient = new HttpClient())
-                {
-                    // Set Shippo API URL
-                    var apiUrl = "https://api.goshippo.com/orders/";
-
-                    // Serialize the order data to JSON
-                    var json = JsonSerializer.Serialize(orderData);
-
-                    // Create the HTTP request
-                    var request = new HttpRequestMessage(HttpMethod.Post, apiUrl);
-                    request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                    // Set the Shippo API Key in the request header
-                    request.Headers.Add("Authorization", "ShippoToken shippo_test_4225adc69f71381a3274219247e106445ba507a9");
-
-                    // Send the request to Shippo API
-                    var response = await httpClient.SendAsync(request);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        // Order placed successfully
-                        return Content("Order placed successfully.");
+                            {
+                                length = "20",
+                                width = "20",
+                                height = "12",
+                                distance_unit = "in",
+                                weight = "2",
+                                mass_unit = "lb"
+                            }
                     }
-                    else
-                    {
-                        // Handle API error here
-                        var errorMessage = await response.Content.ReadAsStringAsync();
-                        return Content($"Error placing order: {errorMessage}");
-                    }
-                }
-            }
-            catch (Exception ex)
+                },
+                carrier_account = "06684a4ba047461d9ea56f83a7978813",
+                servicelevel_token = "usps_priority",
+                order = objectId,
+            };
+
+            using (var HttpClient = new HttpClient())
             {
-                // Handle any exceptions
-                return Content($"An error occurred: {ex.Message}");
+                // Set the API URL
+                var ApiUrl = "https://api.goshippo.com/transactions/"; // Replace with your actual API endpoint
+
+                // Serialize the shipment data to JSON
+                var Json = JsonSerializer.Serialize(shipmentData);
+
+                // Create the HTTP request
+                var Request = new HttpRequestMessage(HttpMethod.Post, ApiUrl);
+                Request.Content = new StringContent(Json, Encoding.UTF8, "application/json");
+                Request.Headers.Add("Authorization", "ShippoToken shippo_test_4225adc69f71381a3274219247e106445ba507a9");
+
+                // Send the request to the API
+                var Response = await HttpClient.SendAsync(Request);
+                if (Response.IsSuccessStatusCode)
+                {
+                    // Order placed successfully
+                    var ResponseJson = await Response.Content.ReadAsStringAsync();
+                    var ResponseObject = JsonSerializer.Deserialize<Dictionary<string, object>>(ResponseJson);
+
+                    var trackingUrl = ResponseObject["tracking_url_provider"].ToString();
+                    var labelUrl = ResponseObject["label_url"].ToString();
+                    return Content($"Place shipment successfully. \nTracking Url:{trackingUrl} \nlabelUrl:{labelUrl}");
+                }
+
+                else
+                {
+                    // Handle API error here
+                    var ErrorMessage = await Response.Content.ReadAsStringAsync();
+                    return Content($"Error placing order: {ErrorMessage}");
+                }
             }
         }
 
