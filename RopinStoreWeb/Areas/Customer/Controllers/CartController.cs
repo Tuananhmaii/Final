@@ -22,6 +22,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IEmailSender _emailSender;
+
         public int TotalPrice { get; set; }
         [BindProperty]
         public ShoppingCartVM ShoppingCartVM { get; set; }
@@ -167,7 +168,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                         name = name,
                         phone = "+1 " + phone,
                         state = state,
-                        street1 = street
+                        street1 = street,
                     },
                     line_items = lineItems,
                     placed_at = formattedDateTime,
@@ -208,6 +209,36 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
                         var objectId = responseObject["object_id"].ToString();
                         await PlaceOrder(objectId, name, street, city, state, zip, phone, email);
+                        var content = @$"<body>
+                                            <div style=""margin: 0 auto; text-align: center; background-color:#f1f1f1; padding: 50px; width: 50%;"">
+                                                <h1>Your order is shipping</h1>
+                                                <h3>Your order is shipping soon and is on its way to you.</h3>
+                                                <h3 style=""margin-bottom:40px"">Order ID : {objectId}</h3>
+                                                <a href=""https://track.goshippo.com/tracking/afafbc826f35468dbd820d6f426fd6b2/usps/92055903332000000000000018"" style=""border: 1px solid; color: white; background-color:black; padding: 20px; text-decoration: none; border-radius: 10px;font-size: 20px;"">Track Order</a>
+                                            </div>
+                                            <div style=""margin: 0 auto; display:flex; padding: 50px; width: 50%;"">
+                                                <div>
+                                                    <p>ITEMS</p>";
+                        foreach (var item in ShoppingCartVM.ListCart)
+                        {
+                            content += $"<h2>{item.Count}x {item.Product.Name}</h2>";
+                        }
+                        content += @$"<h2>Total: {totalPrice} $</h2>
+                                                </div>
+                                                <div style=""margin-left: 40%;"">
+                                                    <p>DELIVERING TO</p>
+                                                    <h2>{street}</h2>
+                                                    <h2>{city},{state}</h2>
+                                                    <h2>{zip}</h2>               
+                                                </div>
+                                            </div>
+                                            <div style=""margin: 0 auto; text-align: center; background-color:#f1f1f1; padding: 50px; width: 50%;"">
+                                                    <h2>The order is being shipped by <a href=""https://tools.usps.com/go/TrackConfirmAction_input"" style=""text-decoration: none;color: grey;"">USPS</a></h2>
+                                                    <h3>TRACKING NUMBER : 92055903332000000000000018</h3>
+                                            </div>
+                                        </body>";
+
+                        await _emailSender.SendEmailAsync(email, "Your order from Ropin Store is shipping", content);
                     }
                     else
                     {
@@ -260,17 +291,12 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);
             }
-            else
-            {
-                return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.Order.Id });
-            }
-            return RedirectToAction(nameof(Index));
+
+            return RedirectToAction("OrderConfirmation", "Cart", new { id = ShoppingCartVM.Order.Id });
         }
         public IActionResult OrderConfirmation(int id)
         {
             Order orderHeader = _unitOfWork.Order.GetFirstOrDefault(u => u.Id == id, includeProperties: "ApplicationUser");
-
-            _emailSender.SendEmailAsync(orderHeader.ApplicationUser.Email, "New Order", "<p> New order created </p>");
 
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId ==
             orderHeader.ApplicationUserId).ToList();
