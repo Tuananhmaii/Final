@@ -11,13 +11,7 @@
     }
 }
 <form id="paginationForm" style="margin-left:10%; margin-right:10%">
-    <div style="display: flex;margin-top: 20px">
-        <!-- Button trigger modal-->
-        @*        <label>Sort by</label>
-        <select multiple class="label ui selection fluid dropdown">
-        <option>Price: Low - High</option>
-        <option>Price: High - Low</option>
-        </select>*@
+    <div style="display: flex; padding-top: 2%">
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart" style="background-color:white; color: black; border:none; margin-left:90%; font-size: 16px">Filter <i class="bi bi-arrow-down"></i></button>
         <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
@@ -113,18 +107,17 @@
         <!-- Modal: modalCart -->
     </div>
 
-    <section class="section-products">
+    <section class="section-products" style="padding-top:0px !important; margin-top:-3%">
         <div class="row">
             @foreach (var Product in Model)
             {
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-3 col-sm-6" style="margin-top:5%">
                     <div class="product-grid">
                         <div class="product-image">
                             <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
                                 <img class="pic-1" src="@Product.ImageUrl">
                                 <img class="pic-2" src="@Product.ImageUrl">
                             </a>
-                            <a href="" class="product-like-icon"><i class="far fa-heart"></i></a>
                             <ul class="product-links">
                                 <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
                                 <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>

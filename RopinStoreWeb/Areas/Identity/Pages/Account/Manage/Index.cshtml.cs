@@ -62,9 +62,14 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [Display(Name = "Phone number")]
-            public string PhoneNumber { get; set; }
+            public string? PhoneNumber { get; set; }
             [Display(Name = "Name")]
-            public string Name { get; set; }
+            public string? Name { get; set; }
+            public string? Email { get; set; }
+            public string? City { get; set; }
+            public string? State { get; set; }
+            public string? Street { get; set; }
+            public string? Zip { get; set; }
         }
 
 
@@ -76,7 +81,14 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account.Manage
 
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+ 
             var name = account.FullName;
+            var city = account.City;
+            var state = account.State;
+            var street = account.Street;
+            var zip = account.ZipCode;
+            var email = account.Email;
+           
 
             Username = userName;
 
@@ -84,6 +96,11 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account.Manage
             {
                 PhoneNumber = phoneNumber,
                 Name = name,
+                Email = email,
+                City = city,
+                State = state,
+                Street = street,
+                Zip = zip,
             };
         }
 
@@ -99,7 +116,7 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account.Manage
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(string email, string name, string phone, string city, string street, string zip, string state)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -111,24 +128,16 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            if (!ModelState.IsValid)
-            {
-                await LoadAsync(user);
-                return Page();
-            }
 
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            account.FullName = Input.Name;
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                
-                if (!setPhoneResult.Succeeded)
-                {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
-                    return RedirectToPage();
-                }
-            }
+            account.FullName = name;
+            account.PhoneNumber = phone;
+            account.City = city;
+            account.Street = street;
+            account.State = street;
+            account.ZipCode = zip;
+
+            _unitOfWork.ApplicationUser.Update(account);
+            _unitOfWork.Save();
 
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";

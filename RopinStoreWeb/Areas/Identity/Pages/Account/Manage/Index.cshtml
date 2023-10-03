@@ -5,31 +5,80 @@
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h3>@ViewData["Title"]</h3>
 <partial name="_StatusMessage" for="StatusMessage" />
-<div class="row">
-    <div class="col-md-6">
-        <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.PhoneNumber" class="form-control" />
-                <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-floating">
-                <input asp-for="Input.Name" class="form-control" />
-                <label asp-for="Input.Name" class="form-label"></label>
-                <span asp-validation-for="Input.Name" class="text-danger"></span>
-            </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
-        </form>
-    </div>
-</div>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+<form id="profile-form" method="post" onsubmit="return validateForm()">
+    <div id="wrapper" style="display:flex">
+        <div style="width:15%; background-color:grey; text-align:center; padding-top:3%">
+            <h3>Order</h3>
+        </div>
+        <div class="container-fluid" style="padding-top: 3%">
+            <h3 class="text-dark mb-4">Profile</h3>
+            <div class="card shadow mb-3">
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Email</strong></label>
+                        <input asp-for="Input.Email" class="form-control" disabled type="text">
+                    </div>
+                    <div class="row">
+                        <div class="col-8">
+                            <label class="form-label"><strong>Full Name</strong></label>
+                            <input asp-for="Input.Name" class="form-control" type="text" name="name">
+                        </div>
+                        <div class="col-4">
+                            <label class="form-label"><strong>Phone Number</strong></label>
+                            <input asp-for="Input.PhoneNumber" class="form-control" type="text" name="phone">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Street</strong></label>
+                        <input asp-for="Input.Street" class="form-control" type="text" name="street">
+                    </div>
+                    <div class="row">
+                        <div class="col-5">
+                            <label for="inputAddress"><strong>City</strong></label>
+                            <input asp-for="Input.City" class="form-control" name="city">
+                        </div>
+                        <div class="col-4">
+                            <label for="inputAddress"><strong>State</strong></label>
+                            <input asp-for="Input.State" class="form-control" name="state">
+                        </div>
+                        <div class="col">
+                            <label for="inputAddress"><strong>Zip</strong></label>
+                            <input asp-for="Input.Zip" class="form-control" name="zip">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary btn-sm" id="update-profile-button" type="submit">Save Settings</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    function validateForm() {
+        var nameInput = document.querySelector('input[name="name"]');
+        var phoneInput = document.querySelector('input[name="phone"]');
+        var cityInput = document.querySelector('input[name="city"]');
+        var streetInput = document.querySelector('input[name="street"]');
+        var stateInput = document.querySelector('input[name="state"]');
+        var zipInput = document.querySelector('input[name="zip"]');
+
+        if (!nameInput.value || !phoneInput.value || !cityInput.value || !streetInput.value || !stateInput.value || !zipInput.value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter all necessary data',
+            })
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/assets/js/theme.js"></script>
