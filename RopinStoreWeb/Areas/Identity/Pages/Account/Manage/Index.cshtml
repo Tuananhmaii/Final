@@ -7,57 +7,88 @@
 
 <partial name="_StatusMessage" for="StatusMessage" />
 
-<form id="profile-form" method="post" onsubmit="return validateForm()">
+<style>
+    tr.hovered {
+        background-color: grey; /* Change the background color on hover */
+        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        cursor: pointer; /* Change the cursor to a pointer on hover */
+    }
+</style>
+<body style="padding-left:5%; padding-right: 5%">
     <div id="wrapper" style="display:flex">
-        <div style="width:15%; background-color:grey; text-align:center; padding-top:3%">
-            <h3>Order</h3>
-        </div>
         <div class="container-fluid" style="padding-top: 3%">
-            <h3 class="text-dark mb-4">Profile</h3>
-            <div class="card shadow mb-3">
-                <div class="card-body">
 
-                    <div class="mb-3">
-                        <label class="form-label"><strong>Email</strong></label>
-                        <input asp-for="Input.Email" class="form-control" disabled type="text">
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <label class="form-label"><strong>Full Name</strong></label>
-                            <input asp-for="Input.Name" class="form-control" type="text" name="name">
-                        </div>
-                        <div class="col-4">
-                            <label class="form-label"><strong>Phone Number</strong></label>
-                            <input asp-for="Input.PhoneNumber" class="form-control" type="text" name="phone">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label"><strong>Street</strong></label>
-                        <input asp-for="Input.Street" class="form-control" type="text" name="street">
-                    </div>
-                    <div class="row">
-                        <div class="col-5">
-                            <label for="inputAddress"><strong>City</strong></label>
-                            <input asp-for="Input.City" class="form-control" name="city">
-                        </div>
-                        <div class="col-4">
-                            <label for="inputAddress"><strong>State</strong></label>
-                            <input asp-for="Input.State" class="form-control" name="state">
-                        </div>
-                        <div class="col">
-                            <label for="inputAddress"><strong>Zip</strong></label>
-                            <input asp-for="Input.Zip" class="form-control" name="zip">
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <button class="btn btn-primary btn-sm" id="update-profile-button" type="submit">Save Settings</button>
-                    </div>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" style="display:flex; justify-content: space-between; align-items: center;">
+                <h2 class="text-dark mb-4">Profile</h2>
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
 
+            <form id="profile-form" method="post" onsubmit="return validateForm()">
+                <div class="card shadow mb-3">
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Email</strong></label>
+                            <input asp-for="Input.Email" class="form-control" disabled type="text">
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <label class="form-label"><strong>Full Name</strong></label>
+                                <input asp-for="Input.Name" class="form-control" type="text" name="name">
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label"><strong>Phone Number</strong></label>
+                                <input asp-for="Input.PhoneNumber" class="form-control" type="text" name="phone">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Street</strong></label>
+                            <input asp-for="Input.Street" class="form-control" type="text" name="street">
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <label for="inputAddress"><strong>City</strong></label>
+                                <input asp-for="Input.City" class="form-control" name="city">
+                            </div>
+                            <div class="col-4">
+                                <label for="inputAddress"><strong>State</strong></label>
+                                <input asp-for="Input.State" class="form-control" name="state">
+                            </div>
+                            <div class="col">
+                                <label for="inputAddress"><strong>Zip</strong></label>
+                                <input asp-for="Input.Zip" class="form-control" name="zip">
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-end" style="padding-top: 3%">
+                            <button data-bs-toggle="button" class="btn btn-primary btn-lg" id="update-profile-button" type="submit">Save</button>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
-</form>
+
+    <form style="padding-top: 3%">
+        <h2 class="text-dark mb-4">My Order</h2>
+        <table id="tblData" class="table table-bordered table-striped" style="width:100%;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Payment Type</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+        </table>
+    </form>
+</body>
+@section Scripts{
+    <script src="~/js/order.js"></script>
+}
 
 <script>
     function validateForm() {
