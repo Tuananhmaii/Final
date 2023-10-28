@@ -110,7 +110,31 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public IActionResult Details(ShoppingCart shoppingCart)
+        //public IActionResult Details(ShoppingCart shoppingCart)
+        //{
+        //    var claimsIdentity = (ClaimsIdentity)User.Identity;
+        //    var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+        //    shoppingCart.ApplicationUserId = claim.Value;
+        //    ShoppingCart cartFromDB = _unitOfWork.ShoppingCart.GetFirstOrDefault(
+        //        u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
+        //    if (cartFromDB == null)
+        //    {
+        //        _unitOfWork.ShoppingCart.Add(shoppingCart);
+        //        _unitOfWork.Save();
+        //        HttpContext.Session.SetInt32(SD.SessionCart,
+        //            _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
+
+        //    }
+        //    else
+        //    {
+        //        _unitOfWork.ShoppingCart.IncrementCount(cartFromDB, shoppingCart.Count);
+        //        _unitOfWork.Save();
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
+
+        public JsonResult Details(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -130,7 +154,9 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 _unitOfWork.ShoppingCart.IncrementCount(cartFromDB, shoppingCart.Count);
                 _unitOfWork.Save();
             }
-            return RedirectToAction("Index");
+                var cartCount = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count;
+            var response = new { success = true, cartCount = cartCount };
+            return Json(response);
         }
 
         [HttpGet]

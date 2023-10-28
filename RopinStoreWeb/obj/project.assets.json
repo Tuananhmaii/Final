@@ -658,6 +658,9 @@
           }
         }
       },
+      "jQuery/1.8.0": {
+        "type": "package"
+      },
       "MailKit/3.4.2": {
         "type": "package",
         "dependencies": {
@@ -2547,6 +2550,12 @@
           "lib/net6.0/Microsoft.IdentityModel.Tokens.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/3.3.0": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.8.0"
         }
       },
       "Microsoft.Net.Http.Headers/2.2.0": {
@@ -5716,6 +5725,25 @@
         "logo.png"
       ]
     },
+    "jQuery/1.8.0": {
+      "sha512": "laDFQRJrIRHT0Z0GVYklMt3bE0iu0MZFJwHwg21kt3SHb7Bj8TdNiM3K+ZdK1DzB8ZxKy8z7NkJvwMas+dmHBw==",
+      "type": "package",
+      "path": "jquery/1.8.0",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery-1.8.0-vsdoc.js",
+        "Content/Scripts/jquery-1.8.0.js",
+        "Content/Scripts/jquery-1.8.0.min.js",
+        "Tools/common.ps1",
+        "Tools/install.ps1",
+        "Tools/jquery-1.8.0.intellisense.js",
+        "Tools/uninstall.ps1",
+        "jquery.1.8.0.nupkg.sha512",
+        "jquery.nuspec"
+      ]
+    },
     "MailKit/3.4.2": {
       "sha512": "BRt9YHSr5LtxUeKrsJfxuJ5t5jb+6a2dRWWZvxt/5Tm3Z+nKJ3HBvw7SaMq2ze9e2x0Izw0SS8Q7H31PxBaXSg==",
       "type": "package",
@@ -7996,6 +8024,21 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
         "microsoft.identitymodel.tokens.6.21.0.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
+      ]
+    },
+    "Microsoft.jQuery.Unobtrusive.Ajax/3.3.0": {
+      "sha512": "tRfDka86XMRCFi/Ab7/9ptDsaezGA6ObRHBq6lYd0GBVtk6vySCk61REvmYTQuWcb7v0evBAD6zyAPbMbgeLzg==",
+      "type": "package",
+      "path": "microsoft.jquery.unobtrusive.ajax/3.3.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery.unobtrusive-ajax.js",
+        "Content/Scripts/jquery.unobtrusive-ajax.min.js",
+        "NET.icon.png",
+        "NET_Library_EULA_ENU.txt",
+        "microsoft.jquery.unobtrusive.ajax.3.3.0.nupkg.sha512",
+        "microsoft.jquery.unobtrusive.ajax.nuspec"
       ]
     },
     "Microsoft.Net.Http.Headers/2.2.0": {
@@ -13411,6 +13454,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.8",
+      "Microsoft.jQuery.Unobtrusive.Ajax >= 3.3.0",
       "RopinStore.DataAccess >= 1.0.0",
       "RopinStore.Utility >= 1.0.0",
       "Stripe.net >= 40.14.0",
@@ -13512,6 +13556,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[7.0.8, )"
+          },
+          "Microsoft.jQuery.Unobtrusive.Ajax": {
+            "target": "Package",
+            "version": "[3.3.0, )"
           },
           "Stripe.net": {
             "target": "Package",

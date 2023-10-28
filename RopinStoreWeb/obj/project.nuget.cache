@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JbkgofOJWOvt7mTTIicy902372UqTKtsgzeFASSssZQGkVtHI/OSI5GV6hN0N6O71MOfal5Bi+K1t01SbbL7QQ==",
+  "dgSpecHash": "vsL3iesxv1zcsmY8Igk4NuJuKuvbAthOgNzHZuorC0SvqlyKxRlBilLPNLE6ZcH00yUFQqJaNgIjtEIMWBGw7Q==",
   "success": true,
   "projectFilePath": "D:\\Final\\RopinStoreWeb\\RopinStoreWeb.csproj",
   "expectedPackageFiles": [
@@ -57,6 +57,7 @@
     "C:\\Users\\maitr\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\maitr\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\mailkit\\3.4.2\\mailkit.3.4.2.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.antiforgery\\2.2.0\\microsoft.aspnetcore.antiforgery.2.2.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -148,6 +149,7 @@
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.21.0\\microsoft.identitymodel.protocols.6.21.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.21.0\\microsoft.identitymodel.protocols.openidconnect.6.21.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.21.0\\microsoft.identitymodel.tokens.6.21.0.nupkg.sha512",
+    "C:\\Users\\maitr\\.nuget\\packages\\microsoft.jquery.unobtrusive.ajax\\3.3.0\\microsoft.jquery.unobtrusive.ajax.3.3.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.net.stringtools\\17.3.2\\microsoft.net.stringtools.17.3.2.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",

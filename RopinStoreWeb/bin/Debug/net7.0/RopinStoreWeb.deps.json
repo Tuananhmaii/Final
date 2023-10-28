@@ -46,6 +46,7 @@
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.9",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.9",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.8",
+          "Microsoft.jQuery.Unobtrusive.Ajax": "3.3.0",
           "RopinStore.DataAccess": "1.0.0",
           "RopinStore.Utility": "1.0.0",
           "Stripe.net": "40.14.0",
@@ -945,6 +946,7 @@
           }
         }
       },
+      "jQuery/1.8.0": {},
       "MailKit/3.4.2": {
         "dependencies": {
           "MimeKit": "3.4.2"
@@ -2238,6 +2240,11 @@
         },
         "compile": {
           "lib/net6.0/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Ajax/3.3.0": {
+        "dependencies": {
+          "jQuery": "1.8.0"
         }
       },
       "Microsoft.Net.Http.Headers/2.2.0": {
@@ -5697,6 +5704,13 @@
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
     },
+    "jQuery/1.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-laDFQRJrIRHT0Z0GVYklMt3bE0iu0MZFJwHwg21kt3SHb7Bj8TdNiM3K+ZdK1DzB8ZxKy8z7NkJvwMas+dmHBw==",
+      "path": "jquery/1.8.0",
+      "hashPath": "jquery.1.8.0.nupkg.sha512"
+    },
     "MailKit/3.4.2": {
       "type": "package",
       "serviceable": true,
@@ -6333,6 +6347,13 @@
       "sha512": "sha512-AAEHZvZyb597a+QJSmtxH3n2P1nIJGpZ4Q89GTenknRx6T6zyfzf592yW/jA5e8EHN4tNMjjXHQaYWEq5+L05w==",
       "path": "microsoft.identitymodel.tokens/6.21.0",
       "hashPath": "microsoft.identitymodel.tokens.6.21.0.nupkg.sha512"
+    },
+    "Microsoft.jQuery.Unobtrusive.Ajax/3.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tRfDka86XMRCFi/Ab7/9ptDsaezGA6ObRHBq6lYd0GBVtk6vySCk61REvmYTQuWcb7v0evBAD6zyAPbMbgeLzg==",
+      "path": "microsoft.jquery.unobtrusive.ajax/3.3.0",
+      "hashPath": "microsoft.jquery.unobtrusive.ajax.3.3.0.nupkg.sha512"
     },
     "Microsoft.Net.Http.Headers/2.2.0": {
       "type": "package",

@@ -323,6 +323,10 @@
               "target": "Package",
               "version": "[7.0.8, )"
             },
+            "Microsoft.jQuery.Unobtrusive.Ajax": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "Stripe.net": {
               "target": "Package",
               "version": "[40.14.0, )"
