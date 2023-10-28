@@ -18,6 +18,7 @@ namespace RopinStore.Models
         [ValidateNever]
         public Product Product { get; set; }
 
+        [NotMapped]
         [ValidateNever]
         [DisplayName("Product Gallery")]
         public List<ProductGallery> Gallery { get; set; }

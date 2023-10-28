@@ -17,6 +17,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _db;
+        Random random = new Random();
 
         public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ApplicationDbContext db)
         {
@@ -26,8 +27,8 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.productList1 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 1).Take(4).ToList();
-            ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).Take(4).ToList();
+            ViewBag.productList1 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 1).OrderBy(x => random.Next()).Take(4).ToList();
+            ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).OrderBy(x => random.Next()).Take(4).ToList();
             return View();
         }
         public IActionResult Main(int minPrice = 0, int maxPrice = 10000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<string>? filterGender = null, string? page = null)
@@ -59,7 +60,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
             if (filterGender != null && filterGender.Any())
             {
-                query = query.Where(u => filterGender.Contains(u.Gender));
+                query = query.Where(u => filterGender.Contains(u.Gender) || u.Gender == "Both");
                 ViewBag.SelectedGender = filterGender;
                 foreach (var item in ViewBag.SelectedGender)
                 {
@@ -76,7 +77,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             IEnumerable<Product> productList = query.ToList();
 
             //Paging
-            const int pageSize = 20;
+            const int pageSize = 35;
             if (page == null)
             {
                 page = "1";
@@ -103,6 +104,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 Gallery = _unitOfWork.ProductGallery.GetAll(u => u.ProductId == productid).ToList(),
                 Review = _unitOfWork.Review.GetAll(u => u.ProductId == productid, includeProperties: "ApplicationUser").ToList(),
             };
+            ViewBag.productList = _unitOfWork.Product.GetAll(includeProperties: "Brand,Category").Where(u => u.CategoryId == cartObj.Product.CategoryId).OrderBy(x => random.Next()).Take(4).ToList();
             return View(cartObj);
         }
         [HttpPost]

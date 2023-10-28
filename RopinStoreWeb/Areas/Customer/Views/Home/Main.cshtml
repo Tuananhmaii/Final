@@ -111,12 +111,12 @@
         <div class="row">
             @foreach (var Product in Model)
             {
-                <div class="col-md-3 col-sm-6" style="margin-top:5%">
+                <div class="col-md-3 col-sm-6" style="margin-top: 5%">
                     <div class="product-grid">
-                        <div class="product-image">
-                            <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
-                                <img class="pic-1" src="@Product.ImageUrl">
-                                <img class="pic-2" src="@Product.ImageUrl">
+                        <div class="product-image" style="overflow: hidden; position: relative;">
+                            <a asp-action="Details" asp-route-productid="@Product.Id" class="image" style="display: block;">
+                                <img class="pic-1" src="@Product.ImageUrl" style="width: 100%; height: 100%;">
+                                <img class="pic-2" src="@Product.SecondImage" style="width: 100%; height: 100%;">
                             </a>
                             <ul class="product-links">
                                 <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
@@ -124,12 +124,12 @@
                             </ul>
                         </div>
                         <div class="product-content">
-                            <h2 class="title">@Product.Name</h2>
-                            <h3 class="price">@Product.Brand.Name</h3>
+                            <h2 class="title" style="min-height:50px">@Product.Name</h2>
                             <p class="price">$@Product.Price.ToString("0.00")</p>
                         </div>
                     </div>
                 </div>
+
             }
         </div>
     </section>

@@ -64,6 +64,9 @@
                 list-style-type: none;
             }
 
+        .modal {
+            overflow: hidden; /* Prevent scrolling */
+        }
     </style>
 </head>
 <body>
@@ -123,7 +126,6 @@
         
     </header>
     @await Component.InvokeAsync("ProductList")
-    @*    <div style="padding-top:6.5%"><label class="form-label">asgvasvbel</label><label class="form-label">Laasdfasdfbel</label><label class="form-label">Labasdfsafdas</label></div>*@
     <div style="padding-top:50px; margin-bottom:3%; min-height:80%">
         <main role="main" class="pb-3">
             @RenderBody()

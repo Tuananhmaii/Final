@@ -172,7 +172,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                     },
                     line_items = lineItems,
                     placed_at = formattedDateTime,
-                    order_number = "#9509",
+                    order_number = "#9510",
                     order_status = "PAID",
                     shipping_cost = "10.40",
                     shipping_cost_currency = "USD",

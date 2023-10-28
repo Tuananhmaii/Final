@@ -64,7 +64,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         //POST
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM obj, IFormFile? file, List<IFormFile>? imageGallery)
+        public IActionResult Upsert(ProductVM obj, IFormFile? file, IFormFile? file2, List<IFormFile>? imageGallery)
         {
             if (ModelState.IsValid)
             {
@@ -72,6 +72,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(file.FileName);
+                    var extension2 = Path.GetExtension(file2.FileName);
 
                     if (!String.IsNullOrEmpty(obj.Product.ImageUrl))
                     {
@@ -83,16 +84,23 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                     var uploadParams = new ImageUploadParams()
                     {
                         File = new FileDescription(fileName + extension, file.OpenReadStream()),
-                        Folder = "products/" // Specify the folder in Cloudinary where you want to store the images
+                        Folder = "Products/" // Specify the folder in Cloudinary where you want to store the images
+                    };
+                    var uploadParams2 = new ImageUploadParams()
+                    {
+                        File = new FileDescription(fileName + extension2, file2.OpenReadStream()),
+                        Folder = "Products/" // Specify the folder in Cloudinary where you want to store the images
                     };
 
                     var cloudinary = new Cloudinary("cloudinary://651675597367258:fUk4tt7zSPGAl7JwE8cTSxrQ-5Q@dc6xcnpke");
                     var uploadResult = cloudinary.Upload(uploadParams);
+                    var uploadResult2 = cloudinary.Upload(uploadParams2);
 
-                    if (uploadResult.Error == null)
+                    if (uploadResult.Error == null || uploadResult2.Error == null)
                     {
                         // Set the image URL to the Cloudinary URL
                         obj.Product.ImageUrl = uploadResult.SecureUrl.ToString();
+                        obj.Product.SecondImage = uploadResult2.SecureUrl.ToString();
                     }
                 }
                 if (imageGallery != null)
@@ -108,7 +116,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                         var uploadParamsGallery = new ImageUploadParams()
                         {
                             File = new FileDescription(fileNameGallery + extensionGallery, item.OpenReadStream()),
-                            Folder = "galleries/" // Specify the folder in Cloudinary where you want to store the images
+                            Folder = "Products/" // Specify the folder in Cloudinary where you want to store the images
                         };
 
                         var cloudinaryGallery = new Cloudinary("cloudinary://651675597367258:fUk4tt7zSPGAl7JwE8cTSxrQ-5Q@dc6xcnpke");

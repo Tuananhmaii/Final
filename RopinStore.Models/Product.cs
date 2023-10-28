@@ -32,6 +32,10 @@ namespace RopinStore.Models
         [DisplayName("Image URL")]
         public string ImageUrl { get; set; }
 
+        [ValidateNever]
+        [DisplayName("Second Image")]
+        public string SecondImage { get; set; }
+
         [Required]
         [DisplayName("Category")]
         public int CategoryId { get; set; }

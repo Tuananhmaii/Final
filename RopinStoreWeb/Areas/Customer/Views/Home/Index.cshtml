@@ -59,7 +59,7 @@
     </div>
 
     <div style="margin-left:10%; margin-right:10%; margin-top:5%">
-        <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
+        <p style="font-size:2em; font-weight:lighter; margin-bottom:5%; text-align:center">The 2023 Spring Collection</p>
         <section class="section-products" style="padding-top:0px !important">
             <div class="row">
                 @foreach (var Product in ViewBag.productList1)
@@ -69,7 +69,7 @@
                             <div class="product-image">
                                 <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
                                     <img class="pic-1" src="@Product.ImageUrl">
-                                    <img class="pic-2" src="@Product.ImageUrl">
+                                    <img class="pic-2" src="@Product.SecondImage">
                                 </a>
                                 <ul class="product-links">
                                     <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
@@ -77,9 +77,11 @@
                                 </ul>
                             </div>
                             <div class="product-content">
-                                <h2 class="title">@Product.Name</h2>
-                                <h3 class="price">@Product.Brand.Name</h3>
-                                <p class="price">$@Product.Price.ToString("0.00")</p>
+                                <div class="product-content">
+                                    <h2 class="title" style="min-height:45px">@Product.Name</h2>
+                                    <h3 class="price">@Product.Brand.Name</h3>
+                                    <p class="price">$@Product.Price.ToString("0.00")</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -94,7 +96,7 @@
     </div>
 
     <div style="margin-left:10%; margin-right:10%; margin-top:5%">
-        <p style="font-size:2em; font-weight:lighter; margin-bottom:0px; text-align:center">The 2023 Spring Collection</p>
+        <p style="font-size:2em; font-weight:lighter; margin-bottom:5%; text-align:center">The 2023 Spring Collection</p>
         <section class="section-products" style="padding-top:0px !important">
             <div class="row">
                 @foreach (var Product in ViewBag.productList2)
@@ -104,7 +106,7 @@
                             <div class="product-image">
                                 <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
                                     <img class="pic-1" src="@Product.ImageUrl">
-                                    <img class="pic-2" src="@Product.ImageUrl">
+                                    <img class="pic-2" src="@Product.SecondImage">
                                 </a>
                                 <a href="" class="product-like-icon"></a>
                                 <ul class="product-links">
@@ -113,9 +115,11 @@
                                 </ul>
                             </div>
                             <div class="product-content">
-                                <h2 class="title">@Product.Name</h2>
-                                <h3 class="price">@Product.Brand.Name</h3>
-                                <p class="price">$@Product.Price.ToString("0.00")</p>
+                                <div class="product-content">
+                                    <h2 class="title" style="min-height:45px">@Product.Name</h2>
+                                    <h3 class="price">@Product.Brand.Name</h3>
+                                    <p class="price">$@Product.Price.ToString("0.00")</p>
+                                </div>
                             </div>
                         </div>
                     </div>

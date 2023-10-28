@@ -32,6 +32,7 @@ namespace RopinStore.DataAccess.Repository
                 objFromProduct.BrandId = obj.BrandId;
                 objFromProduct.CollectionId = obj.CollectionId;
                 objFromProduct.CategoryId = obj.CategoryId;
+                objFromProduct.SecondImage = obj.SecondImage;
 
                 if(obj.ImageUrl != null)
                 {
