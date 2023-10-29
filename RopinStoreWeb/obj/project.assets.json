@@ -13453,6 +13453,7 @@
       "Microsoft.EntityFrameworkCore >= 7.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
+      "Microsoft.Extensions.Caching.Memory >= 7.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.8",
       "Microsoft.jQuery.Unobtrusive.Ajax >= 3.3.0",
       "RopinStore.DataAccess >= 1.0.0",
@@ -13552,6 +13553,10 @@
           "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
             "version": "[7.0.9, )"
+          },
+          "Microsoft.Extensions.Caching.Memory": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",

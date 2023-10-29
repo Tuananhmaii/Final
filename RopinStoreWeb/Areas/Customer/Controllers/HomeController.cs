@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using RopinStore.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace RopinStoreWeb.Areas.Customer.Controllers
 {
@@ -17,13 +18,15 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _db;
+        private readonly IMemoryCache _memoryCache;
         Random random = new Random();
 
-        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ApplicationDbContext db)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ApplicationDbContext db, IMemoryCache memoryCache)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
             _db = db;
+            _memoryCache = memoryCache;
         }
         public IActionResult Index()
         {
@@ -105,35 +108,25 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 Review = _unitOfWork.Review.GetAll(u => u.ProductId == productid, includeProperties: "ApplicationUser").ToList(),
             };
             ViewBag.productList = _unitOfWork.Product.GetAll(includeProperties: "Brand,Category").Where(u => u.CategoryId == cartObj.Product.CategoryId).OrderBy(x => random.Next()).Take(4).ToList();
+
+            List<Product> cachedProducts = _memoryCache.Get<List<Product>>("CachedProducts");
+            if (cachedProducts == null)
+            {
+                cachedProducts = new List<Product>();
+            }
+            var product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == productid);
+            cachedProducts.Insert(0, product);
+
+            // Set the updated list back in the cache
+            _memoryCache.Set("CachedProducts", cachedProducts);
+
+            // Set the list of cached products to a ViewBag
+            ViewBag.RecentProducts = cachedProducts.Take(4);
             return View(cartObj);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        //public IActionResult Details(ShoppingCart shoppingCart)
-        //{
-        //    var claimsIdentity = (ClaimsIdentity)User.Identity;
-        //    var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
-        //    shoppingCart.ApplicationUserId = claim.Value;
-        //    ShoppingCart cartFromDB = _unitOfWork.ShoppingCart.GetFirstOrDefault(
-        //        u => u.ApplicationUserId == claim.Value && u.ProductId == shoppingCart.ProductId);
-        //    if (cartFromDB == null)
-        //    {
-        //        _unitOfWork.ShoppingCart.Add(shoppingCart);
-        //        _unitOfWork.Save();
-        //        HttpContext.Session.SetInt32(SD.SessionCart,
-        //            _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count);
-
-        //    }
-        //    else
-        //    {
-        //        _unitOfWork.ShoppingCart.IncrementCount(cartFromDB, shoppingCart.Count);
-        //        _unitOfWork.Save();
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-
-
         public JsonResult Details(ShoppingCart shoppingCart)
         {
             var claimsIdentity = (ClaimsIdentity)User.Identity;

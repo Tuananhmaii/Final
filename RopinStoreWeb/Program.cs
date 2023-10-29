@@ -26,6 +26,7 @@ builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddSignalR();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddAuthentication().AddGoogle(options =>
 {
@@ -75,6 +76,7 @@ app.UseAuthorization();
 
 app.UseSession();
 app.MapRazorPages();
+
 app.MapHub<ChatHub>("/chatHub");
 
 app.MapControllerRoute(

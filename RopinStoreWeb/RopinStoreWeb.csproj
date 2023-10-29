@@ -11,6 +11,7 @@
     <PackageReference Include="CloudinaryDotNet" Version="1.21.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="7.0.9" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="7.0.0" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.3.0" />
     <PackageReference Include="Stripe.net" Version="40.14.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="7.0.9" />
