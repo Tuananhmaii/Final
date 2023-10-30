@@ -319,9 +319,9 @@
               "target": "Package",
               "version": "[7.0.9, )"
             },
-            "Microsoft.Extensions.Caching.Memory": {
+            "Microsoft.Extensions.Caching.SqlServer": {
               "target": "Package",
-              "version": "[7.0.0, )"
+              "version": "[7.0.13, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",

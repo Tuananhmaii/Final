@@ -21,6 +21,7 @@ namespace RopinStore.DataAccess.Repository
         public IProductGalleryRepository ProductGallery { get; private set; }
         public IReviewRepository Review { get; private set; }
         public ICollectionRepository Collection { get; private set; }
+        public ICacheRepository Cache { get; private set; }
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
@@ -34,6 +35,7 @@ namespace RopinStore.DataAccess.Repository
             ProductGallery = new ProductGalleryRepository(_db);
             Review = new ReviewRepository(_db);
             Collection = new CollectionRepository(_db);
+            Cache = new CacheRepository(_db);
         }
         public void Save()
         {

@@ -1137,3 +1137,4 @@ D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.AspNetCore.Connections.Abstrac
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.AspNetCore.SignalR.Common.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.Extensions.Features.dll
 D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Final\RopinStoreWeb\bin\Debug\net7.0\Microsoft.Extensions.Caching.SqlServer.dll

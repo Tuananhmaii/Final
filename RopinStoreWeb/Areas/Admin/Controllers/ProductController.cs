@@ -142,7 +142,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
                 {
                     _unitOfWork.Product.Update(obj.Product);
                 }
-
+                _unitOfWork.Cache.DeleteAll();
                 _unitOfWork.Save();
                 TempData["success"] = "Edit successfully";
                 return RedirectToAction("Index");

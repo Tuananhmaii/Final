@@ -26,7 +26,13 @@ builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddSignalR();
-builder.Services.AddMemoryCache();
+
+builder.Services.AddDistributedSqlServerCache(o =>
+{
+    o.ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    o.SchemaName = "dbo";
+    o.TableName = "Caches";
+});
 
 builder.Services.AddAuthentication().AddGoogle(options =>
 {

@@ -9,6 +9,8 @@ using System.Security.Claims;
 using RopinStore.DataAccess.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Caching.Distributed;
+using Newtonsoft.Json;
 
 namespace RopinStoreWeb.Areas.Customer.Controllers
 {
@@ -18,15 +20,15 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUnitOfWork _unitOfWork;
         private readonly ApplicationDbContext _db;
-        private readonly IMemoryCache _memoryCache;
+        private readonly IDistributedCache _cache;
         Random random = new Random();
 
-        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ApplicationDbContext db, IMemoryCache memoryCache)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, ApplicationDbContext db, IDistributedCache cache)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
             _db = db;
-            _memoryCache = memoryCache;
+            _cache = cache;
         }
         public IActionResult Index()
         {
@@ -34,7 +36,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).OrderBy(x => random.Next()).Take(4).ToList();
             return View();
         }
-        public IActionResult Main(int minPrice = 0, int maxPrice = 10000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<string>? filterGender = null, string? page = null)
+        public IActionResult Main(int minPrice = 0, int maxPrice = 1000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<string>? filterGender = null, string? page = null)
         {
             var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             var brand = _unitOfWork.Brand.GetAll().ToList();
@@ -77,9 +79,24 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ViewBag.Categories = new SelectList(category, "Id", "Name");
             ViewBag.Brands = new SelectList(brand, "Id", "Name");
             ViewBag.Gender = new SelectList(gender);
-            IEnumerable<Product> productList = query.ToList();
 
-            //Paging
+            string cacheKey = $"ListProduct_{minPrice}_{maxPrice}_{string.Join(",", filterBrand)}_{string.Join(",", filterCategory)}_{string.Join(",", filterGender)}";
+            string cachedData = _cache.GetString(cacheKey);
+            IEnumerable<Product> productList = new List<Product>();
+
+            if (cachedData != null)
+            {
+                productList = JsonConvert.DeserializeObject<IEnumerable<Product>>(cachedData);
+            }
+            else
+            {
+                productList = query.ToList();
+                string serializedData = JsonConvert.SerializeObject(productList);
+                _cache.SetString(cacheKey, serializedData, new DistributedCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(30)
+                });
+            }
             const int pageSize = 35;
             if (page == null)
             {
@@ -109,19 +126,19 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             };
             ViewBag.productList = _unitOfWork.Product.GetAll(includeProperties: "Brand,Category").Where(u => u.CategoryId == cartObj.Product.CategoryId).OrderBy(x => random.Next()).Take(4).ToList();
 
-            List<Product> cachedProducts = _memoryCache.Get<List<Product>>("CachedProducts");
-            if (cachedProducts == null)
-            {
-                cachedProducts = new List<Product>();
-            }
-            var product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == productid);
-            cachedProducts.Insert(0, product);
+            //List<Product> cachedProducts = _memoryCache.Get<List<Product>>("CachedProducts");
+            //if (cachedProducts == null)
+            //{
+            //    cachedProducts = new List<Product>();
+            //}
+            //var product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == productid);
+            //cachedProducts.Insert(0, product);
 
-            // Set the updated list back in the cache
-            _memoryCache.Set("CachedProducts", cachedProducts);
+            //// Set the updated list back in the cache
+            //_memoryCache.Set("CachedProducts", cachedProducts);
 
-            // Set the list of cached products to a ViewBag
-            ViewBag.RecentProducts = cachedProducts.Take(4);
+            //// Set the list of cached products to a ViewBag
+            //ViewBag.RecentProducts = cachedProducts.Take(4);
             return View(cartObj);
         }
         [HttpPost]
@@ -147,7 +164,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 _unitOfWork.ShoppingCart.IncrementCount(cartFromDB, shoppingCart.Count);
                 _unitOfWork.Save();
             }
-                var cartCount = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count;
+            var cartCount = _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).ToList().Count;
             var response = new { success = true, cartCount = cartCount };
             return Json(response);
         }
@@ -192,7 +209,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)] 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });

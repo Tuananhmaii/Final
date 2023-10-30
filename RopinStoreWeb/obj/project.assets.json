@@ -2102,6 +2102,24 @@
           "buildTransitive/net6.0/_._": {}
         }
       },
+      "Microsoft.Extensions.Caching.SqlServer/7.0.13": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Data.SqlClient": "4.0.1",
+          "Microsoft.Extensions.Caching.Abstractions": "7.0.0",
+          "Microsoft.Extensions.Options": "7.0.1"
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Caching.SqlServer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.Extensions.Caching.SqlServer.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -7409,6 +7427,25 @@
         "microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
         "microsoft.extensions.caching.memory.nuspec",
         "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.Caching.SqlServer/7.0.13": {
+      "sha512": "XrYKMOmEayDzTaLbv3Q6a68JbHr7MqjQlhsRv1XLbOuSQHKNfHQwCjSiICkxFScADhGgTUbBESLnzzaFCz1llQ==",
+      "type": "package",
+      "path": "microsoft.extensions.caching.sqlserver/7.0.13",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net462/Microsoft.Extensions.Caching.SqlServer.dll",
+        "lib/net462/Microsoft.Extensions.Caching.SqlServer.xml",
+        "lib/net7.0/Microsoft.Extensions.Caching.SqlServer.dll",
+        "lib/net7.0/Microsoft.Extensions.Caching.SqlServer.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.SqlServer.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.Caching.SqlServer.xml",
+        "microsoft.extensions.caching.sqlserver.7.0.13.nupkg.sha512",
+        "microsoft.extensions.caching.sqlserver.nuspec"
       ]
     },
     "Microsoft.Extensions.Configuration.Abstractions/7.0.0": {
@@ -13453,7 +13490,7 @@
       "Microsoft.EntityFrameworkCore >= 7.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.9",
-      "Microsoft.Extensions.Caching.Memory >= 7.0.0",
+      "Microsoft.Extensions.Caching.SqlServer >= 7.0.13",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.8",
       "Microsoft.jQuery.Unobtrusive.Ajax >= 3.3.0",
       "RopinStore.DataAccess >= 1.0.0",
@@ -13554,9 +13591,9 @@
             "target": "Package",
             "version": "[7.0.9, )"
           },
-          "Microsoft.Extensions.Caching.Memory": {
+          "Microsoft.Extensions.Caching.SqlServer": {
             "target": "Package",
-            "version": "[7.0.0, )"
+            "version": "[7.0.13, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",

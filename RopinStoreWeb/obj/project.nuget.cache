@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UaPpTr27RXOCcMg699WjXJFhCv5wP9WllNTsdkLNMYLHt0c5x87D6/r6pb9USeNNC0s0dtHbTQUpY8r9C75sCA==",
+  "dgSpecHash": "hSDIRljfQ8RnsHThuliakZB4jlEY8Tl4toqfq1oVr1F9gntrWdrf7J4ELzEiR2RSmXRbwYcSk4/JIFE+QDc6Bw==",
   "success": true,
   "projectFilePath": "D:\\Final\\RopinStoreWeb\\RopinStoreWeb.csproj",
   "expectedPackageFiles": [
@@ -123,6 +123,7 @@
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.9\\microsoft.entityframeworkcore.tools.7.0.9.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",
+    "C:\\Users\\maitr\\.nuget\\packages\\microsoft.extensions.caching.sqlserver\\7.0.13\\microsoft.extensions.caching.sqlserver.7.0.13.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\maitr\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
