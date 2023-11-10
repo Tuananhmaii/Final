@@ -2,7 +2,7 @@
 @inject SignInManager<IdentityUser> SignInManager
 
 <div class="container">
-    <a class="navbar-brand d-flex align-items-center" href="/"><span style="font-size:18px" class="fw-semibold">ROPIN STORE</span></a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navcol-4"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <a class="navbar-brand d-flex align-items-center" href="/"><span style="font-size:18px" class="fw-semibold">ROPIN STORE</span></a>
     <div id="navcol-4" class="collapse navbar-collapse flex-grow-0 order-md-first">
         <ul class="navbar-nav me-auto">
             @*<li class="nav-item" onmouseover="showDiv('menDiv')" onmouseout="hideDiv('menDiv')">
@@ -12,7 +12,7 @@
             <a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Women" style="margin-right: 20px;">Women</a>
             </li>*@
             <li class="nav-item">
-                <a class="nav-link fw-semibold" asp-area="Customer" asp-controller="Home" asp-action="Main" asp-route-filterGender="Men" style="padding-right: 6px; margin-right: 36px;">Men</a>
+                <a class="nav-link fw-semibold" asp-area="Customer" asp-controller="Home" asp-action="Main" asp-route-filterGender="Men" style="margin-right: 42px;">Men</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link fw-semibold" asp-area="Customer" asp-controller="Home" asp-action="Main" asp-route-filterGender="Women" style="margin-right: 20px;">Women</a>
@@ -24,25 +24,30 @@
     </div>
     <div class="d-none d-md-block">
         <ul class="navbar-nav ms-auto" style="position: relative;">
+            <li class="nav-item" style="">
+                <a class="nav-link fw-semibold" asp-area="Admin" asp-controller="Manage" asp-action="Index" style="font-weight: bold;">
+                    Management
+                </a>
+            </li>
             @if (!SignInManager.IsSignedIn(User))
             {
-                <li class="nav-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="padding-right: 0px;margin-right: -26px;">
-                    <a class="nav-link fw-semibold" id="login" asp-area="Identity" asp-page="/Account/Login" title="Manage" style="font-weight: bold;padding-right: 0px;margin-left: 19px;margin-right: 76px;">
+                <li class="nav-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="margin-right: -26px;">
+                    <a class="nav-link fw-semibold" id="login" asp-area="Identity" asp-page="/Account/Login" title="Manage" style="font-weight: bold;margin-left: 19px;margin-right: 76px;">
                         My Account
                     </a>
                 </li>
             }
             else
             {
-                <li class="nav-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="padding-right: 0px;margin-right: -26px;">
-                    <a class="nav-link fw-semibold" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" style="font-weight: bold;padding-right: 0px;margin-left: 19px;margin-right: 76px;">
+                <li class="nav-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="margin-right: -26px;">
+                    <a class="nav-link fw-semibold" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" style="font-weight: bold;margin-left: 19px;margin-right: 76px;">
                         My Account
                     </a>
                 </li>
             }
             <li class="nav-item" style="margin-right: 13px;">
-                <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index" style="font-size: 16px;font-weight: bold;margin-right: 4px;margin-left: 14px;">
-                    <svg class="bi bi-cart" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 20px;padding-top: 0px;margin-top: -3px;padding-bottom: 0px;margin-bottom: 2px;margin-right: 6px;">
+                <a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index" style="font-size: 16px;font-weight: bold;margin-left: 14px;">
+                    <svg class="bi bi-cart" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" style="font-size: 20px;margin-top: -3px;margin-bottom: 2px;margin-right: 6px;">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
                     </svg>
                 </a>
