@@ -1,0 +1,12 @@
+﻿#sidebar li {
+    list-style-type: none;
+    margin-top: 20%;
+}
+#sidebar i {
+    margin-right: 10%
+}
+
+#sidebar a {
+    text-decoration:none;
+    color:black
+}

@@ -17,6 +17,26 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         }
         public IActionResult Index()
         {
+            var current = DateTime.Now;
+            ViewBag.IncomeMonth = _db.Orders
+                .Where(o => o.OrderDate.Year == current.Year && o.OrderDate.Month == current.Month)
+                .GroupBy(o => new { Year = o.OrderDate.Year, Month = o.OrderDate.Month })
+                .Select(g => new
+                {
+                    Price = g.Sum(o => o.TotalPrice)
+                })
+                .ToList();
+
+            ViewBag.IncomeYear = _db.Orders
+                .Where(o => o.OrderDate.Year == current.Year)
+                .GroupBy(o => new { Year = o.OrderDate.Year})
+                .Select(g => new
+                {
+                    Price = g.Sum(o => o.TotalPrice)
+                })
+                .ToList();
+
+            ViewBag.TotalOrder = _db.Orders.Count(o => o.OrderDate.Year == current.Year);
             return View();
         }
 

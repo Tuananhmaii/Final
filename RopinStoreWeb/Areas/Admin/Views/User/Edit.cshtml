@@ -1,0 +1,91 @@
+﻿@model ApplicationUser
+<style>
+    tr.hovered {
+        background-color: grey; /* Change the background color on hover */
+        transition: background-color 0.3s ease; /* Add a smooth transition effect */
+        cursor: pointer; /* Change the cursor to a pointer on hover */
+    }
+</style>
+<body style="padding-left:5%; padding-right: 5%">
+    <div id="wrapper" style="display:flex">
+        <div class="container-fluid" style="padding-top: 3%">
+            <input asp-for="Id" hidden />
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" style="display:flex; justify-content: space-between; align-items: center;">
+                <h2 class="text-dark mb-4">Profile</h2>
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
+
+            <form id="profile-form" method="post" onsubmit="return validateForm()">
+                <div class="card shadow mb-3">
+                    <div class="card-body">
+
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Email</strong></label>
+                            <input asp-for="Email" class="form-control" disabled type="text">
+                        </div>
+                        <div class="row">
+                            <div class="col-8">
+                                <label class="form-label"><strong>Full Name</strong></label>
+                                <input asp-for="FullName" class="form-control" disabled type="text" name="name">
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label"><strong>Phone Number</strong></label>
+                                <input asp-for="PhoneNumber" class="form-control" disabled type="text" name="phone">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><strong>Street</strong></label>
+                            <input asp-for="Street" class="form-control" disabled type="text" name="street">
+                        </div>
+                        <div class="row">
+                            <div class="col-5">
+                                <label for="inputAddress"><strong>City</strong></label>
+                                <input asp-for="City" class="form-control" disabled name="city">
+                            </div>
+                            <div class="col-4">
+                                <label for="inputAddress"><strong>State</strong></label>
+                                <input asp-for="State" class="form-control" disabled name="state">
+                            </div>
+                            <div class="col">
+                                <label for="inputAddress"><strong>Zip</strong></label>
+                                <input asp-for="ZipCode" class="form-control" disabled name="zip">
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-end" style="padding-top: 3%">
+                            @*<button data-bs-toggle="button" class="btn btn-primary btn-lg" id="update-profile-button" type="submit">Save</button>*@
+                            <button asp-action="DeletePOST" asp-route-id="@Model.Id" data-bs-toggle="button" class="btn btn-primary btn-lg" id="delete-profile-button" type="submit">Delete</button>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+@section Scripts{
+    <script src="~/js/order.js"></script>
+}
+
+<script>
+    function validateForm() {
+        var nameInput = document.querySelector('input[name="name"]');
+        var phoneInput = document.querySelector('input[name="phone"]');
+        var cityInput = document.querySelector('input[name="city"]');
+        var streetInput = document.querySelector('input[name="street"]');
+        var stateInput = document.querySelector('input[name="state"]');
+        var zipInput = document.querySelector('input[name="zip"]');
+
+        if (!nameInput.value || !phoneInput.value || !cityInput.value || !streetInput.value || !stateInput.value || !zipInput.value) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please enter all necessary data',
+            })
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<script src="~/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/assets/js/theme.js"></script>

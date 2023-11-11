@@ -1,49 +1,55 @@
 ﻿@model IEnumerable<Category>;
 
-<div class="container p3-3">
-    <div class="row pt-4">
-        <div class="col-6">
-            <h2 class="text-primary">Category List</h2>
+<link rel="stylesheet" href="~/css/SideBar.css">
+<div style="display: flex; flex-wrap: wrap">
+    <div style="width:15%; background-color:#bcbcbc">
+        <ul id="sidebar">
+            <li><a asp-area="Admin" asp-controller="Manage" asp-action="Index"><i class="bi bi-house-fill"></i>Dashboard</a></li>
+            <li><a asp-area="Admin" asp-controller="User" asp-action="Index"><i class="bi bi-people-fill"></i>User</a></li>
+            <li><a asp-area="Admin" asp-controller="Product" asp-action="Index"><i class="bi bi-box-fill"></i>Product</a></li>
+            <li><a asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="bi bi-bookmark-fill"></i>Category</a></li>
+            <li><a asp-area="Admin" asp-controller="Brand" asp-action="Index"><i class="bi bi-tags-fill"></i>Brand</a></li>
+            <li><a asp-area="Admin" asp-controller="Collection" asp-action="Index"><i class="bi bi-collection-fill"></i>Collection</a></li>
+        </ul>
+    </div>
+    <div class="container p3-3" style="width: 85%">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">Category List</h2>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Create New Category
+                </a>
+            </div>
         </div>
-        <div class="col-6 text-end">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> &nbsp; Create New Category
-            </a>
-        </div>
+        <br /> <br />
+        <table class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Category Name
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td width="50%">
+                            @obj.Name
+                        </td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"
+                                   class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> Edit</a>
+                                <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id"
+                                   class="btn btn-danger mx-2"><i class="bi bi-calendar-x-fill"></i> Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
-<br /> <br />
-<table class="table table-bordered table-striped" style="width:100%">
-    <thead>
-        <tr>
-            <th>
-                Category Name
-            </th>
-            @*<th>
-                Display Order
-            </th>*@
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var obj in Model)
-        {
-            <tr>
-                <td width="50%">
-                    @obj.Name
-                </td>
-@*                <td width="30%">
-                    @obj.DisplayOrder
-                </td>*@
-                <td>
-                    <div class="w-75 btn-group" role="group">
-                        <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"
-                        class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> Edit</a>
-                        <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id"
-                        class="btn btn-danger mx-2"><i class="bi bi-calendar-x-fill"></i> Delete</a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-

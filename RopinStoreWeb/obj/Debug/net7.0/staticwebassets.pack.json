@@ -77,6 +77,10 @@
       "PackagePath": "staticwebassets\\css\\Main.css"
     },
     {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\SideBar.css",
+      "PackagePath": "staticwebassets\\css\\SideBar.css"
+    },
+    {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\ToolKitMinV2_Custom.css",
       "PackagePath": "staticwebassets\\css\\ToolKitMinV2_Custom.css"
     },
@@ -179,6 +183,10 @@
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\user.js",
+      "PackagePath": "staticwebassets\\js\\user.js"
     },
     {
       "Id": "D:\\Final\\RopinStoreWeb\\wwwroot\\lib\\bootstrap\\LICENSE",

@@ -1,140 +1,135 @@
-﻿<div id="wrapper">
-    <nav class="navbar align-items-start sidebar sidebar-dark accordion bg-gradient-primary p-0 navbar-dark">
-        <div class="container-fluid d-flex flex-column p-0">
-            <hr class="sidebar-divider my-0" />
-            <ul id="accordionSidebar" class="navbar-nav text-light">
-                <li class="nav-item"><a class="nav-link active" href="index.html"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></li>
-                <li class="nav-item"><a class="nav-link" href="table.html"><i class="fas fa-table"></i><span>Table</span></a></li>
-            </ul>
-            <div class="text-center d-none d-md-inline"><button id="sidebarToggle" class="btn rounded-circle border-0" type="button"></button></div>
-        </div>
-    </nav>
-    <div id="content-wrapper" class="d-flex flex-column">
-        <div id="content">
-            <div class="container-fluid">
-                <div class="d-sm-flex justify-content-between align-items-center mb-4">
-                    <h3 class="text-dark mb-0">Dashboard</h3><a class="btn btn-primary btn-sm d-none d-sm-inline-block" role="button" href="#"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-xl-3 mb-4">
-                        <div class="card shadow border-start-primary py-2">
-                            <div class="card-body">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col me-2">
-                                        <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Earnings (monthly)</span></div>
-                                        <div class="text-dark fw-bold h5 mb-0"><span>$40,000</span></div>
-                                    </div>
-                                    <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
-                                </div>
-                            </div>
-                        </div>
+﻿<link rel="stylesheet" href="~/css/SideBar.css">
+<div style="display: flex; flex-wrap: wrap">
+    <div style="width:15%; background-color:#bcbcbc">
+        <ul id="sidebar">
+            <li><a asp-area="Admin" asp-controller="Manage" asp-action="Index"><i class="bi bi-house-fill"></i>Dashboard</a></li>
+            <li><a asp-area="Admin" asp-controller="User" asp-action="Index"><i class="bi bi-people-fill"></i>User</a></li>
+            <li><a asp-area="Admin" asp-controller="Product" asp-action="Index"><i class="bi bi-box-fill"></i>Product</a></li>
+            <li><a asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="bi bi-bookmark-fill"></i>Category</a></li>
+            <li><a asp-area="Admin" asp-controller="Brand" asp-action="Index"><i class="bi bi-tags-fill"></i>Brand</a></li>
+            <li><a asp-area="Admin" asp-controller="Collection" asp-action="Index"><i class="bi bi-collection-fill"></i>Collection</a></li>
+        </ul>
+    </div>
+    <div id="wrapper" style="width:85%">
+        <div id="content-wrapper" class="d-flex flex-column">
+            <div id="content">
+                <div class="container-fluid">
+                    <div class="d-sm-flex justify-content-between align-items-center mb-4">
+                        <h3 class="text-dark mb-0">Dashboard</h3>
                     </div>
-                    <div class="col-md-6 col-xl-3 mb-4">
-                        <div class="card shadow border-start-success py-2">
-                            <div class="card-body">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col me-2">
-                                        <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Earnings (annual)</span></div>
-                                        <div class="text-dark fw-bold h5 mb-0"><span>$215,000</span></div>
-                                    </div>
-                                    <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-xl-3 mb-4">
-                        <div class="card shadow border-start-info py-2">
-                            <div class="card-body">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col me-2">
-                                        <div class="text-uppercase text-info fw-bold text-xs mb-1"><span>Tasks</span></div>
-                                        <div class="row g-0 align-items-center">
-                                            <div class="col-auto">
-                                                <div class="text-dark fw-bold h5 mb-0 me-3"><span>50%</span></div>
-                                            </div>
-                                            <div class="col">
-                                                <div class="progress progress-sm">
-                                                    <div class="progress-bar bg-info" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"><span class="visually-hidden">50%</span></div>
+                    <div class="row">
+                        <div class="col-md-6 col-xl-4 mb-4">
+                            <div class="card shadow border-start-primary py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-primary fw-bold text-xs mb-1"><span>Earnings this month (@DateTime.Now.ToString("MMMM"))</span></div>
+                                            @foreach (var item in ViewBag.IncomeMonth)
+                                            {
+                                                var price = (double)(item.GetType().GetProperty("Price").GetValue(item, null));
+                                                <div class="text-dark fw-bold h5 mb-0">
+                                                    <span>@price.00 $</span>
                                                 </div>
+                                            }
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-calendar fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4 mb-4">
+                            <div class="card shadow border-start-success py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-success fw-bold text-xs mb-1"><span>Earnings this year (@DateTime.Now.Year.ToString())</span></div>
+                                            @foreach (var item in ViewBag.IncomeYear)
+                                            {
+                                                var price = (double)(item.GetType().GetProperty("Price").GetValue(item, null));
+                                                <div class="text-dark fw-bold h5 mb-0">
+                                                    <span>@price.00 $</span>
+                                                </div>
+                                            }
+                                        </div>
+                                        <div class="col-auto"><i class="fas fa-dollar-sign fa-2x text-gray-300"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xl-4 mb-4">
+                            <div class="card shadow border-start-info py-2">
+                                <div class="card-body">
+                                    <div class="row align-items-center no-gutters">
+                                        <div class="col me-2">
+                                            <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Total Orders</span></div>
+                                            <div class="text-dark fw-bold h5 mb-0">
+                                                <span>@ViewBag.TotalOrder</span>
                                             </div>
                                         </div>
+                                        <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
                                     </div>
-                                    <div class="col-auto"><i class="fas fa-clipboard-list fa-2x text-gray-300"></i></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-xl-3 mb-4">
-                        <div class="card shadow border-start-warning py-2">
-                            <div class="card-body">
-                                <div class="row align-items-center no-gutters">
-                                    <div class="col me-2">
-                                        <div class="text-uppercase text-warning fw-bold text-xs mb-1"><span>Pending Requests</span></div>
-                                        <div class="text-dark fw-bold h5 mb-0"><span>18</span></div>
-                                    </div>
-                                    <div class="col-auto"><i class="fas fa-comments fa-2x text-gray-300"></i></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
+                    <div class="row">
 
-                    <div class="col-lg-7 col-xl-8">
-                        <div class="card shadow mb-4">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h6 class="text-primary fw-bold m-0">Earnings Overview</h6>
-                                <div class="dropdown no-arrow">
-                                    <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                                        <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" href="#"> Action</a><a class="dropdown-item" href="#"> Another action</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"> Something else here</a>
+                        <div class="col-lg-7 col-xl-8">
+                            <div class="card shadow mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary fw-bold m-0">Monthly income</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div style="display: flex; align-items: center;">
+                                        <p style="margin-right: 10px;">Year:</p>
+                                        <select id="ddlYear" class="form-control" style="width:20%; margin-left: 5%; border:groove;">
+                                            <option value="2023">2023</option>
+                                            <option value="2022">2022</option>
+                                            <option value="2021">2021</option>
+                                            <option value="2020">2020</option>
+                                            <option value="2019">2019</option>
+                                        </select>
                                     </div>
+                                    <div class="chart-area"><canvas id="myChart" height="320" style="display: block; width: 572px; height: 320px;" width="572"></canvas></div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <select id="ddlYear" class="form-control" style="width:50%">
-                                    <option value="2023">2023</option>
-                                    <option value="2022">2022</option>
-                                    <option value="2021">2021</option>
-                                    <option value="2020">2020</option>
-                                    <option value="2019">2019</option>
-                                </select>
-                                <div class="chart-area"><canvas id="myChart" height="320" style="display: block; width: 572px; height: 320px;" width="572"></canvas></div>
-                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-lg-5 col-xl-4">
-                        <div class="card shadow mb-4">
-                            <div class="card-header d-flex justify-content-between align-items-center">
-                                <h6 class="text-primary fw-bold m-0">Revenue Sources</h6>
-                                <div class="dropdown no-arrow">
-                                    <button class="btn btn-link btn-sm dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button"><i class="fas fa-ellipsis-v text-gray-400"></i></button>
-                                    <div class="dropdown-menu shadow dropdown-menu-end animated--fade-in">
-                                        <p class="text-center dropdown-header">dropdown header:</p><a class="dropdown-item" href="#"> Action</a><a class="dropdown-item" href="#"> Another action</a>
-                                        <div class="dropdown-divider"></div><a class="dropdown-item" href="#"> Something else here</a>
-                                    </div>
+                        <div class="col-lg-5 col-xl-4">
+                            <div class="card shadow mb-4">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h6 class="text-primary fw-bold m-0">Revenue Sources</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-area"><canvas id="myChart2" height="320" style="display: block; width: 257px; height: 320px;" width="257"></canvas></div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="chart-area"><canvas id="myChart2" height="320" style="display: block; width: 257px; height: 320px;" width="257"></canvas></div>
-                                <div class="text-center small mt-4"><span class="me-2"><i class="fas fa-circle text-primary"></i> Direct</span><span class="me-2"><i class="fas fa-circle text-success"></i> Social</span><span class="me-2"><i class="fas fa-circle text-info"></i> Refferal</span></div>
-                            </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-        <footer class="bg-white sticky-footer">
-            <div class="container my-auto">
-                <div class="text-center my-auto copyright"><span>Copyright © Brand 2023</span></div>
-            </div>
-        </footer>
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+        <form style="margin: 3%">
+            <h2 class="text-dark mb-4">All orders</h2>
+            <table id="tblData" class="table table-bordered table-striped" style="width:100%;">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                        <th>Payment Type</th>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+            </table>
+        </form>
+    </div>
 </div>
+<script src="~/js/order.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
@@ -143,13 +138,13 @@
     GetReportList(dt.getFullYear());
     GetPayment();
 
-    $('#ddlYear').on('change',function(){
+    $('#ddlYear').on('change', function () {
         var year = $(this).val();
 
         GetReportList(year)
     });
 
-    function GetReportList(year){
+    function GetReportList(year) {
         $.get('/Admin/Manage/GetReportByYear?year=' + year, function (resp) {
 
             RegisterChartProduct(resp);
@@ -158,12 +153,12 @@
     }
 
 
-    function RegisterChartProduct(result){
+    function RegisterChartProduct(result) {
 
         var resultLabel = [];
         var resultData = [];
 
-        $.each(result, function(index, item){
+        $.each(result, function (index, item) {
             resultLabel.push(item.orderMonth);
             resultData.push(item.price);
         })
@@ -172,22 +167,22 @@
         Chart.getChart(ctx)?.destroy();
 
         new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: resultLabel,
-            datasets: [{
-              label: 'Total income',
-              data: resultData,
-              borderWidth: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
+            type: 'line',
+            data: {
+                labels: resultLabel,
+                datasets: [{
+                    label: 'Total income',
+                    data: resultData,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
             }
-          }
         });
     }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RBJa0JkiFX6kkkZlMNSKu7o/t0vzso134Dd3dEB9Sxo=",
+  "Hash": "Ytd2e0TiE7yrC3cTotZi1j1okwYiNritCuspX4baWAQ=",
   "Source": "RopinStoreWeb",
   "BasePath": "_content/RopinStoreWeb",
   "Mode": "Default",
@@ -1411,6 +1411,23 @@
       "OriginalItemSpec": "wwwroot\\css\\semantic_min.css"
     },
     {
+      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\SideBar.css",
+      "SourceId": "RopinStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
+      "BasePath": "_content/RopinStoreWeb",
+      "RelativePath": "css/SideBar.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\SideBar.css"
+    },
+    {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\css\\site.css",
       "SourceId": "RopinStoreWeb",
       "SourceType": "Discovered",
@@ -1817,6 +1834,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\site.js"
+    },
+    {
+      "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\js\\user.js",
+      "SourceId": "RopinStoreWeb",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Final\\RopinStoreWeb\\wwwroot\\",
+      "BasePath": "_content/RopinStoreWeb",
+      "RelativePath": "js/user.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\user.js"
     },
     {
       "Identity": "D:\\Final\\RopinStoreWeb\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
