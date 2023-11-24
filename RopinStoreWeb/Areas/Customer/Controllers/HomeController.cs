@@ -124,7 +124,8 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 Gallery = _unitOfWork.ProductGallery.GetAll(u => u.ProductId == productid).ToList(),
                 Review = _unitOfWork.Review.GetAll(u => u.ProductId == productid, includeProperties: "ApplicationUser").ToList(),
             };
-            ViewBag.productList = _unitOfWork.Product.GetAll(includeProperties: "Brand,Category").Where(u => u.CategoryId == cartObj.Product.CategoryId).OrderBy(x => random.Next()).Take(4).ToList();
+            ViewBag.productList1 = _unitOfWork.Product.GetAll(includeProperties: "Brand,Category").Where(u => u.CategoryId == cartObj.Product.CategoryId).OrderBy(x => random.Next()).Take(4).ToList();
+            ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand,Category").Where(u => u.CategoryId == cartObj.Product.CategoryId).OrderBy(x => random.Next()).Take(4).ToList();
 
             //List<Product> cachedProducts = _memoryCache.Get<List<Product>>("CachedProducts");
             //if (cachedProducts == null)

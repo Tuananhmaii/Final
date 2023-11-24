@@ -31,7 +31,7 @@
     <section class="clean-block clean-product dark">
         <div class="container" style="padding-top:2% ">
             <div class="block-content">
-                <div class="product-info" style="height: 350px">
+                <div class="product-info" style="height:375px">
                     <div class="row">
                         <div class="col-md-6" style="width: 700px;margin-left: 5%;">
                             <div class="gallery">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6" style="width: 500px;height: 493px;">
+                        <div class="col-md-6" style="width: 500px;">
                             <div class="info" style="width: 470px;">
                                 <h1 style="margin:0px">@Model.Product.Name</h1>
                                 <span>$@Model.Product.Price</span>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div style="padding-left:59%; width: 97%;">
+            <div style="padding-left:59%; width: 96%;">
                 <hr style="margin-top:20px; border-top: 2px solid black;" />
                 <button class="collapsible">Description</button>
                 <div class="content">
@@ -114,7 +114,7 @@
     <p style="font-size:2em; font-weight:lighter; margin-bottom:5%; text-align:center">You might also interest</p>
     <section class="section-products" style="padding-top:0px !important">
         <div class="row">
-            @foreach (var Product in ViewBag.productList)
+            @foreach (var Product in ViewBag.productList1)
             {
                 <div class="col-md-3 col-sm-6">
                     <div class="product-grid">
@@ -251,6 +251,41 @@ else
         <h4>There are no reviews yet.</h4>
     </div>
 }
+<hr style="margin-top: 5%" />
+<div style="margin-left:10%; margin-right:10%; margin-top:5%; margin-bottom:5%">
+    <p style="font-size:2em; font-weight:lighter; margin-bottom:5%; text-align:center">You might also interest</p>
+    <section class="section-products" style="padding-top:0px !important">
+        <div class="row">
+            @foreach (var Product in ViewBag.productList2)
+            {
+                <div class="col-md-3 col-sm-6">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a asp-action="Details" asp-route-productid="@Product.Id" class="image">
+                                <img class="pic-1" src="@Product.ImageUrl">
+                                <img class="pic-2" src="@Product.SecondImage">
+                            </a>
+                            <a href="" class="product-like-icon"></a>
+                            <form id="addToCartForm" method="post">
+                                <ul class="product-links">
+                                    <li><a asp-action="Details" asp-route-productid="@Product.Id"><i class="fa fa-eye"></i></a></li>
+                                    <li><a onclick="addToCart(@Product.Id)"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </form>
+                        </div>
+                        <div class="product-content">
+                            <h2 class="title" style="min-height:45px">@Product.Name</h2>
+                            <p class="price">$@Product.Price.ToString("0.00")</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div style="text-align: center; margin-top: 5%;">
+            <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+        </div>
+    </section>
+</div>
 
 <script>
     var coll = document.getElementsByClassName("collapsible");
