@@ -1,17 +1,42 @@
-﻿<div class="p-3">
-<table  id="tblData"  class="table table-bordered table-striped" style="width:100%">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Payment Type</th>
-            <th>Status</th>
-            <th>Total</th>
-		</tr>
-	</thead>
-</table>
+﻿<link rel="stylesheet" href="~/css/SideBar.css">
+<div style="display: flex; flex-wrap: wrap; min-height: 850px">
+    <div style="width:15%; background-color:#bcbcbc;">
+        <ul id="sidebar">
+            <li><a asp-area="Admin" asp-controller="Manage" asp-action="Index"><i class="bi bi-house-fill"></i>Dashboard</a></li>
+            <li><a asp-area="Admin" asp-controller="User" asp-action="Index"><i class="bi bi-people-fill"></i>User</a></li>
+            <li><a asp-area="Admin" asp-controller="Product" asp-action="Index"><i class="bi bi-box-fill"></i>Product</a></li>
+            <li><a asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="bi bi-bookmark-fill"></i>Category</a></li>
+            <li><a asp-area="Admin" asp-controller="Order" asp-action="Index"><i class="bi bi-truck-front-fill"></i>Order</a></li>
+            <li><a asp-area="Admin" asp-controller="Brand" asp-action="Index"><i class="bi bi-tags-fill"></i>Brand</a></li>
+            <li><a asp-area="Admin" asp-controller="Collection" asp-action="Index"><i class="bi bi-collection-fill"></i>Collection</a></li>
+        </ul>
+    </div>
+    <div class="container p3-3" style="width: 85%">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">Product List</h2>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Create New Product
+                </a>
+            </div>
+        </div>
+        <br /> <br />
+        <table id="tblData" class="table table-bordered table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Payment Type</th>
+                    <th>Status</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 </div>
 
 @section Scripts{

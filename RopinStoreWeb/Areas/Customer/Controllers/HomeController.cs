@@ -36,42 +36,65 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).OrderBy(x => random.Next()).Take(4).ToList();
             return View();
         }
-        public IActionResult Main(int minPrice = 0, int maxPrice = 1000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<string>? filterGender = null, string? page = null)
+        public IActionResult Main(int minPrice = 0, int maxPrice = 1000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<string>? filterGender = null, string filterColor = null, string search = null, string? page = null)
         {
             var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
             var brand = _unitOfWork.Brand.GetAll().ToList();
             var category = _unitOfWork.Category.GetAll().ToList();
             var gender = new List<string> { "Men", "Women" };
 
-            if (filterBrand != null && filterBrand.Any())
+            if (!string.IsNullOrEmpty(search))
             {
-                query = query.Where(u => filterBrand.Contains(u.BrandId));
-                ViewBag.SelectedBrand = _unitOfWork.Brand.GetAll().Where(u => filterBrand.Contains(u.Id)).ToList();
-                foreach (var item in ViewBag.SelectedBrand)
-                {
-                    brand.RemoveAll(brand => brand.Id == item.Id);
-                }
+                query = query.Where(u => u.Name.ToLower().Contains(search.ToLower()));
+                ViewBag.Search = search;
             }
 
-            if (filterCategory != null && filterCategory.Any())
+            else
             {
-                query = query.Where(u => filterCategory.Contains(u.CategoryId));
-                ViewBag.SelectedCategory = _unitOfWork.Category.GetAll().Where(u => filterCategory.Contains(u.Id)).ToList();
-                foreach (var item in ViewBag.SelectedCategory)
+                if (filterBrand != null && filterBrand.Any())
                 {
-                    category.RemoveAll(category => category.Id == item.Id);
+                    query = query.Where(u => filterBrand.Contains(u.BrandId));
+                    ViewBag.SelectedBrand = _unitOfWork.Brand.GetAll().Where(u => filterBrand.Contains(u.Id)).ToList();
+                    foreach (var item in ViewBag.SelectedBrand)
+                    {
+                        brand.RemoveAll(brand => brand.Id == item.Id);
+                    }
                 }
+
+                if (filterCategory != null && filterCategory.Any())
+                {
+                    query = query.Where(u => filterCategory.Contains(u.CategoryId));
+                    ViewBag.SelectedCategory = _unitOfWork.Category.GetAll().Where(u => filterCategory.Contains(u.Id)).ToList();
+                    foreach (var item in ViewBag.SelectedCategory)
+                    {
+                        category.RemoveAll(category => category.Id == item.Id);
+                    }
+                }
+
+                if (filterGender != null && filterGender.Any())
+                {
+                    query = query.Where(u => filterGender.Contains(u.Gender) || u.Gender == "Both");
+                    ViewBag.SelectedGender = filterGender;
+                    foreach (var item in ViewBag.SelectedGender)
+                    {
+                        gender.RemoveAll(gender => gender == item);
+                    }
+                }
+
+                if (!string.IsNullOrEmpty(filterColor))
+                {
+                    List<string> colors = filterColor.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                    ViewBag.SelectedColor = colors;
+                    query = query.Where(u => colors.Contains(u.Color));
+                }
+            }
+            if (minPrice > maxPrice)
+            {
+                int temp = minPrice;
+                minPrice = maxPrice;
+                maxPrice = temp;
             }
 
-            if (filterGender != null && filterGender.Any())
-            {
-                query = query.Where(u => filterGender.Contains(u.Gender) || u.Gender == "Both");
-                ViewBag.SelectedGender = filterGender;
-                foreach (var item in ViewBag.SelectedGender)
-                {
-                    gender.RemoveAll(gender => gender == item);
-                }
-            }
             query = query.Where(u => u.Price >= minPrice && u.Price <= maxPrice);
             ViewBag.MinPrice = minPrice;
             ViewBag.MaxPrice = maxPrice;
@@ -80,7 +103,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             ViewBag.Brands = new SelectList(brand, "Id", "Name");
             ViewBag.Gender = new SelectList(gender);
 
-            string cacheKey = $"ListProduct_{minPrice}_{maxPrice}_{string.Join(",", filterBrand)}_{string.Join(",", filterCategory)}_{string.Join(",", filterGender)}";
+            string cacheKey = $"ListProduct_{minPrice}_{maxPrice}_{string.Join(",", filterBrand)}_{string.Join(",", filterCategory)}_{string.Join(",", filterGender)}_{string.Join(",", filterColor)}_{string.Join(",", search)}";
             string cachedData = _cache.GetString(cacheKey);
             IEnumerable<Product> productList = new List<Product>();
 

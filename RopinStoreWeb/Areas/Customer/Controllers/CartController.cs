@@ -286,7 +286,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                 };
                 var service = new SessionService();
                 Session session = service.Create(options);
-                _unitOfWork.Order.UpdateStripePaymentId(ShoppingCartVM.Order.Id, session.Id, session.PaymentIntentId);
+                _unitOfWork.Order.UpdateStripePaymentId(ShoppingCartVM.Order.Id, session.Id);
                 _unitOfWork.Save();
                 Response.Headers.Add("Location", session.Url);
                 return new StatusCodeResult(303);

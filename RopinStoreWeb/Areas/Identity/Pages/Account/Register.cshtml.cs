@@ -113,6 +113,7 @@ namespace RopinStoreWeb.Areas.Identity.Pages.Account
             [Required]
             public string Name { get; set; }
             public string? Street { get; set; }
+            public string? State { get; set; }
             public string? City { get; set; }
             [DisplayName("Phone Number")]
             public string? PhoneNumber { get; set; }

@@ -1,0 +1,17 @@
+D:\Final\RopinStore.DataAccess\bin\Release\net7.0\RopinStore.DataAccess.deps.json
+D:\Final\RopinStore.DataAccess\bin\Release\net7.0\RopinStore.DataAccess.runtimeconfig.json
+D:\Final\RopinStore.DataAccess\bin\Release\net7.0\RopinStore.DataAccess.dll
+D:\Final\RopinStore.DataAccess\bin\Release\net7.0\RopinStore.DataAccess.pdb
+D:\Final\RopinStore.DataAccess\bin\Release\net7.0\RopinStore.Models.dll
+D:\Final\RopinStore.DataAccess\bin\Release\net7.0\RopinStore.Models.pdb
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.csproj.AssemblyReference.cache
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.AssemblyInfoInputs.cache
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.AssemblyInfo.cs
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.csproj.CoreCompileInputs.cache
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.csproj.CopyComplete
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.dll
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\refint\RopinStore.DataAccess.dll
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.pdb
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\RopinStore.DataAccess.genruntimeconfig.cache
+D:\Final\RopinStore.DataAccess\obj\Release\net7.0\ref\RopinStore.DataAccess.dll

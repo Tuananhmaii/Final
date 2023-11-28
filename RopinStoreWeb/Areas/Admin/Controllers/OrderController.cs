@@ -56,7 +56,7 @@ namespace RopinStoreWeb.Areas.Admin.Controllers
         public IActionResult GetAll(string status)
         {
             IEnumerable<Order> orderHeaders;
-            if (/*User.IsInRole(SD.Role_Admin) || */User.IsInRole(SD.Role_Employee))
+            if (User.IsInRole(SD.Role_Admin) /*|| User.IsInRole(SD.Role_Employee*/)
             {
                 orderHeaders = _unitOfWork.Order.GetAll(includeProperties: "ApplicationUser");
             }

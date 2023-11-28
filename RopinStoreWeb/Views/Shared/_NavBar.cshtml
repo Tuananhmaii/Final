@@ -24,11 +24,14 @@
     </div>
     <div class="d-none d-md-block">
         <ul class="navbar-nav ms-auto" style="position: relative;">
-            <li class="nav-item" style="">
-                <a class="nav-link fw-semibold" asp-area="Admin" asp-controller="Manage" asp-action="Index" style="font-weight: bold;">
-                    Management
-                </a>
-            </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li class="nav-item" style="">
+                    <a class="nav-link fw-semibold" asp-area="Admin" asp-controller="Manage" asp-action="Index" style="font-weight: bold;">
+                        Management
+                    </a>
+                </li>
+            }
             @if (!SignInManager.IsSignedIn(User))
             {
                 <li class="nav-item" id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="margin-right: -26px;">

@@ -11,6 +11,6 @@ namespace RopinStore.DataAccess.Repository.IRepository
     {
         void Update(Order obj);
         //void UpdateStatus(int id, string orderStatus, string? paymentStatus = null);
-        void UpdateStripePaymentId(int id, string sessionId, string paymentIntentId);
+        void UpdateStripePaymentId(int id, string sessionId);
     }
 }

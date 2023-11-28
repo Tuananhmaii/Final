@@ -338,9 +338,6 @@ namespace RopinStore.DataAccess.Migrations
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PaymentIntentId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PaymentType")
                         .HasColumnType("nvarchar(max)");
 

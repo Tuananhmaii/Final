@@ -10,13 +10,100 @@
         pageNo = pager.CurrenPage;
     }
 }
+
+<style>
+    .button-container {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+        flex-wrap: wrap; /* Wrap buttons if the container is not wide enough */
+    }
+
+    .color-button {
+        padding: 15px;
+        border-radius: 50%;
+        border: none;
+        outline: 1px solid black;
+        cursor: pointer;
+        display: block; /* Allow block-level behaviors */
+    }
+
+        .color-button.selected {
+            border: 3px solid black;
+        }
+
+    .button-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center the content */
+        width: 50px; /* Set a fixed width for the wrapper */
+    }
+
+    .button-label {
+        margin-top: 5px;
+        text-align: center;
+        font-size: 12px;
+    }
+    /* Add more colors as needed */
+    .silver {
+        background-color: #C0C0C0;
+    }
+
+    .beige {
+        background-color: #e1cf9d;
+    }
+
+    .black {
+        background-color: #000000;
+    }
+
+    .white {
+        background-color: #FFFFFF;
+    }
+
+    .navy {
+        background-color: #000080;
+    }
+
+
+    .brown {
+        background-color: #bc7c52;
+    }
+
+    .blue {
+        background-color: #bfb8fd;
+    }
+
+    .green {
+        background-color: #3a9b51;
+    }
+
+    .red {
+        background-color: #db2828;
+    }
+
+    .button-label-large {
+        font-size: 14px; /* Set a larger font size */
+        font-weight: bold; /* Optionally, make the font bold */
+    }
+</style>
+
+
 <form id="paginationForm" style="margin-left:10%; margin-right:10%">
     <div style="display: flex; padding-top: 2%">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart" style="background-color:white; color: black; border:none; margin-left:90%; font-size: 16px; margin-bottom:5%">Filter <i class="bi bi-arrow-down"></i></button>
+        @if (ViewBag.Search != null)
+        {
+            <h3 style="width:500px">Searching: @ViewBag.Search</h3>
+        }
+        else
+        {
+            <h3 style="width:500px"></h3>
+        }
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart" style="background-color:white; color: black; border:none; margin-left:49%; font-size: 16px; margin-bottom:5%">Filter <i class="bi bi-arrow-down"></i></button>
         <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
              aria-hidden="true">
             <div class="modal-dialog" role="document" style="margin-left:20%; margin-top:6%">
-                <div class="modal-content" style="width:200%; height:500px">
+                <div class="modal-content" style="width:200%; height:550px">
                     <div style="display:flex; margin: 3%;">
                         <section class="ftco-section" style="min-width:60%; margin-right:5%">
                             <div>
@@ -65,19 +152,59 @@
                                 </select>
                             </div>
                         </section>
-
-                        @* <section class="ftco-section" style="min-width:45%">
-                        <div class="inline w-100 field">
-                        <label>Color</label>
-                        <select>
-                        <option>Black</option>
-                        <option>White</option>
-                        <option>Red</option>
-                        <option>Grey</option>
-                        </select>
-                        </div>
-                        </section>*@
                     </div>
+                    <div>
+                        <section class="ftco-section" style="margin-left:17%">
+                            <div class="inline w-100 field">
+                                <div class="button-container">
+                                    <div class="button-wrapper">
+                                        <button class="color-button beige" value="Beige" onclick="toggleButton(this, 'Beige')"></button>
+                                        <div class="button-label">Beige</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button silver" value="Silver" onclick="toggleButton(this, 'Silver')"></button>
+                                        <div class="button-label">Silver</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button red" value="Red" onclick="toggleButton(this, 'Red')"></button>
+                                        <div class="button-label">Red</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button blue" value="Blue" onclick="toggleButton(this, 'Blue')"></button>
+                                        <div class="button-label">Blue</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button black" value="Black" onclick="toggleButton(this, 'Black')"></button>
+                                        <div class="button-label">Black</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button green" value="Green" onclick="toggleButton(this, 'Green')"></button>
+                                        <div class="button-label">Green</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button white" value="White" onclick="toggleButton(this, 'White')"></button>
+                                        <div class="button-label">White</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button navy" value="Navy" onclick="toggleButton(this, 'Navy')"></button>
+                                        <div class="button-label">Navy</div>
+                                    </div>
+                                    <div class="button-wrapper">
+                                        <button class="color-button brown" value="Brown" onclick="toggleButton(this, 'Brown')"></button>
+                                        <div class="button-label">Brown</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    @if (ViewBag.SelectedColor != null)
+                    {
+                        <input name="filterColor" value="@String.Join(",", ViewBag.SelectedColor)" hidden />
+                    }
+                    else
+                    {
+                        <input name="filterColor" hidden/>
+                    }
                     <div>
                         <label style="min-width:25%; margin-left:3%">Price</label>
                         <div class="card">
@@ -168,6 +295,54 @@
 <script src="~/js/main.js"></script>
 
 <script>
+    function toggleButton(button, colorValue) {
+        event.preventDefault();
+        button.classList.toggle('selected');
+        let label = button.nextElementSibling;
+        if (label.classList.contains('button-label')) {
+            label.classList.toggle('button-label-large');
+        }
+
+        // Get the filterColor input
+        let filterColorInput = document.getElementsByName('filterColor')[0];
+
+        // Convert the current value of the input to an array
+        let selectedColors = filterColorInput.value ? filterColorInput.value.split(',') : [];
+
+        // Check if the button is selected or not
+        if (button.classList.contains('selected')) {
+            // Add the color to the array if it's selected
+            selectedColors.push(colorValue);
+        } else {
+            // Remove the color from the array if it's deselected
+            let colorIndex = selectedColors.indexOf(colorValue);
+            if (colorIndex > -1) {
+                selectedColors.splice(colorIndex, 1);
+            }
+        }
+
+        // Update the input value
+        filterColorInput.value = selectedColors.join(',');
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        var selectedColors = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.SelectedColor));
+
+        $('.color-button').each(function () {
+            var button = $(this);
+            if (selectedColors.includes(button.val())) {
+                // Apply the 'selected' state to the button.
+                button.addClass('selected');
+                button.siblings('.button-label').addClass('button-label-large');
+            }
+        });
+    });
+</script>
+
+
+<script>
     // JavaScript to capture the value of clicked pagination button
     const paginationButtons = document.querySelectorAll('.pagination-button');
     const clickedPageInput = document.getElementById('clickedPage');
@@ -194,29 +369,33 @@
         let maxValue = document.getElementById("max-value");
 
         function validateRange(minPrice, maxPrice) {
-            if (minPrice > maxPrice) {
-                // Swap Values
-                let tempValue = maxPrice;
-                maxPrice = minPrice;
-                minPrice = tempValue;
+            minPrice = parseInt(minPrice, 10);
+            maxPrice = parseInt(maxPrice, 10);
+
+            if (isNaN(minPrice) || isNaN(maxPrice)) {
+                console.error('Invalid price range values');
+                return;
             }
 
-            minValue.innerHTML = "$" + minPrice;
-            maxValue.innerHTML = "$" + maxPrice;
+            if (minPrice > maxPrice) {
+                [minPrice, maxPrice] = [maxPrice, minPrice];
+            }
+
+            minValue.textContent = `$${minPrice}`;
+            maxValue.textContent = `$${maxPrice}`;
         }
 
-        const inputElements = document.querySelectorAll("input:not([type='text'])");
-
-        inputElements.forEach((element) => {
-            element.addEventListener("input", () => {
-                let minPrice = parseInt(inputElements[0].value);
-                let maxPrice = parseInt(inputElements[1].value);
-
+        document.querySelectorAll('.min-price, .max-price').forEach(element => {
+            element.addEventListener('input', () => {
+                const minPrice = document.querySelector('.min-price').value;
+                const maxPrice = document.querySelector('.max-price').value;
                 validateRange(minPrice, maxPrice);
             });
         });
 
-        validateRange(inputElements[0].value, inputElements[1].value);
+        // Initialize with current values
+        validateRange(document.querySelector('.min-price').value, document.querySelector('.max-price').value);
+
     })();
 
 </script>
