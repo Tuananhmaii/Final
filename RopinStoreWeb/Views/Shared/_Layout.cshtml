@@ -77,57 +77,7 @@
     <header>
         <nav class="navbar navbar-expand-md fixed-top navbar-shrink py-3 navbar-light" style="border-bottom-width: 0.5px; border-color:#ccc8c8;margin-bottom:100px ;padding-bottom:1% !important; height:12%;background-color: #f8f7f4; transition: none !important;" id="mainNav">
             <partial name="_NavBar" />
-        </nav>
-        @*<div id="menDiv" style="display: none; padding-top: 10px;"
-             onmouseover="clearHideTimer('menDiv')" onmouseout="setHideTimer('menDiv')">
-            <div style="padding-top: 130px; display: flex; justify-content: center;">
-                <ul style="display: flex; list-style-type: none;">
-                    <li>Watch</li>
-                    <li>Bag</li>
-                    <li>Belt</li>
-                    <li>Sunglasses</li>
-                    <li>Watch</li>
-                </ul>
-            </div>
-        </div>
-
-        <div id="womenDiv" style="display: none; padding-top: 10px;"
-             onmouseover="clearHideTimer('womenDiv')" onmouseout="setHideTimer('womenDiv')">
-            <div style="padding-top: 130px; display: flex; justify-content: center;">
-                <ul style="display: flex; list-style-type: none;">
-                    <li>asd</li>
-                    <li>sdasd</li>
-                    <li>asdfga</li>
-                    <li>saggd</li>
-                    <li>Waasgatch</li>
-                </ul>
-            </div>
-        </div>
-
-        <script>
-            var hideTimers = {};
-
-            function showDiv(divId) {
-                var div = document.getElementById(divId);
-                div.style.display = "block";
-            }
-
-            function hideDiv(divId) {
-                hideTimers[divId] = setTimeout(function () {
-                    var div = document.getElementById(divId);
-                    div.style.display = "none";
-                }, 3000); // Adjust the delay time as needed (500 milliseconds in this example).
-            }
-
-            function clearHideTimer(divId) {
-                clearTimeout(hideTimers[divId]);
-            }
-
-            function setHideTimer(divId) {
-                hideDiv(divId);
-            }
-        </script>*@
-        
+        </nav>      
     </header>
     @await Component.InvokeAsync("ProductList")
     <div style="margin-top: 4% ;margin-bottom:3%; min-height:80%">

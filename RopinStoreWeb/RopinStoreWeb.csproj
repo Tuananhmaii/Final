@@ -4,10 +4,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
-  <ItemGroup>
-    <Content Remove="Areas\Customer\Views\Cart\Summary.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
+  <ItemGroup> 
     <PackageReference Include="CloudinaryDotNet" Version="1.21.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="7.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Common" Version="7.0.9" />
@@ -27,14 +24,5 @@
   <ItemGroup>
     <ProjectReference Include="..\RopinStore.DataAccess\RopinStore.DataAccess.csproj" />
     <ProjectReference Include="..\RopinStore.Utility\RopinStore.Utility.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Areas\Customer\Views\Cart\Summary.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Areas\Customer\Views\Cart\Summary.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Areas\Customer\Views\Cart\Summary.cshtml" />
   </ItemGroup>
 </Project>

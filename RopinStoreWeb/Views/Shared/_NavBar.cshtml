@@ -5,19 +5,15 @@
     <a class="navbar-brand d-flex align-items-center" href="/"><span style="font-size:18px" class="fw-semibold">ROPIN STORE</span></a>
     <div id="navcol-4" class="collapse navbar-collapse flex-grow-0 order-md-first">
         <ul class="navbar-nav me-auto">
-            @*<li class="nav-item" onmouseover="showDiv('menDiv')" onmouseout="hideDiv('menDiv')">
-            <a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Men" style="padding-right: 6px; margin-right: 36px;">Men</a>
-            </li>
-            <li class="nav-item" onmouseover="showDiv('womenDiv')" onmouseout="hideDiv('womenDiv')">
-            <a class="nav-link fw-semibold" asp-action="Main" asp-route-filterGender="Women" style="margin-right: 20px;">Women</a>
-            </li>*@
             <li class="nav-item">
                 <a class="nav-link fw-semibold" asp-area="Customer" asp-controller="Home" asp-action="Main" asp-route-filterGender="Men" style="margin-right: 42px;">Men</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link fw-semibold" asp-area="Customer" asp-controller="Home" asp-action="Main" asp-route-filterGender="Women" style="margin-right: 20px;">Women</a>
             </li>
-            <li class="nav-item"><a class="nav-link fw-semibold" href="#">About us</a></li>
+            <li class="nav-item">
+                <a class="nav-link fw-semibold" asp-area="Customer" asp-controller="Home" asp-action="AboutUs">About us</a>
+            </li>
         </ul>
 
 

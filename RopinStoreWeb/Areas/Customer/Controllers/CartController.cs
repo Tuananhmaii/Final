@@ -44,8 +44,6 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
             };
             foreach (var item in ShoppingCartVM.ListCart)
             {
-                //item.Price = GetPriceBasedOnQuantity(item.Count, item.Product.Price,
-                //    item.Product.Price50, item.Product.Price100);
                 ShoppingCartVM.Order.TotalPrice += (item.Product.Price * item.Count);
             }
             return View(ShoppingCartVM);
@@ -257,7 +255,7 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
             if (paymentType == "VISA")
             {
-                var domain = "https://localhost:44340/";
+                var domain = "https://ropinstore.azurewebsites.net/";
                 var options = new SessionCreateOptions
                 {
                     LineItems = new List<SessionLineItemOptions>(),

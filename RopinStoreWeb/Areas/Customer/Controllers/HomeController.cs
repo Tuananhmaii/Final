@@ -33,14 +33,15 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         public IActionResult Index()
         {
             ViewBag.productList1 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 1).OrderBy(x => random.Next()).Take(4).ToList();
-            ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 2).OrderBy(x => random.Next()).Take(4).ToList();
+            ViewBag.productList2 = _unitOfWork.Product.GetAll(includeProperties: "Brand").Where(u => u.CollectionId == 3).OrderBy(x => random.Next()).Take(4).ToList();
             return View();
         }
-        public IActionResult Main(int minPrice = 0, int maxPrice = 1000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<string>? filterGender = null, string filterColor = null, string search = null, string? page = null)
+        public IActionResult Main(int minPrice = 0, int maxPrice = 1000, List<int>? filterBrand = null, List<int>? filterCategory = null, List<int>? filterCollection = null, List<string>? filterGender = null, string filterColor = null, string search = null, string? page = null)
         {
-            var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand");
+            var query = _unitOfWork.Product.GetAll(includeProperties: "Category,Brand,Collection");
             var brand = _unitOfWork.Brand.GetAll().ToList();
             var category = _unitOfWork.Category.GetAll().ToList();
+            var collection = _unitOfWork.Collection.GetAll().ToList();
             var gender = new List<string> { "Men", "Women" };
 
             if (!string.IsNullOrEmpty(search))
@@ -68,6 +69,16 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
                     foreach (var item in ViewBag.SelectedCategory)
                     {
                         category.RemoveAll(category => category.Id == item.Id);
+                    }
+                }
+
+                if (filterCollection != null && filterCollection.Any())
+                {
+                    query = query.Where(u => filterCollection.Contains(u.CollectionId));
+                    ViewBag.SelectedCollection = _unitOfWork.Collection.GetAll().Where(u => filterCollection.Contains(u.Id)).ToList();
+                    foreach (var item in ViewBag.SelectedCollection)
+                    {
+                        collection.RemoveAll(collection => collection.Id == item.Id);
                     }
                 }
 
@@ -101,9 +112,10 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
 
             ViewBag.Categories = new SelectList(category, "Id", "Name");
             ViewBag.Brands = new SelectList(brand, "Id", "Name");
+            ViewBag.Collections = new SelectList(collection, "Id", "Name");
             ViewBag.Gender = new SelectList(gender);
 
-            string cacheKey = $"ListProduct_{minPrice}_{maxPrice}_{string.Join(",", filterBrand)}_{string.Join(",", filterCategory)}_{string.Join(",", filterGender)}_{string.Join(",", filterColor)}_{string.Join(",", search)}";
+            string cacheKey = $"ListProduct_{minPrice}_{maxPrice}_{string.Join(",", filterBrand)}_{string.Join(",", filterCategory)}_{string.Join(",", filterCollection)}_{string.Join(",", filterGender)}_{string.Join(",", filterColor)}_{string.Join(",", search)}";
             string cachedData = _cache.GetString(cacheKey);
             IEnumerable<Product> productList = new List<Product>();
 
@@ -138,7 +150,6 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
         public IActionResult Details(int productid)
         {
-            //var list = _db.ProductGalleries.Where(u => u.ProductId == productid).ToList();
             ShoppingCart cartObj = new()
             {
                 Count = 1,
@@ -229,6 +240,11 @@ namespace RopinStoreWeb.Areas.Customer.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult AboutUs()
         {
             return View();
         }

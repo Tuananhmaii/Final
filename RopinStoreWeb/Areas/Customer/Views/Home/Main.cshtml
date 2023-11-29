@@ -138,7 +138,21 @@
                         </section>
                     </div>
                     <div style="display:flex; margin: 3%; margin-top:0%">
-                        <section class="ftco-section" style="min-width:60%">
+                        <section class="ftco-section" style="min-width:60%; margin-right:5%">
+                            <div>
+                                <label>Collection</label>
+                                <select name="filterCollection" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Collections">
+                                    @if (ViewBag.SelectedCollection != null)
+                                    {
+                                        foreach (var item in ViewBag.SelectedCollection)
+                                        {
+                                            <option value="@item.Id" selected>@item.Name</option>
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </section>
+                        <section class="ftco-section" style="min-width:25%; margin-right:5%">
                             <div class="inline w-100 field">
                                 <label>Category</label>
                                 <select name="filterCategory" multiple class="label ui selection fluid dropdown" asp-items="@ViewBag.Categories">
@@ -414,7 +428,7 @@
 
         $.ajax({
             type: "POST",
-            url: 'https://localhost:44340/Customer/Home/Details?productid=' + productId,
+            url: 'https://ropinstore.azurewebsites.net/Customer/Home/Details?productid=' + productId,
             data: formData,
             processData: false, // Prevent jQuery from processing data
             contentType: false, // Prevent jQuery from setting content type
@@ -452,7 +466,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // If the user confirmed, redirect to the login page
-                        window.location.href = 'https://localhost:44340/Identity/Account/Login';
+                        window.location.href = 'https://ropinstore.azurewebsites.net/Identity/Account/Login';
                     }
                 });
             }

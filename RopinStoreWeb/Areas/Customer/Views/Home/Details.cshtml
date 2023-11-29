@@ -12,7 +12,7 @@
         }
     }
     averageRating = (int)Math.Ceiling((double)averageRating / Model.Review.Count());
-    recommend = recommend / Model.Review.Count() * 100;
+    recommend = Math.Round(recommend / Model.Review.Count() * 100, 2);
 }
 <style>
     .content {
@@ -140,7 +140,7 @@
             }
         </div>
         <div style="text-align: center; margin-top: 5%;">
-            <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+            <a asp-action="Main" asp-route-filterCategory="@Model.Product.CategoryId" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
         </div>
     </section>
 </div>
@@ -253,7 +253,7 @@ else
 }
 <hr style="margin-top: 5%" />
 <div style="margin-left:10%; margin-right:10%; margin-top:5%; margin-bottom:5%">
-    <p style="font-size:2em; font-weight:lighter; margin-bottom:5%; text-align:center">You might also interest</p>
+    <p style="font-size:2em; font-weight:lighter; margin-bottom:5%; text-align:center">Similar products</p>
     <section class="section-products" style="padding-top:0px !important">
         <div class="row">
             @foreach (var Product in ViewBag.productList2)
@@ -282,7 +282,7 @@ else
             }
         </div>
         <div style="text-align: center; margin-top: 5%;">
-            <a href="" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
+            <a asp-action="Main" asp-route-filterCategory="@Model.Product.CategoryId" style="color: black;">See all <i class="bi bi-arrow-right"></i></a>
         </div>
     </section>
 </div>
@@ -317,7 +317,7 @@ else
 
         $.ajax({
             type: "POST",
-            url: 'https://localhost:44340/Customer/Home/Details?productid=' + productId,
+            url: 'https://ropinstore.azurewebsites.net/Customer/Home/Details?productid=' + productId,
             data: formData,
             processData: false, // Prevent jQuery from processing data
             contentType: false, // Prevent jQuery from setting content type
@@ -355,7 +355,7 @@ else
                 }).then((result) => {
                     if (result.isConfirmed) {
                         // If the user confirmed, redirect to the login page
-                        window.location.href = 'https://localhost:44340/Identity/Account/Login';
+                        window.location.href = 'https://ropinstore.azurewebsites.net/Identity/Account/Login';
                     }
                 });
             }

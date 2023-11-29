@@ -87,7 +87,7 @@
                                     <div class="ref-footer">
                                         <div class="ref-links"><a href="https://google.com" target="_blank">Terms &amp; Conditions</a><a href="https://google.com" target="_blank">Privacy Policy</a><a href="https://google.com" target="_blank">Refund Policy</a></div>
                                         <div class="ref-totals">
-                                            <div class="ref-subtotal">Subtotal: $<span class="ref-subtotal-value">@Model.Order.TotalPrice</span></div>
+                                            <div class="ref-subtotal">Subtotal: $<span class="ref-subtotal-value">@Model.Order.TotalPrice.ToString("c")</span></div>
                                             <div class="ref-paypal-express-checkout-holder">
                                             </div>
                                             <a asp-action="Summary" class="ref-button ref-standard-checkout-button" style="background-color:rgb(60,61,67); ">Checkout</a>
@@ -100,7 +100,6 @@
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 </form>
